@@ -14,4 +14,5 @@
 
 (add-to-list 'load-path "~/.emacs.d/config")
 
-(load "theme.el")
+(load "config-evil.el")
+(load "config-theme.el")
