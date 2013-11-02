@@ -11,3 +11,7 @@
 ;; Initialize Cask, the package manager
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/config")
+
+(load "theme.el")
