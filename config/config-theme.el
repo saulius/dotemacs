@@ -1,1 +1,1 @@
-(load-theme 'odersky t)
+(load-theme 'hemisu-light t)
