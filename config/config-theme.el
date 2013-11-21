@@ -1,1 +1,1 @@
-(load-theme 'hemisu-light t)
+(load-theme 'github t)
