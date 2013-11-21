@@ -17,3 +17,4 @@
 (load "config-general.el")
 (load "config-evil.el")
 (load "config-theme.el")
+(load "config-projectile.el")
