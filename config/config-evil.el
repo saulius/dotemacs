@@ -27,7 +27,11 @@
 ;; keyboard shortcuts
 (evil-leader/set-key
   "," 'my-switch-to-other-buffer
-  "j" 'projectile-find-file)
+  "b" 'projectile-switch-to-buffer
+  "f" 'ido-find-file
+  "k" 'kill-this-buffer
+  "j" 'projectile-find-file
+  "w" 'save-buffer)
 
 (after-load 'evil
   (setq
