@@ -1,3 +1,4 @@
+(source "gnu" "http://elpa.gnu.org/packages/")
 (source melpa)
 (source marmalade)
 
@@ -9,3 +10,4 @@
 (depends-on "sublime-themes")
 (depends-on "surround")
 (depends-on "projectile")
+(depends-on "rainbow-mode")

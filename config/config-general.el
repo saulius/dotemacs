@@ -30,3 +30,8 @@
 ;; Disable scroll bar
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
+
+;; As seen in https://github.com/DarwinAwardWinner/dotemacs/blob/c1208629d50602eaf6825b7005cb3717f559b55b/site-lisp/settings/rainbow-mode-settings.el
+(require 'rainbow-mode)
+(define-globalized-minor-mode global-rainbow-mode rainbow-mode (lambda () (rainbow-mode t)))
+(global-rainbow-mode t)
