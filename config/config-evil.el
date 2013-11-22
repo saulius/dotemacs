@@ -17,6 +17,13 @@
   (interactive)
   (switch-to-buffer (other-buffer)))
 
+(defun save-buffer-no-whitespace ()
+  "Writes buffer with trimmed whitespace"
+  (interactive)
+  (delete-trailing-whitespace)
+  (save-buffer)
+  )
+
 (evil-mode 1)
 (global-surround-mode 1)
 (global-evil-leader-mode 1)
@@ -31,7 +38,8 @@
   "f" 'ido-find-file
   "k" 'kill-this-buffer
   "j" 'projectile-find-file
-  "w" 'save-buffer)
+  "w" 'save-buffer
+  "W" 'save-buffer-no-whitespace)
 
 (after-load 'evil
   (setq
