@@ -1,3 +1,7 @@
+(el-get 'sync '(evil))
+(el-get 'sync '(evil-leader))
+(el-get 'sync '(evil-surround))
+
 (require 'evil)
 (require 'evil-leader)
 (require 'surround)
@@ -32,10 +36,10 @@
   "w" 'save-buffer
   "W" 'save-buffer-no-whitespace)
 
-(after-load 'evil
-  (setq
-   ;; this stops evil from overwriting the cursor color
-   evil-default-cursor t
-   evil-default-state 'normal
-   )
-)
+(eval-after-load 'evil
+  '(progn
+    (setq
+     ;; this stops evil from overwriting the cursor color
+     evil-default-cursor t
+     evil-default-state 'normal
+     )))

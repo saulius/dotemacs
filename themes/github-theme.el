@@ -172,4 +172,3 @@
                (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide 'github)
-

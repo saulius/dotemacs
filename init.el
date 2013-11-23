@@ -1,20 +1,19 @@
-(add-to-list 'load-path "~/.emacs.d/")
+(setq init-dir "~/.emacs.d/")
 
-;; Turn off graphical interface early on, console person
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(add-to-list 'load-path (concat init-dir "el-get/el-get"))
 
-;; Turn off splash screen
-(setq inhibit-startup-screen t)
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-install-skip-emacswiki-recipes el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
 
-;; Initialize Cask, the package manager
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
+(el-get 'sync '(el-get))
+(add-to-list 'el-get-recipe-path (concat init-dir "elget-recipes"))
 
-(add-to-list 'load-path "~/.emacs.d/config")
-
-(load "config-general.el")
-(load "config-evil.el")
-(load "config-theme.el")
-(load "config-projectile.el")
+;; init
+(el-get 'sync '(init-loader))
+(require 'init-loader)
+(init-loader-load (concat init-dir "config"))
