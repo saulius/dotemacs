@@ -29,6 +29,8 @@
 ;; keyboard shortcuts
 (evil-leader/set-key
   "," 'my-switch-to-other-buffer
+  "a" 'ag-project
+  "A" 'ag
   "b" 'projectile-switch-to-buffer
   "f" 'ido-find-file
   "k" 'kill-this-buffer
