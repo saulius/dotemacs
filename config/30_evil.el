@@ -1,9 +1,11 @@
 (el-get 'sync '(evil))
 (el-get 'sync '(evil-leader))
 (el-get 'sync '(evil-surround))
+(el-get 'sync '(evil-nerd-commenter))
 
 (require 'evil)
 (require 'evil-leader)
+(require 'evil-nerd-commenter)
 (require 'surround)
 
 ;; TODO move to better place
@@ -28,9 +30,14 @@
 
 ;; keyboard shortcuts
 (evil-leader/set-key
-  "," 'my-switch-to-other-buffer
+  "." 'my-switch-to-other-buffer
   "a" 'ag-project
   "A" 'ag
+  "cc" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-comment-or-uncomment-to-the-line
+  "ci" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
   "b" 'projectile-switch-to-buffer
   "f" 'ido-find-file
   "k" 'kill-this-buffer
