@@ -42,6 +42,7 @@
   "f" 'ido-find-file
   "k" 'kill-this-buffer
   "j" 'projectile-find-file
+  "T" 'eshell
   "w" 'save-buffer
   "W" 'save-buffer-no-whitespace)
 
