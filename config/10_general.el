@@ -51,3 +51,9 @@
 ;; [Home] & [End] key should take you to beginning and end of lines..
 (global-set-key [home] 'beginning-of-line)
 (global-set-key [end] 'end-of-line)
+
+;; from http://whattheemacsd.com/init.el-03.html
+;; Save point position between sessions
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
