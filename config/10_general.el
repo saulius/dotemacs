@@ -26,3 +26,15 @@
 
 ;; Time is useful to see when coding
 (display-time)
+
+;; disable backup file
+(setq make-backup-files nil)
+
+;; delete auto save file
+(setq delete-auto-save-files t)
+
+;; disable auto save
+(setq auto-save-default nil)
+
+;; yes/no => y/n
+(defalias 'yes-or-no-p 'y-or-n-p)
