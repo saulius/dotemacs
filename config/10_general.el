@@ -1,8 +1,5 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-;; (require 'powerline)
-;; (powerline-default-theme)
-
 ;;; set default font
 (set-default-font "Bitstream Vera Sans Mono for Powerline 16")
 ;;; set default font for emacs --daemon / emacsclient
