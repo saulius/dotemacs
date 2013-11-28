@@ -17,6 +17,9 @@
 
 (require 'inf-ruby)
 
+;; use emacs mode in inf-ruby mode
+(evil-set-initial-state 'inf-ruby-mode 'emacs)
+
 (setq enh-ruby-bounce-deep-indent t)
 (setq enh-ruby-hanging-brace-indent-level 2)
 

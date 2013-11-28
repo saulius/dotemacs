@@ -13,7 +13,7 @@
 (global-evil-leader-mode 1)
 
 ;; default leader key is ,
-(setq evil-leader/leader ",")
+(setq evil-leader/leader "," evil-leader/in-all-states t)
 
 ;; keyboard shortcuts
 (evil-leader/set-key
