@@ -27,8 +27,14 @@
 ;; Time is useful to see when coding
 (display-time)
 
-;; disable backup file
-(setq make-backup-files nil)
+;; from http://whattheemacsd.com/init.el-02.html
+;; Write backup files to own directory
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
 
 ;; delete auto save file
 (setq delete-auto-save-files t)
