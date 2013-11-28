@@ -41,3 +41,7 @@
 
 ;; truncate lines
 (setq-default truncate-lines t)
+
+;; [Home] & [End] key should take you to beginning and end of lines..
+(global-set-key [home] 'beginning-of-line)
+(global-set-key [end] 'end-of-line)
