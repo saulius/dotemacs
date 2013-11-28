@@ -38,3 +38,6 @@
 
 ;; yes/no => y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; truncate lines
+(setq-default truncate-lines t)
