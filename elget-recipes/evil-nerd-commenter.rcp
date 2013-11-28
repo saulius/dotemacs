@@ -1,5 +1,5 @@
 (:name evil-nerd-commenter
-       :wibsite "https://github.com/redguardtoo/evil-nerd-commenter"
+       :website "https://github.com/redguardtoo/evil-nerd-commenter"
        :type github
        :pkgname "redguardtoo/evil-nerd-commenter"
        :depends (evil))
