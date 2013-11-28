@@ -1,6 +1,4 @@
-(setq init-dir "~/.emacs.d/")
-
-(add-to-list 'load-path (concat init-dir "el-get/el-get"))
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -11,9 +9,9 @@
       (eval-print-last-sexp))))
 
 (el-get 'sync '(el-get))
-(add-to-list 'el-get-recipe-path (concat init-dir "elget-recipes"))
+(add-to-list 'el-get-recipe-path (concat user-emacs-directory "elget-recipes"))
 
 ;; init
 (el-get 'sync '(init-loader))
 (require 'init-loader)
-(init-loader-load (concat init-dir "config"))
+(init-loader-load (concat user-emacs-directory "config"))
