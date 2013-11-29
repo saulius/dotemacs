@@ -8,13 +8,9 @@
 (add-to-list 'default-frame-alist '(background-color . "#FFFFFF"))
 (add-to-list 'default-frame-alist '(foreground-color . "#000000"))
 
-;; Disable toolbar
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-
-;; Disable scroll bar
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; UTF-8 all the things
 (set-language-environment "UTF-8")
