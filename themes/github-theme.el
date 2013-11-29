@@ -47,7 +47,8 @@
       (*gitgrey1* "#EEEEEE")
       (*gitgrey2* "#999988")
       (*gitgrey3* "#999999")
-      (*gitgrey4* "#333333"))
+      (*gitgrey4* "#333333")
+      (*gitgrey5* "#DCDCDC"))
 
   (custom-theme-set-faces
    'github
@@ -159,8 +160,8 @@
       `(quack-threesemi-semi-face ((t (:background, *lightcyan* :foreground, *darkcyan*))))
       `(quack-threesemi-text-face ((t (:background, *lightcyan* :foreground, *darkcyan*))))
       `(region ((t (:background, *mouse-color*))))
-      `(sp-show-pair-match-face ((t (:inherit `region :bold t))))
-      `(sp-show-pair-mismatch-face ((t (:background, *gitgrey1* :bold t :foreground, *lightred*))))
+      `(sp-show-pair-match-face ((t (:background, *gitgrey1* :box nil))))
+      `(sp-pair-overlay-face ((t (:background, *gitgrey1* :bold t :box nil))))
       `(trailing-whitespace ((t (:background, *lightred*))))
       `(writegood-duplicates-face ((t (:inherit `default :underline t))))
       `(writegood-passive-voice-face ((t (:inherit `writegood-duplicates-face))))
