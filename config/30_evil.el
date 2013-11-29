@@ -31,6 +31,7 @@
   "k"  'kill-this-buffer
   "j"  'projectile-find-file
   "T"  'eshell
+  "xx" 'smex
   "xd" 'drag-stuff-mode
   "w"  'save-buffer
   "W"  'save-buffer-no-whitespace)
