@@ -5,19 +5,21 @@
 
 (require 'evil)
 (require 'evil-leader)
+
+(setq evilnc-hotkey-comment-operator "\\")
 (require 'evil-nerd-commenter)
 (require 'surround)
 
+(global-evil-leader-mode 1) ;; enable before evil-mode to work in all modes
 (evil-mode 1)
 (global-surround-mode 1)
-(global-evil-leader-mode 1)
 
 ;; default leader key is ,
 (setq evil-leader/leader "," evil-leader/in-all-states t)
 
 ;; keyboard shortcuts
 (evil-leader/set-key
-  "."  'my-switch-to-other-buffer
+  ","  'my-switch-to-other-buffer
   "a"  'ag-project
   "A"  'ag
   "cc" 'evilnc-comment-or-uncomment-lines
@@ -45,6 +47,11 @@
      ;; Don't wait for any other keys after escape is pressed.
      evil-esc-delay 0
      )))
+
+;; I comment with \\ in visual mode
+(define-key evil-motion-state-map "\\" nil)
+(define-key evil-normal-state-map "\\" nil)
+
 
 ;; taken from https://github.com/davvil/.emacs.d/blob/64367f20a542f806b6313aa702faac3fe642ae38/init.el
 ;; esc quits
