@@ -42,6 +42,8 @@
      ;; this stops evil from overwriting the cursor color
      evil-default-cursor t
      evil-default-state 'normal
+     ;; Don't wait for any other keys after escape is pressed.
+     evil-esc-delay 0
      )))
 
 ;; taken from https://github.com/davvil/.emacs.d/blob/64367f20a542f806b6313aa702faac3fe642ae38/init.el
