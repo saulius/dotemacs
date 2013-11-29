@@ -54,4 +54,4 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
