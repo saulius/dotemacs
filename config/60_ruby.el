@@ -1,5 +1,6 @@
 (el-get 'sync '(enh-ruby-mode))
 (el-get 'sync '(inf-ruby))
+(el-get 'sync '(rspec-mode))
 
 (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
@@ -16,6 +17,7 @@
 (add-to-list 'auto-mode-alist '("\\.jbuilder\\'" . enh-ruby-mode))
 
 (require 'inf-ruby)
+(require 'rspec-mode)
 
 ;; use emacs mode in inf-ruby mode
 (evil-set-initial-state 'inf-ruby-mode 'emacs)
