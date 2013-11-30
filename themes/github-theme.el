@@ -109,7 +109,7 @@
       `(highlight ((t (:background, *mouse-color*))))
       `(link ((t (:foreground, *lightblue* :underline t))))
       `(link-visited ((t (:underline t :foreground, *darkpurple*))))
-      `(linum ((t (:foreground, *gitgrey2* :background, *gitgrey1* :height 0.8))))
+      `(linum ((t (:foreground, *gitgrey2* :background, *gitgrey1* :height 0.9))))
       `(message-cited-text-face ((t (:foreground, *lightblue*))))
       `(message-header-name-face ((t (:weight bold :foreground, *gitblack*))))
       `(message-header-other-face ((t (:foreground, *lightblue*))))
