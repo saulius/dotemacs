@@ -58,3 +58,6 @@
 (setq-default indent-tabs-mode nil)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
+
+;; visual, some spacing between lines
+(setq-default line-spacing 2)
