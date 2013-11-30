@@ -57,4 +57,4 @@
 ;; don't use tabs to indent
 (setq-default indent-tabs-mode nil)
 
-(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
