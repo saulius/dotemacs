@@ -4,3 +4,4 @@ el-get/*
 eshell/*
 backups
 .places
+projectile.cache
