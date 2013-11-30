@@ -1,5 +1,5 @@
 (el-get 'sync '(ruby-mode))
-(el-get 'sync '(inf-ruby))
+(el-get 'sync '(robe-mode))
 (el-get 'sync '(rhtml-mode))
 (el-get 'sync '(rspec-mode))
 
@@ -18,17 +18,7 @@
 (add-to-list 'auto-mode-alist '("\\.jbuilder\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.xml.builder$" . ruby-mode))
 
-(require 'inf-ruby)
 (require 'rspec-mode)
 
 ;; never edit Rubinius bytecode
 (add-to-list 'completion-ignored-extensions ".rbc")
-
-;; use emacs mode in inf-ruby mode
-(evil-set-initial-state 'inf-ruby-mode 'emacs)
-
-(setq enh-ruby-bounce-deep-indent t)
-(setq enh-ruby-hanging-brace-indent-level 2)
-
-(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
