@@ -14,7 +14,7 @@
       (let ((buffer (process-buffer proc)))
         ad-do-it
         (kill-buffer buffer)
-        (delete-window) )
+        (delete-window))
     ad-do-it))
 (ad-activate 'term-sentinel)
 
