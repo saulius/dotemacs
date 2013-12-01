@@ -12,6 +12,13 @@
   (save-buffer)
   )
 
+(defun kill-this-buffer-and-window ()
+  "kills buffer and window (split)"
+  (interactive)
+  (kill-this-buffer)
+  (delete-window)
+  )
+
 ;; from http://tuxicity.se/emacs/elisp/2010/03/26/rename-file-and-buffer-in-emacs.html
 (defun rename-this-buffer-and-file ()
   "Renames current buffer and file it is visiting."

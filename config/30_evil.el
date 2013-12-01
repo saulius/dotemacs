@@ -30,7 +30,8 @@
   "b"  'projectile-switch-to-buffer
   "f"  'ido-find-file
   "n"  'rename-this-buffer-and-file
-  "k"  'kill-this-buffer
+  "k"  'kill-this-buffer-and-window
+  "K"  'kill-this-buffer
   "j"  'projectile-find-file
   "t"  'visit-term-buffer
   "T"  'eshell
