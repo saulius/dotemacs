@@ -32,6 +32,7 @@
   "n"  'rename-this-buffer-and-file
   "k"  'kill-this-buffer
   "j"  'projectile-find-file
+  "t"  'visit-term-buffer
   "T"  'eshell
   "xx" 'smex
   "xd" 'drag-stuff-mode

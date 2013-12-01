@@ -166,6 +166,17 @@
       `(writegood-duplicates-face ((t (:inherit `default :underline t))))
       `(writegood-passive-voice-face ((t (:inherit `writegood-duplicates-face))))
       `(writegood-weasels-face ((t (:inherit `writegood-duplicates-face))))
+      ;; term
+     `(term-color-black ((t (:foreground ,*gitblack* :background ,*gitblack*))))
+     `(term-color-red ((t (:foreground ,*lightred* :background ,*darkred*))))
+     `(term-color-green ((t (:foreground ,*lightgreen* :background ,*darkgreen*))))
+     `(term-color-yellow ((t (:foreground ,*gityellow* :background ,*gityellow*))))
+     `(term-color-blue ((t (:foreground ,*lightblue* :background ,*darkblue*))))
+     `(term-color-magenta ((t (:foreground ,*lightpurple* :background ,*darkpurple*))))
+     `(term-color-cyan ((t (:foreground ,*lightcyan* :background ,*darkcyan*))))
+     `(term-color-white ((t (:foreground ,*gitwhite* :background ,*gitwhite*))))
+     '(term-default-fg-color ((t (:inherit term-color-white))))
+     '(term-default-bg-color ((t (:inherit term-color-black))))
    ))
 
 (when load-file-name
