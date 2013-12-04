@@ -1,0 +1,4 @@
+(:name emux
+       :website "https://github.com/re5et/emux"
+       :type github
+       :pkgname "re5et/emux")
