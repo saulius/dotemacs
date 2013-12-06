@@ -175,8 +175,26 @@
      `(term-color-magenta ((t (:foreground ,*lightpurple* :background ,*darkpurple*))))
      `(term-color-cyan ((t (:foreground ,*lightcyan* :background ,*darkcyan*))))
      `(term-color-white ((t (:foreground ,*gitwhite* :background ,*gitwhite*))))
-     '(term-default-fg-color ((t (:inherit term-color-white))))
-     '(term-default-bg-color ((t (:inherit term-color-black))))
+     `(term-default-fg-color ((t (:inherit term-color-white))))
+     `(term-default-bg-color ((t (:inherit term-color-black))))
+     `(tabbar-button ((t (:foreground ,*gitblack*
+                                       :background ,*gitgrey5*
+                                       :box nil))))
+     `(tabbar-default ((t (:foreground ,*gitblack*
+                                         :background ,*gitgrey1*
+                                         :bold t
+                                         :box nil))))
+     `(tabbar-selected ((t (:foreground ,*gitblack*
+                                         :background ,*gitgrey5*
+                                         :box nil))))
+     `(tabbar-highlight ((t (:foreground ,*gitblack*
+                                         :background ,*gitgrey5*
+                                         :underline nil
+                                         :box nil))))
+     `(tabbar-highlight ((t (:height 1.5))))
+     `(tabbar-unselected ((t (:foreground ,*gitblack*
+                                           :background ,*gitgrey1*
+                                           :box nil))))
    ))
 
 (when load-file-name

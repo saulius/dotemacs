@@ -6,4 +6,6 @@
 
 (add-hook 'term-mode-hook
           '(lambda ()
+             (interactive)
+             (set-window-dedicated-p (selected-window) 1)
              (linum-mode 0)))
