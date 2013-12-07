@@ -41,3 +41,7 @@
 
 (custom-set-variables
  '(tabbar-separator (quote (0.8))))
+
+;; add separator spaces between tabs
+(defadvice tabbar-buffer-tab-label (after fixup_tab_label_space_and_flag activate)
+  (setq ad-return-value (concat "  " (concat ad-return-value "  "))))
