@@ -62,10 +62,6 @@
 ;; visual, some spacing between lines
 (setq-default line-spacing 2)
 
-;; global bindings
-(global-set-key (kbd "<f1>") 'linum-mode)
-(global-set-key (kbd "<f2>") 'whitespace-mode)
-
 ;; Disable fringes
 (fringe-mode 0)
 

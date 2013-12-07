@@ -37,6 +37,8 @@
   "T"  'eshell
   "xx" 'smex
   "xd" 'drag-stuff-mode
+  "xl" 'linum-mode
+  "xw" 'whitespace-mode
   "w"  'save-buffer
   "W"  'save-buffer-no-whitespace)
 
