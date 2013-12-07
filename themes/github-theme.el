@@ -48,7 +48,10 @@
       (*gitgrey2* "#999988")
       (*gitgrey3* "#999999")
       (*gitgrey4* "#333333")
-      (*gitgrey5* "#DCDCDC"))
+      ;; custom colors
+      (*gitgrey5* "#DCDCDC")
+      (*lightorange* "#ef9f6c")
+      )
 
   (custom-theme-set-faces
    'github
@@ -177,6 +180,7 @@
      `(term-color-white ((t (:foreground ,*gitwhite* :background ,*gitwhite*))))
      `(term-default-fg-color ((t (:inherit term-color-white))))
      `(term-default-bg-color ((t (:inherit term-color-black))))
+     ;; tabbar
      `(tabbar-button ((t (:foreground ,*gitblack*
                                        :background ,*gitgrey5*
                                        :box nil))))
@@ -195,6 +199,11 @@
      `(tabbar-unselected ((t (:foreground ,*gitblack*
                                            :background ,*gitgrey1*
                                            :box nil))))
+     `(column-marker-1 ((t (:foreground ,*gitwhite*
+                                             :background ,*gitorange*
+                                             :box nil))))
+     ;; whitespace-mode
+     `(whitespace-line ((t (:foreground ,*gitgrey4* :background ,*lightorange*))))
    ))
 
 (when load-file-name
