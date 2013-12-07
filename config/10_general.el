@@ -58,6 +58,8 @@
 (setq-default indent-tabs-mode nil)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-+") 'increase-font-size)
+(global-set-key (kbd "C--") 'decrease-font-size)
 
 ;; visual, some spacing between lines
 (setq-default line-spacing 2)

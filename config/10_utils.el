@@ -13,6 +13,22 @@
   (delete-window)
   )
 
+(defun increase-font-size ()
+  (interactive)
+  (set-face-attribute 'default
+                      nil
+                      :height
+                      (ceiling (* 1.10
+                                  (face-attribute 'default :height)))))
+
+(defun decrease-font-size ()
+  (interactive)
+  (set-face-attribute 'default
+                      nil
+                      :height
+                      (floor (* 0.9
+                                (face-attribute 'default :height)))))
+
 ;; from http://tuxicity.se/emacs/elisp/2010/03/26/rename-file-and-buffer-in-emacs.html
 (defun rename-this-buffer-and-file ()
   "Renames current buffer and file it is visiting."
