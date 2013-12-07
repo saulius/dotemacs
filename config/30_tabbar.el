@@ -5,9 +5,10 @@
    ;; No special buffers in buffer list
    (setq tabbar-buffer-list-function
         (lambda ()
-          (remove-if
+          (remove-if-not
            (lambda (buffer)
-             (find (aref (buffer-name buffer) 0) " *"))
+            (setq case-fold-search t)
+            (string-match (format "^[a-z]+\/[a-z]+\\(<[0-9]+>\\)?$") (buffer-name buffer)))
            (buffer-list))))
    ;; Enable tabbars globally:
    (tabbar-mode 1)
