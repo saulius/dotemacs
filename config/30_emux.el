@@ -1,6 +1,7 @@
 (el-get 'sync '(emux))
 
 (setq emux-term-program "/bin/zsh")
+(setq emux-default-session "emux")
 
 (require 'emux-session)
 

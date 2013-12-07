@@ -2,6 +2,13 @@
 
 ;; from http://www.emacswiki.org/emacs/TabBarMode
 (when (require 'tabbar nil t)
+   ;; No special buffers in buffer list
+   (setq tabbar-buffer-list-function
+        (lambda ()
+          (remove-if
+           (lambda (buffer)
+             (find (aref (buffer-name buffer) 0) " *"))
+           (buffer-list))))
    ;; Enable tabbars globally:
    (tabbar-mode 1)
    ;; I use this minor-mode mainly as a global mode (see below):

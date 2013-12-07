@@ -33,7 +33,7 @@
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
   "j"  'projectile-find-file
-  "t"  'visit-term-buffer
+  "t"  'emux-term-create
   "T"  'eshell
   "xx" 'smex
   "xd" 'drag-stuff-mode
