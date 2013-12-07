@@ -28,11 +28,12 @@
   "cp" 'evilnc-comment-or-uncomment-paragraphs
   "cr" 'comment-or-uncomment-region
   "b"  'projectile-switch-to-buffer
-  "f"  'ido-find-file
+  "e"  'ido-find-file
   "n"  'rename-this-buffer-and-file
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
   "j"  'projectile-find-file
+  "r"  'rename-buffer
   "t"  'emux-term-create
   "T"  'eshell
   "xx" 'smex
