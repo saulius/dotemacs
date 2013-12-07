@@ -1,9 +1,3 @@
-;; switch to previous buffer
-(defun my-switch-to-other-buffer ()
-  "Switch to other buffer"
-  (interactive)
-  (switch-to-buffer (other-buffer)))
-
 ;; save file trimming all whitespace
 (defun save-buffer-no-whitespace ()
   "Writes buffer with trimmed whitespace"

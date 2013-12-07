@@ -19,7 +19,7 @@
 
 ;; keyboard shortcuts
 (evil-leader/set-key
-  ","  'my-switch-to-other-buffer
+  ","  'evil-buffer
   "a"  'ag-project
   "A"  'ag
   "cc" 'evilnc-comment-or-uncomment-lines
