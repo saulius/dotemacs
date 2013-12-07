@@ -203,7 +203,7 @@
                                              :background ,*gitorange*
                                              :box nil))))
      ;; whitespace-mode
-     `(whitespace-line ((t (:foreground ,*gitgrey4* :background ,*lightorange*))))
+     `(whitespace-line ((t (:foreground ,*lightred* :background nil :underline t))))
    ))
 
 (when load-file-name
