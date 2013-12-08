@@ -5,4 +5,3 @@
 (diminish 'rainbow-mode)
 (diminish 'projectile-mode)
 (diminish 'undo-tree-mode)
-(diminish 'ethan-wspace-mode)

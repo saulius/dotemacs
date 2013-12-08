@@ -1,5 +1,3 @@
-(el-get 'sync '(nxml-mode))
-
 (require 'nxml-mode)
 
 ;; from prelude  https://github.com/bbatsov/prelude/blob/02b3f27e65ae6e213c8046d3196eacb24630600f/modules/prelude-xml.el
