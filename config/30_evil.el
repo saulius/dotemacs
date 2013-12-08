@@ -29,6 +29,7 @@
   "cr" 'comment-or-uncomment-region
   "b"  'projectile-switch-to-buffer
   "e"  'ido-find-file
+  "g"  'magit-status
   "n"  'rename-this-buffer-and-file
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
