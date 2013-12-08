@@ -83,3 +83,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+
+;; additional evil commands
+(evil-ex-define-cmd "Ex[plore]" 'dired-jump)
