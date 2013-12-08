@@ -77,3 +77,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
+
+;; evil moving around windows
+(define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
