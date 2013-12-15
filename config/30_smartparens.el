@@ -16,8 +16,8 @@
       (indent-according-to-mode))
     (indent-according-to-mode))
 
-(dolist (symbol '("{" "["))
-  (dolist (mode '(coffee-mode js2-mode css-mode scss-mode))
+(dolist (symbol '("{" "[" "("))
+  (dolist (mode '(coffee-mode js2-mode css-mode scss-mode ruby-mode))
       (sp-local-pair mode
                      symbol
                      nil
