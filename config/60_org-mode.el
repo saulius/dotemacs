@@ -1,4 +1,7 @@
+(el-get 'sync '(org-pomodoro))
+
 (require 'remember)
+(require 'org-pomodoro)
 
 (setq org-directory (concat "~" ".emacs.d/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
