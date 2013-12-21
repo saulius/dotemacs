@@ -2,9 +2,11 @@
 (el-get 'sync '(evil-leader))
 (el-get 'sync '(evil-surround))
 (el-get 'sync '(evil-nerd-commenter))
+(el-get 'sync '(evil-org))
 
 (require 'evil)
 (require 'evil-leader)
+(require 'evil-org)
 
 (setq evilnc-hotkey-comment-operator "\\")
 (require 'evil-nerd-commenter)
@@ -34,6 +36,7 @@
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
   "j"  'projectile-find-file
+  "oa" 'org-agenda-list
   "r"  'rename-buffer
   "t"  'emux-term-create
   "T"  'eshell
