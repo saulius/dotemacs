@@ -3,7 +3,8 @@
 (require 'remember)
 (require 'org-pomodoro)
 
-(setq org-directory (concat "~" ".emacs.d/org")
+(setq org-directory (concat "~" "/.emacs.d/org/"))
+(setq org-global-agenda-file-name "agenda.org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-log-done t)
 ;; save clock history accross emacs sessions
@@ -24,3 +25,8 @@ Note: This assumes all files are in the org-directory."
                                     (mapcar 'file-name-nondirectory (org-agenda-files))
                                     nil t)))
   (find-file (concat org-directory fname)))
+
+(defun open-org-global-todo ()
+  "Opens global agenda"
+    (interactive)
+    (visit-org-agenda-files org-global-agenda-file-name))

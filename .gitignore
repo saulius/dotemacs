@@ -8,3 +8,4 @@ backups
 projectile.cache
 tramp
 org/
+org-clock-save.el

@@ -36,7 +36,9 @@
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
   "j"  'projectile-find-file
-  "oa" 'org-agenda-list
+  "oa" 'visit-org-agenda-files
+  "ot" 'open-org-global-todo
+  "op" 'org-pomodoro
   "r"  'rename-buffer
   "t"  'emux-term-create
   "T"  'eshell
