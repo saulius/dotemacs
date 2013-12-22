@@ -41,6 +41,8 @@
   "oi" 'org-clock-in
   "oo" 'org-clock-out
   "od" 'org-clock-display
+  "oe" 'org-set-effort
+  "om" 'org-clock-modify-effort-estimate
   "op" 'org-pomodoro
   "r"  'rename-buffer
   "t"  'emux-term-create
