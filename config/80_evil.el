@@ -38,6 +38,9 @@
   "j"  'projectile-find-file
   "oa" 'visit-org-agenda-files
   "ot" 'open-org-global-todo
+  "oi" 'org-clock-in
+  "oo" 'org-clock-out
+  "od" 'org-clock-display
   "op" 'org-pomodoro
   "r"  'rename-buffer
   "t"  'emux-term-create
