@@ -41,3 +41,8 @@
     (when indent
       (indent-line-to indent)
       (when (> offset 0) (forward-char offset)))))
+
+;; adjust evil shift width per language
+(add-hook 'ruby-mode-hook
+  (function (lambda ()
+          (setq evil-shift-width ruby-indent-level))))
