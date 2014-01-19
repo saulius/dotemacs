@@ -57,6 +57,9 @@
 ;; don't use tabs to indent
 (setq-default indent-tabs-mode nil)
 
+;; only in emacs 24.4+
+(electric-indent-mode +1)
+
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-+") 'increase-font-size)
 (global-set-key (kbd "C--") 'decrease-font-size)
