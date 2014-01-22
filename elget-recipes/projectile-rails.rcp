@@ -2,4 +2,4 @@
        :website "https://github.com/asok/projectile-rails"
        :type github
        :pkgname "asok/projectile-rails"
-       :depends (projectile inf-ruby inflections))
+       :depends (projectile inf-ruby inflections f))
