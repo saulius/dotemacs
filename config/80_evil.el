@@ -35,7 +35,9 @@
   "n"  'rename-this-buffer-and-file
   "k"  'kill-this-buffer-and-window
   "K"  'kill-this-buffer
-  "j"  'projectile-find-file
+  "f"  'projectile-find-file
+  "j" 'ace-jump-mode
+  "J" 'ace-jump-word-mode
   "oa" 'visit-org-agenda-files
   "ot" 'open-org-global-todo
   "oi" 'org-clock-in
