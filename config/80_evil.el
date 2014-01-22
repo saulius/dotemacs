@@ -1,15 +1,13 @@
 (el-get 'sync '(evil))
 (el-get 'sync '(evil-leader))
 (el-get 'sync '(evil-surround))
-(el-get 'sync '(evil-nerd-commenter))
+; (el-get 'sync '(evil-nerd-commenter))
 (el-get 'sync '(evil-org))
 
 (require 'evil)
 (require 'evil-leader)
 (require 'evil-org)
 
-(setq evilnc-hotkey-comment-operator "\\")
-(require 'evil-nerd-commenter)
 (require 'surround)
 
 (global-evil-leader-mode 1) ;; enable before evil-mode to work in all modes
@@ -18,6 +16,11 @@
 
 ;; default leader key is ,
 (setq evil-leader/leader "," evil-leader/in-all-states t)
+
+;; evil-nerd-commenter
+; (setq evilnc-comment-operator "\\")
+; (require 'evil-nerd-commenter)
+; (evilnc-default-hotkeys)
 
 ;; keyboard shortcuts
 (evil-leader/set-key
