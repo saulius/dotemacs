@@ -169,3 +169,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (defadvice evil-visual-block (before spc-for-char-jump activate)
   (define-key evil-motion-state-map (kbd "SPC") #'evil-ace-jump-char-mode))
+
+;; expand-region integration
+(define-key evil-normal-state-map (kbd "+") 'er/expand-region)
+(define-key evil-visual-state-map (kbd "+") 'er/expand-region)
+(define-key evil-visual-state-map (kbd "_") 'er/contract-region)
