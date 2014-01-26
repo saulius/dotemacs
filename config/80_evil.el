@@ -1,3 +1,5 @@
+(setq evilnc-hotkey-comment-operator "\\")
+
 (el-get 'sync '(evil))
 (el-get 'sync '(evil-leader))
 (el-get 'sync '(evil-surround))
@@ -8,7 +10,6 @@
 (require 'evil-leader)
 (require 'evil-org)
 
-(setq evilnc-hotkey-comment-operator "\\")
 (require 'evil-nerd-commenter)
 (require 'surround)
 
@@ -65,11 +66,6 @@
      ;; Don't wait for any other keys after escape is pressed.
      evil-esc-delay 0
      )))
-
-;; I comment with \\ in visual mode
-(define-key evil-motion-state-map "\\" nil)
-(define-key evil-normal-state-map "\\" nil)
-
 
 ;; taken from https://github.com/davvil/.emacs.d/blob/64367f20a542f806b6313aa702faac3fe642ae38/init.el
 ;; esc quits
@@ -174,3 +170,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-normal-state-map (kbd "+") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "+") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "_") 'er/contract-region)
+
+(add-to-list 'evil-emacs-state-modes 'cider-repl-mode)
