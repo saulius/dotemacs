@@ -122,15 +122,6 @@
       `(message-header-subject-face ((t (:foreground, *lightgreen*))))
       `(minibuffer-prompt ((t (:foreground, *gitblack* :weight bold))))
       `(mmm-default-submode-face  ((t (:background, *gitgrey1*))))
-      `(mode-line ((t (:height 1.0
-                               :background , *gitblack*
-                               :foreground, *gitwhite*
-                               :bold t
-                               :box(:line-width 2 :color , *gitblack*)))))
-      `(mode-line-inactive ((t (:height 1.0
-                                        :background, *gitgrey3*
-                                        :foreground, *gitgrey1*
-                                        :box(:line-width 2 :color, *gitgrey3*)))))
       `(mouse ((t (:background, *mouse-color*))))
       `(mu4e-flagged-face ((t (:foreground, *lightred*))))
       `(mu4e-replied-face ((t (:italic t))))
