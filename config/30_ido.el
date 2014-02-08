@@ -1,7 +1,9 @@
 (el-get 'sync '(ido-vertical-mode))
+(el-get 'sync '(flx))
 
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t) ; fuzzy matching
+(require 'flx-ido)
 
 (ido-mode 1)
+(ido-everywhere 1)
 (ido-vertical-mode 1)
+(flx-ido-mode 1)

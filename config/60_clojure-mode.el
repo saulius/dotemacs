@@ -14,10 +14,10 @@
        (subword-mode +1)
        (clojure-test-mode +1))
 
-     (setq clojure-mode-hook 'clojure-mode-defaults)
+     (setq my-clojure-mode-hook 'clojure-mode-defaults)
 
-     (add-hook 'clojure-mode-hook (lambda ()
-                                  (run-hooks 'clojure-mode-hook)))))
+     (add-hook 'my-clojure-mode-hook (lambda ()
+                                  (run-hooks 'my-clojure-mode-hook)))))
 
 (eval-after-load 'cider
   '(progn
