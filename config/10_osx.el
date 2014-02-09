@@ -2,11 +2,16 @@
 ;; OSX specific overrides
 
 (when (eq system-type 'darwin)
-  ;; This makes left-option do M-
-  (setq ns-alternate-modifier 'meta)
-  (setq ns-right-alternate-modifier nil)
-  (setq ns-command-modifier 'super)
-  (setq ns-function-modifier 'hyper)
+  (when (display-graphic-p)
+    ;; This makes left-option do M-
+    (setq ns-alternate-modifier 'meta)
+    (setq ns-right-alternate-modifier nil)
+    (setq ns-command-modifier 'super)
+    (setq ns-function-modifier 'hyper)
+    (setq ns-use-srgb-colorspace t)
+
+    (when (fboundp 'toggle-frame-fullscreen)
+      (global-set-key (kbd "s-<return>") 'toggle-frame-fullscreen)))
 
   (unless (display-graphic-p)
     ;; Make sure cut/paste works properly. Gotten from:
