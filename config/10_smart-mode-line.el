@@ -5,6 +5,6 @@
 (setq sml/shorten-modes t)
 (setq sml/name-width 40)
 (setq sml/mode-width 'full)
-(setq sml/hidden-modes '(" Undo-Tree" " Projectile" " Rbow" " SP" " ws" " ElDoc"))
+(setq sml/hidden-modes '(" Undo-Tree" " Projectile" " Rbow" " SP" " ws" " ElDoc" " AC"))
 (sml/setup)
 (sml/apply-theme 'light)
