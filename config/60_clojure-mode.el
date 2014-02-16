@@ -1,8 +1,16 @@
 (el-get 'sync '(clojure-mode))
 (el-get 'sync '(cider))
+(el-get 'sync '(ac-nrepl))
 
 (require 'clojure-mode)
 (require 'cider)
+
+;; auto-complete
+(require 'ac-nrepl)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-repl-mode))
 
 ; As seen in prelude
 ; https://github.com/bbatsov/prelude/blob/master/modules/prelude-clojure.el
@@ -31,3 +39,6 @@
 
      (add-hook 'repl-mode-hook (lambda ()
                                (run-hooks 'cider-repl-mode-hook)))))
+
+(eval-after-load "cider"
+  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
