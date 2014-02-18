@@ -54,6 +54,7 @@
   "xd" 'drag-stuff-mode
   "xl" 'linum-mode
   "xw" 'whitespace-mode
+  "xp" 'projectile-switch-project
   "w"  'save-buffer
   "W"  'save-buffer-no-whitespace)
 
