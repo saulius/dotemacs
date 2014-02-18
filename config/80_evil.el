@@ -172,3 +172,26 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "_") 'er/contract-region)
 
 ; (add-to-list 'evil-emacs-state-modes 'cider-repl-mode)
+
+(evil-leader/set-key-for-mode 'clojure-mode
+                              "mrf" 'cljr-rename-file
+                              "mru" 'cljr-replace-use
+                              "mau" 'cljr-add-use-to-ns
+                              "mar" 'cljr-add-require-to-ns
+                              "mai" 'cljr-add-import-to-ns
+                              "msn" 'cljr-sort-ns
+                              "msr" 'cljr-stop-referring
+                              "mth" 'cljr-thread
+                              "muw" 'cljr-unwind
+                              "mua" 'cljr-unwind-all
+                              "mil" 'cljr-introduce-let
+                              "mel" 'cljr-expand-let
+                              "mml" 'cljr-move-to-let
+                              "mmf" 'cljr-move-form
+                              "mtf" 'cljr-thread-first-all
+                              "mtl" 'cljr-thread-last-all
+                              "mcp" 'cljr-cycle-privacy
+                              "mcc" 'cljr-cycle-coll
+                              "mcs" 'cljr-cycle-stringlike
+                              "mad" 'cljr-add-declaration
+                              "mdk" 'cljr-destructure-keys)

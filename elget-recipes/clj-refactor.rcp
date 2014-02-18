@@ -1,0 +1,4 @@
+(:name clj-refactor
+       :website "https://github.com/magnars/clj-refactor.el"
+       :type github
+       :pkgname "magnars/clj-refactor.el")

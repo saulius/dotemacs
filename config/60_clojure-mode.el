@@ -2,9 +2,13 @@
 (el-get 'sync '(cider))
 (el-get 'sync '(ac-nrepl))
 (el-get 'sync '(align-cljlet))
+(el-get 'sync '(clj-refactor))
+(el-get 'sync '(paredit))
+(el-get 'sync '(multiple-cursors))
 
 (require 'clojure-mode)
 (require 'cider)
+(require 'clj-refactor)
 
 ;; auto-complete
 (require 'ac-nrepl)
@@ -19,6 +23,7 @@
      (defun clojure-mode-defaults ()
        (smartparens-strict-mode +1)
        (subword-mode +1)
+       (clj-refactor-mode 1)
        (clojure-test-mode +1))
 
      (setq my-clojure-mode-hook 'clojure-mode-defaults)
