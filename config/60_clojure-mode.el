@@ -1,6 +1,7 @@
 (el-get 'sync '(clojure-mode))
 (el-get 'sync '(cider))
 (el-get 'sync '(ac-nrepl))
+(el-get 'sync '(align-cljlet))
 
 (require 'clojure-mode)
 (require 'cider)
