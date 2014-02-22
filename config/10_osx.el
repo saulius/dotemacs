@@ -1,8 +1,12 @@
 ;; adapted from https://github.com/bradleywright/emacs.d/blob/0e9739f8c445c2b57fb59ddfdd56a4910d910b6a/init.el
 ;; OSX specific overrides
 
+(el-get 'sync '(exec-path-from-shell))
+
 (when (eq system-type 'darwin)
   (when (display-graphic-p)
+    (exec-path-from-shell-initialize) ;; makes important shell variables like $PATH work
+
     ;; This makes left-option do M-
     (setq ns-alternate-modifier 'meta)
     (setq ns-right-alternate-modifier nil)
