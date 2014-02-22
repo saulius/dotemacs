@@ -30,7 +30,7 @@
   "ci" 'evilnc-copy-and-comment-lines
   "cp" 'evilnc-comment-or-uncomment-paragraphs
   "cr" 'comment-or-uncomment-region
-  "b"  'projectile-switch-to-buffer
+  "b"  'switch-to-buffer
   "e"  'ido-find-file
   "g"  'magit-status
   "n"  'rename-this-buffer-and-file
