@@ -51,6 +51,7 @@
       ;; custom colors
       (*gitgrey5* "#DCDCDC")
       (*lightorange* "#ef9f6c")
+      (*verylightred* "#ffd7e3")
       )
 
   (custom-theme-set-faces
@@ -156,7 +157,9 @@
       `(region ((t (:background, *mouse-color*))))
       `(sp-show-pair-match-face ((t (:background, *gitgrey1* :box nil))))
       `(sp-pair-overlay-face ((t (:background, *gitgrey1* :bold t :box nil))))
-      `(trailing-whitespace ((t (:background, *lightred*))))
+      `(trailing-whitespace ((t (:background, *verylightred*))))
+      `(whitespace-newline ((t (:background, *verylightred*))))
+      `(whitespace-line ((t (:background, *verylightred*))))
       `(writegood-duplicates-face ((t (:inherit `default :underline t))))
       `(writegood-passive-voice-face ((t (:inherit `writegood-duplicates-face))))
       `(writegood-weasels-face ((t (:inherit `writegood-duplicates-face))))
