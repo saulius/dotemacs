@@ -1,1 +1,3 @@
-(load-theme 'github t)
+(el-get 'sync '(qsimpleq-theme))
+
+(load-theme 'qsimpleq t)
