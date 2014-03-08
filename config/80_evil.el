@@ -55,6 +55,7 @@
   "xl" 'linum-mode
   "xw" 'whitespace-mode
   "xp" 'projectile-switch-project
+  "xi" 'projectile-invalidate-cache
   "w"  'save-buffer
   "W"  'save-buffer-no-whitespace)
 
