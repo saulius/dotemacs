@@ -1,9 +1,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;;; set default font
-(set-default-font "Menlo 16")
+(set-default-font "Menlo 14")
 ;;; set default font for emacs --daemon / emacsclient
-(setq default-frame-alist '((font . "Menlo 16")))
+(setq default-frame-alist '((font . "Menlo 14")))
 
 (add-to-list 'default-frame-alist '(background-color . "#FFFFFF"))
 (add-to-list 'default-frame-alist '(foreground-color . "#000000"))
