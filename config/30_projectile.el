@@ -6,6 +6,7 @@
 (projectile-global-mode)
 
 (setq projectile-enable-caching t)
-(setq projectile-ignored-file-extensions '("class" "o" "so" "elc" "jar" "png" "jpg" "jpeg" "gif"))
+(setq projectile-project-ignored-files '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif"))
+(setq projectile-globally-ignored-directories (append '("target") projectile-globally-ignored-directories))
 
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
