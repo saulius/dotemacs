@@ -2,6 +2,7 @@
 (el-get 'sync '(robe-mode))
 (el-get 'sync '(rhtml-mode))
 (el-get 'sync '(rspec-mode))
+(el-get 'sync '(ruby-hash-syntax))
 
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
