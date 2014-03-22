@@ -56,11 +56,13 @@
 
 ;; don't use tabs to indent
 (setq-default indent-tabs-mode nil)
+(setq default-tab-width 2)
 
 ;; only in emacs 24.4+
 (electric-indent-mode +1)
 
 (global-set-key (kbd "RET") 'my-enter)
+(global-set-key "\t" 'self-insert-command)
 (global-set-key (kbd "C-+") 'increase-font-size)
 (global-set-key (kbd "C--") 'decrease-font-size)
 
