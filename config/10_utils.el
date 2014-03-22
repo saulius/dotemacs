@@ -3,15 +3,13 @@
   "Writes buffer with trimmed whitespace"
   (interactive)
   (delete-trailing-whitespace)
-  (save-buffer)
-  )
+  (save-buffer))
 
 (defun kill-this-buffer-and-window ()
   "kills buffer and window (split)"
   (interactive)
   (kill-this-buffer)
-  (delete-window)
-  )
+  (delete-window))
 
 (defun my-enter ()
   "Inserts a newline character then indents the new line just
