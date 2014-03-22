@@ -13,6 +13,13 @@
   (delete-window)
   )
 
+(defun my-enter ()
+  "Inserts a newline character then indents the new line just
+like the previous line"
+  (interactive)
+  (newline)
+  (indent-relative-maybe))
+
 (defun increase-font-size ()
   (interactive)
   (set-face-attribute 'default
