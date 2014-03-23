@@ -202,13 +202,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Taken from https://github.com/gridaphobe/dotfiles/blob/65b3b40d377c655849bcd576dfd600757405f2af/emacs.d/init.el
 (defvar god-local-buffer nil)
 
-(defadvice god-mode-self-insert (after disable-god-mode activate)
+(defun exit-god-mode ()
   (with-current-buffer god-local-buffer
     (god-local-mode -1)
     (evil-force-normal-state)))
+
+(defadvice god-mode-self-insert (after disable-god-mode activate)
+  (exit-god-mode))
 
 (evil-define-key 'normal global-map (kbd "RET")
   (lambda () (interactive)
     (setq god-local-buffer (current-buffer))
     (evil-emacs-state)
     (god-local-mode 1)))
+
+(define-key god-local-mode-map (kbd "ESC") (exit-god-mode))
