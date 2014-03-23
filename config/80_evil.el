@@ -220,7 +220,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (defadvice god-mode-self-insert (after disable-god-mode activate)
   (exit-god-mode))
 
-(evil-define-key 'normal global-map (kbd "RET")
+(evil-define-key 'normal global-map (kbd "C-<return>")
   (lambda () (interactive)
     (setq god-local-buffer (current-buffer))
     (evil-emacs-state)
