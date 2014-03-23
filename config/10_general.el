@@ -65,6 +65,7 @@
 (global-set-key "\t" 'self-insert-command)
 (global-set-key (kbd "C-+") 'increase-font-size)
 (global-set-key (kbd "C--") 'decrease-font-size)
+(global-set-key (kbd "C-x b") 'switch-to-buffer)
 
 ;; visual, some spacing between lines
 (setq-default line-spacing 2)
