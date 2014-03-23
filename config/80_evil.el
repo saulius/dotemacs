@@ -5,6 +5,8 @@
 (el-get 'sync '(evil-surround))
 (el-get 'sync '(evil-nerd-commenter))
 (el-get 'sync '(evil-org))
+(el-get 'sync '(lispy))
+(el-get 'sync '(evil-lispy))
 (el-get 'sync '(god-mode))
 
 (require 'evil)
@@ -198,6 +200,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                               "mcs" 'cljr-cycle-stringlike
                               "mad" 'cljr-add-declaration
                               "mdk" 'cljr-destructure-keys)
+
+;; Enter evil-lispy state with Meta-Enter
+(global-set-key (kbd "M-<RET>") 'evil-lispy-state)
 
 ;; Taken from https://github.com/gridaphobe/dotfiles/blob/65b3b40d377c655849bcd576dfd600757405f2af/emacs.d/init.el
 (defvar god-local-buffer nil)
