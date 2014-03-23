@@ -207,6 +207,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "M-<RET>") 'evil-lispy-state)
 
 ;; Taken from https://github.com/gridaphobe/dotfiles/blob/65b3b40d377c655849bcd576dfd600757405f2af/emacs.d/init.el
+(require 'god-mode)
+
 (defvar god-local-buffer nil)
 
 (defun exit-god-mode ()
