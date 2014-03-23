@@ -62,7 +62,6 @@
 (electric-indent-mode +1)
 
 (global-set-key (kbd "RET") 'my-enter)
-(global-set-key "\t" 'self-insert-command)
 (global-set-key (kbd "C-+") 'increase-font-size)
 (global-set-key (kbd "C--") 'decrease-font-size)
 (global-set-key (kbd "C-x b") 'switch-to-buffer)

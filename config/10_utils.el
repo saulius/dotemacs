@@ -52,3 +52,6 @@ like the previous line"
                (set-buffer-modified-p nil)
                (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
 
+(defun insert-two-spaces (&optional count)
+  (interactive "*p")
+  (insert (make-string (* 2 count) ?\ )))

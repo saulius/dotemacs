@@ -46,6 +46,7 @@
 ;; adjust evil shift width per language
 (add-hook 'ruby-mode-hook
   (function (lambda ()
+              (local-set-key "\t" 'insert-two-spaces)
               (setq evil-shift-width ruby-indent-level)
               (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
               (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item))))
