@@ -227,3 +227,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (god-local-mode 1)))
 
 (define-key god-local-mode-map (kbd "RET") 'exit-god-mode)
+
+;; make % jump between ruby block items
+(evil-define-motion evil-ruby-jump-item (count)
+  :jump t
+  :type inclusive
+  (cond ((string-match ruby-block-beg-re (current-word))
+         (ruby-end-of-block count))
+        ((string-match ruby-block-end-re (current-word))
+         (ruby-beginning-of-block count))
+        (t
+         (evil-jump-item count))))
