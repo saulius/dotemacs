@@ -202,12 +202,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                               "mdk" 'cljr-destructure-keys)
 
 ;; Enter evil-lispy state with Meta-Enter
+(require 'evil-lispy)
+
 (global-set-key (kbd "M-<RET>") 'evil-lispy-state)
 
 ;; Taken from https://github.com/gridaphobe/dotfiles/blob/65b3b40d377c655849bcd576dfd600757405f2af/emacs.d/init.el
 (defvar god-local-buffer nil)
 
 (defun exit-god-mode ()
+  (interactive)
   (with-current-buffer god-local-buffer
     (god-local-mode -1)
     (evil-force-normal-state)))
@@ -221,4 +224,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (evil-emacs-state)
     (god-local-mode 1)))
 
-(define-key god-local-mode-map (kbd "ESC") (exit-god-mode))
+(define-key god-local-mode-map (kbd "RET") 'exit-god-mode)
