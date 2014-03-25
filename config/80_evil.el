@@ -7,7 +7,6 @@
 (el-get 'sync '(evil-org))
 (el-get 'sync '(lispy))
 (el-get 'sync '(evil-lispy))
-(el-get 'sync '(god-mode))
 
 (require 'evil)
 (require 'evil-leader)
@@ -205,28 +204,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'evil-lispy)
 
 (global-set-key (kbd "M-<RET>") 'evil-lispy-state)
-
-;; Taken from https://github.com/gridaphobe/dotfiles/blob/65b3b40d377c655849bcd576dfd600757405f2af/emacs.d/init.el
-(require 'god-mode)
-
-(defvar god-local-buffer nil)
-
-(defun exit-god-mode ()
-  (interactive)
-  (with-current-buffer god-local-buffer
-    (god-local-mode -1)
-    (evil-force-normal-state)))
-
-(defadvice god-mode-self-insert (after disable-god-mode activate)
-  (exit-god-mode))
-
-(evil-define-key 'normal global-map (kbd "C-<return>")
-  (lambda () (interactive)
-    (setq god-local-buffer (current-buffer))
-    (evil-emacs-state)
-    (god-local-mode 1)))
-
-(define-key god-local-mode-map (kbd "RET") 'exit-god-mode)
 
 ;; make % jump between ruby block items
 (evil-define-motion evil-ruby-jump-item (count)
