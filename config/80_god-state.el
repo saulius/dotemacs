@@ -51,5 +51,3 @@
    (t
     (evil-god-state)))
   (evil-echo "Switched to God state for the next command ..."))
-
-(evil-define-key 'normal global-map (kbd "C-<return>") 'evil-execute-in-god-state)

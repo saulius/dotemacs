@@ -24,7 +24,8 @@
 
 ;; keyboard shortcuts
 (evil-leader/set-key
-  ","  'evil-buffer
+  "."  'evil-buffer
+  ","  'evil-execute-in-god-state
   "a"  'ag-project
   "A"  'ag
   "cc" 'evilnc-comment-or-uncomment-lines
