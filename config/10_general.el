@@ -29,6 +29,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; do not create symbolic lock files
+;; http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files/12974060#12974060
+(setq create-lockfiles nil)
+
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
