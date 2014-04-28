@@ -37,7 +37,8 @@
 
      (defun cider-repl-mode-defaults ()
        (subword-mode +1)
-       (smartparens-strict-mode +1))
+       (smartparens-strict-mode +1)
+       (cider-repl-toggle-pretty-printing))
 
      (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
 
