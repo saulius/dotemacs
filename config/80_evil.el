@@ -176,8 +176,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-visual-state-map (kbd "+") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "_") 'er/contract-region)
 
-; (add-to-list 'evil-emacs-state-modes 'cider-repl-mode)
-
 (evil-leader/set-key-for-mode 'clojure-mode
                               "mrf" 'cljr-rename-file
                               "mru" 'cljr-replace-use
