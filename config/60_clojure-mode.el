@@ -10,6 +10,8 @@
 (require 'cider)
 (require 'clj-refactor)
 
+(setq cider-repl-popup-stacktraces t)
+
 ;; auto-complete
 (require 'ac-nrepl)
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)

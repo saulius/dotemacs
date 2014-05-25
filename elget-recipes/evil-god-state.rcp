@@ -1,0 +1,5 @@
+(:name evil-god-state
+       :website "https://github.com/gridaphobe/evil-god-state"
+       :type github
+       :pkgname "gridaphobe/evil-god-state"
+       :depends (evil god-mode))

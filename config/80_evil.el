@@ -7,10 +7,12 @@
 (el-get 'sync '(evil-org))
 (el-get 'sync '(lispy))
 (el-get 'sync '(evil-lispy))
+(el-get 'sync '(evil-god-state))
 
 (require 'evil)
 (require 'evil-leader)
 (require 'evil-org)
+(require 'evil-god-state)
 
 (require 'evil-nerd-commenter)
 (require 'surround)
