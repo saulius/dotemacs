@@ -1,5 +1,8 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
 ;;; set default font
 (set-default-font "Inconsolata 16")
 ;;; set default font for emacs --daemon / emacsclient
