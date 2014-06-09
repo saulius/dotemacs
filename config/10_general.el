@@ -65,6 +65,12 @@
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 2)
 
+;; don't let next-line add new lines at end of file
+(setq next-line-add-newlines nil)
+
+;; make edited files end with a carriage return
+(setq require-final-newline t)
+
 ;; only in emacs 24.4+
 (electric-indent-mode +1)
 
