@@ -1,6 +1,7 @@
 auto-save-list/*
 projectile-bookmarks.eld
 el-get/*
+elpa/*
 eshell/*
 url/
 backups

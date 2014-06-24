@@ -15,11 +15,11 @@
 (require 'evil-god-state)
 
 (require 'evil-nerd-commenter)
-(require 'surround)
+(require 'evil-surround)
 
 (global-evil-leader-mode 1) ;; enable before evil-mode to work in all modes
 (evil-mode 1)
-(global-surround-mode 1)
+(global-evil-surround-mode 1)
 
 ;; default leader key is ,
 (setq evil-leader/leader "," evil-leader/in-all-states t)
