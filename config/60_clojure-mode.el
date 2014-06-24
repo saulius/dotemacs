@@ -10,7 +10,9 @@
 (require 'cider)
 (require 'clj-refactor)
 
-(setq cider-repl-popup-stacktraces t)
+(setq cider-popup-stacktraces nil)
+(setq cider-repl-popup-stacktraces nil)
+(setq cider-repl-pop-to-buffer-on-connect t)
 
 ;; auto-complete
 (require 'ac-nrepl)
@@ -43,6 +45,9 @@
        (cider-repl-toggle-pretty-printing))
 
      (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
+     ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
+     (setq cider-prompt-save-file-on-load nil)
+     (setq cider-show-error-buffer 'only-in-repl)
 
      (add-hook 'repl-mode-hook (lambda ()
                                (run-hooks 'cider-repl-mode-hook)))))
