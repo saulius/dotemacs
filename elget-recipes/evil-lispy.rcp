@@ -1,4 +1,0 @@
-(:name evil-lispy
-       :website "https://github.com/nyobe/evil-lispy"
-       :type github
-       :pkgname "nyobe/evil-lispy")

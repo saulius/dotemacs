@@ -13,3 +13,6 @@ org-clock-save.el
 ac-comphist.dat
 .mc-lists.el
 semanticdb/
+.#*
+*#
+tao*.el
