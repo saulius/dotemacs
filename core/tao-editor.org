@@ -4,6 +4,14 @@
 
 General editor settings and functionality.
 
+** Key bindings
+
+#+BEGIN_SRC emacs-lisp
+;; [Home] & [End] key should take you to beginning and end of lines..
+(global-set-key [home] 'beginning-of-line)
+(global-set-key [end] 'end-of-line)
+#+END_SRC
+
 ** Spell checker
 
 Uses [[http://www.emacswiki.org/emacs/FlySpell][Flyspell]] and [[http://aspell.net/][GNU Aspell]].
