@@ -63,3 +63,16 @@ So install and load it as soon as possible, because:
   (add-hook 'comint-mode-hook 'turn-on-evil-mode)
   (add-hook 'Info-mode-hook 'turn-off-evil-mode))
 #+END_SRC
+
+** evil-leader
+
+Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-leader]].
+Map `,` key to leader for wonderful set of shortcuts.
+
+#+BEGIN_SRC emacs-lisp
+(bundle evil-leader
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key
+    "k" 'kill-buffer)
+  (global-evil-leader-mode))
+#+END_SRC
