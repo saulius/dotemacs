@@ -95,4 +95,5 @@ Load all core modules:
 
 #+BEGIN_SRC emacs-lisp
 (org-babel-load-file (expand-file-name "tao-core.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-editor.org" tao-core-dir))
 #+END_SRC

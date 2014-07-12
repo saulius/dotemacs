@@ -1,0 +1,24 @@
+#+TITLE: tao-editor
+
+* Editor settings
+
+General editor settings and functionality.
+
+** Spell checker
+
+Uses [[http://www.emacswiki.org/emacs/FlySpell][Flyspell]] and [[http://aspell.net/][GNU Aspell]].
+Install aspell to enable spell checker. The code snippet is mostly borrowed from
+[[https://github.com/bbatsov/prelude/blob/master/core/prelude-editor.el][prelude]].
+
+#+BEGIN_SRC emacs-lisp
+(require 'flyspell)
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+(defun tao-enable-flyspell ()
+  "Enable command flyspell-mode."
+  (when (executable-find ispell-program-name)
+    (flyspell-mode +1)))
+
+(add-hook 'text-mode-hook 'tao-enable-flyspell)
+#+END_SRC
