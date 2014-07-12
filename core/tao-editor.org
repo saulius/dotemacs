@@ -22,3 +22,31 @@ Install aspell to enable spell checker. The code snippet is mostly borrowed from
 
 (add-hook 'text-mode-hook 'tao-enable-flyspell)
 #+END_SRC
+
+** Syntax checker
+
+Use [[https://github.com/flycheck/flycheck][flycheck]] is which is a better
+[[http://flymake.sourceforge.net/][flymake]]. Flycheck:
+
+#+BEGIN_QUOTE
+  * Supports over 30 programming and markup languages with more than 60 different syntax checking tools
+  * Fully automatic, fail-safe, on-the-fly syntax checking in background
+  * Nice error indication and highlighting
+  * Optional error list popup
+  * Many customization options
+  * A comprehensive manual
+  * A simple interface to define new syntax checkers
+  * A “doesn't get in your way” guarantee
+  * Many 3rd party extensions
+
+  -- https://github.com/flycheck/flycheck
+#+END_QUOTE
+
+Enable flycheck in prog-mode.
+
+#+BEGIN_SRC emacs-lisp
+(bundle flycheck
+  (eval-after-load 'flycheck
+    '(setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)))
+  (add-hook 'prog-mode-hook 'flycheck-mode))
+#+END_SRC
