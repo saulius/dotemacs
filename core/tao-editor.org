@@ -97,3 +97,13 @@ Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
 
   (add-hook 'prog-mode-hook 'ws-butler-mode))
 #+END_SRC
+
+** saveplace
+
+Save cursor positions of edited files between Emacs sessions. As seen in from [[http://whattheemacsd.com/init.el-03.html]].
+
+#+BEGIN_SRC emacs-lisp
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" tao-dir))
+#+END_SRC
