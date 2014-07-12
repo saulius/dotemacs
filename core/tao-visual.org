@@ -1,0 +1,25 @@
+#+TITLE: tao-visual
+
+* Graphical settings
+
+Editor settings related to visual style or visual aids.
+
+** Fill column indicator
+
+#+BEGIN_QUOTE
+  Many modern editors and IDEs can graphically indicate the location of
+  the fill column by drawing a thin line (in design parlance, a "rule") down
+  the length of the editing window. Fill-column-indicator implements this
+  facility in Emacs.
+
+  -- [[https://github.com/alpaker/Fill-Column-Indicator][https://github.com/alpaker/Fill-Column-Indicator]]
+#+END_QUOTE
+
+I really do care about text/code line width, so:
+
+#+BEGIN_SRC emacs-lisp
+(bundle! fill-column-indicator
+  (setq fci-rule-column 90) ;; 90 is really ok
+  (add-hook 'text-mode-hook 'fci-mode)
+  (add-hook 'prog-mode-hook 'fci-mode))
+#+END_SRC
