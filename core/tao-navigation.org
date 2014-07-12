@@ -8,8 +8,7 @@ This project uses Emacs [[http://emacs-helm.github.io/helm/][Helm]] package for
 navigation and jumping around.
 
 #+BEGIN_SRC emacs-lisp
-(bundle helm
- (require 'helm)
+(bundle! helm
  (require 'helm-config)
  (setq helm-input-idle-delay 0.2)
  (helm-mode t))
