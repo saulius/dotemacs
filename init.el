@@ -29,7 +29,4 @@
 
 (el-get 'sync '(el-get org-mode))
 
-;; store custom recipes in k-elget-recipes
-(add-to-list 'el-get-recipe-path (concat user-emacs-directory "tao-elget-recipes"))
-
 (org-babel-load-file (expand-file-name "tao-boot.org" user-emacs-directory))
