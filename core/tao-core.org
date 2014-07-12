@@ -33,3 +33,33 @@ Tao-core contains general editor settings. Check further comments below.
 ;; yes/no => y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+
+* Evil
+
+Long time [[http://www.vim.org][Vim]] fan cannot live without [[https://gitorious.org/evil][evil-mode]].
+So install and load it as soon as possible, because:
+
+#+BEGIN_QUOTE
+  Because Vim is better editor and Emacs is better everything else.
+
+  -- The internet
+#+END_QUOTE
+
+** evil-mode
+
+#+BEGIN_SRC emacs-lisp
+(bundle evil
+  (setq
+    ;; this stops evil from overwriting the cursor color
+    evil-default-cursor t
+    evil-default-state 'normal
+    ;; Don't wait for any other keys after escape is pressed.
+    evil-esc-delay 0
+    evil-auto-indent t
+    evil-regexp-search t
+    evil-want-C-i-jump t)
+  (add-hook 'text-mode-hook 'turn-on-evil-mode)
+  (add-hook 'prog-mode-hook 'turn-on-evil-mode)
+  (add-hook 'comint-mode-hook 'turn-on-evil-mode)
+  (add-hook 'Info-mode-hook 'turn-off-evil-mode))
+#+END_SRC
