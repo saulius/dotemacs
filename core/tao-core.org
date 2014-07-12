@@ -49,10 +49,34 @@ So install and load it as soon as possible, because:
   -- The internet
 #+END_QUOTE
 
+** key-chord-mode
+
+#+BEGIN_QUOTE
+Key-chord lets you bind commands to combination of key-strokes. Here a
+"key chord" means two keys pressed simultaneously, or a single key quickly
+pressed twice.
+#+END_QUOTE
+
+Used to exit insert/visual evil modes.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! key-chord
+   (key-chord-mode 1))
+#+END_SRC
+
 ** evil-mode
 
 #+BEGIN_SRC emacs-lisp
-(bundle evil
+(bundle! evil
+   (key-chord-define evil-insert-state-map ",," 'evil-normal-state)
+   (key-chord-define evil-visual-state-map ",," 'evil-normal-state)
+
+   ;; moving around windows VIM style
+   (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+   (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+   (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+   (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+
   (setq
     ;; this stops evil from overwriting the cursor color
     evil-default-cursor t
