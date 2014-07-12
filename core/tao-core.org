@@ -72,6 +72,21 @@ Map `,` key to leader for wonderful set of shortcuts.
 #+BEGIN_SRC emacs-lisp
 (bundle evil-leader
   (evil-leader/set-leader ",")
+  (eval-after-load "helm"
+    (evil-leader/set-key
+      "f" 'helm-for-files
+      "l" 'helm-locate
+      "c" 'helm-colors
+      "y" 'helm-show-kill-ring
+      "t" 'helm-top
+      "m" 'helm-man-woman
+      "j" 'helm-M-x
+      "e" 'helm-find-files
+      "b" 'helm-buffers-list))
+  ;; use helm-projectile if projectile is available
+  (eval-after-load "projectile"
+    (evil-leader/set-key
+     "f" 'helm-projectile))
   (evil-leader/set-key
     "k" 'kill-buffer)
   (global-evil-leader-mode))
