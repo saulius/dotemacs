@@ -16,3 +16,4 @@ semanticdb/
 .#*
 *#
 tao*.el
+bundle/*
