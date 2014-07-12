@@ -87,7 +87,7 @@ Make sure all modules are loadable, extend `load-path` with relevant paths:
   "The dir where tao lives.")
 (defvar tao-core-dir (expand-file-name "core" tao-dir)
   "The dir where tao core modules live.")
-(defvar tao-modules-dir (expand-file-name "modules" tao-dir)
+(defvar tao-module-dir (expand-file-name "modules" tao-dir)
   "The dir where tao custom, language specific modules live.")
 #+END_SRC
 
@@ -101,4 +101,10 @@ Load all core modules:
 ;; OSX specific Tao module
 (when (eq system-type 'darwin)
   (org-babel-load-file (expand-file-name "tao-osx.org" tao-core-dir)))
+#+END_SRC
+
+Load language modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
 #+END_SRC
