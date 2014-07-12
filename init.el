@@ -2,6 +2,9 @@
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
 
+;;debug
+(setq debug-on-error t)
+
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
 (unless (require 'el-get nil 'noerror)

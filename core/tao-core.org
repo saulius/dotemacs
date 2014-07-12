@@ -1,0 +1,8 @@
+#+TITLE: tao-core
+
+* Introduction
+
+Tao-core contains general editor settings. Check further comments below.
+
+#+BEGIN_SRC emacs-lisp
+#+END_SRC

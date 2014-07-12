@@ -1,4 +1,4 @@
-#+TITLE: TAO
+#+TITLE: Tao
 
 #+BEGIN_QUOTE
   Tao (pronounced "dao") means literally "the path" or "the way." It is a
@@ -72,3 +72,27 @@ for wrapping el-get calls and writing package configuration.
 
   -- https://github.com/tarao/bundle-el
 #+END_QUOTE
+
+** Structure
+
+Tao consists of core modules and language specific modules. Core modules
+reside in `core` directory, language specific modules are in `modules`
+directory. `core` modules will be loaded by default. Language specific modes
+are optional and can be loaded on demand.
+
+Make sure all modules are loadable, extend `load-path` with relevant paths:
+
+#+BEGIN_SRC emacs-lisp
+(defvar tao-dir user-emacs-directory
+  "The dir where tao lives.")
+(defvar tao-core-dir (expand-file-name "core" tao-dir)
+  "The dir where tao core modules live.")
+(defvar tao-modules-dir (expand-file-name "modules" tao-dir)
+  "The dir where tao custom, language specific modules live.")
+#+END_SRC
+
+Load all core modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "tao-core.org" tao-core-dir))
+#+END_SRC
