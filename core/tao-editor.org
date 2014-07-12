@@ -4,6 +4,20 @@
 
 General editor settings and functionality.
 
+** Editing related settings
+
+#+BEGIN_SRC emacs-lisp
+;; don't use tabs to indent
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 2)
+
+;; don't let next-line add new lines at end of file
+(setq next-line-add-newlines nil)
+
+;; make edited files end with a carriage return
+(setq require-final-newline t)
+#+END_SRC
+
 ** Key bindings
 
 #+BEGIN_SRC emacs-lisp
