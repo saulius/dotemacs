@@ -11,6 +11,9 @@
 (when (version< emacs-version "24.0")
   (error "GNU Emacs 24 is needed, current version %s" emacs-version))
 
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
 (unless (require 'el-get nil 'noerror)
