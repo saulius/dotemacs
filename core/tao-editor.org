@@ -58,3 +58,28 @@ Enable flycheck in prog-mode.
     '(setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)))
   (add-hook 'prog-mode-hook 'flycheck-mode))
 #+END_SRC
+
+** White space trimmer
+
+Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
+
+#+BEGIN_QUOTE
+  ws-butler -- an unobtrusive way to trim spaces from end of line
+
+  Only lines touched get trimmed. If the white space at end of
+  buffer is changed, then blank lines at the end of buffer are
+  truncated respecting require-final-newline
+
+  Trimming only happens when saving.
+
+  -- [[https://github.com/lewang/ws-butler][https://github.com/lewang/ws-butler]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! ws-butler
+  :type github
+  :pkgname "lewang/ws-butler"
+  :website "https://github.com/lewang/ws-butler"
+
+  (add-hook 'prog-mode-hook 'ws-butler-mode))
+#+END_SRC
