@@ -19,3 +19,12 @@ Indentation aids are provided by [[http://github.com/qoobaa/ruby-electric][ruby-
 (bundle ruby-electric
   (add-hook 'ruby-mode-hook 'ruby-electric-mode))
 #+END_SRC
+
+Interactive REPL and method documentation provided by [[https://github.com/dgutov/robe][Robe mode]].
+
+#+BEGIN_SRC emacs-lisp
+(bundle robe-mode
+  (eval-after-load 'company-mode
+    (push 'company-robe company-backends))
+  (add-hook 'ruby-mode-hook 'robe-mode))
+#+END_SRC
