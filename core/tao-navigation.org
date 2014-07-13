@@ -14,6 +14,15 @@ navigation and jumping around.
  (helm-mode t))
 #+END_SRC
 
+** helm-ag
+
+[[https://github.com/ggreer/the_silver_searcher][the silver searcher]] is a brilliant code searching utility.
+Lets integrate it to our helm setup.
+
+#+BEGIN_SRC emacs-lisp
+(bundle helm-ag)
+#+END_SRC
+
 ** Projectile
 
 [[https://github.com/bbatsov/projectile][Projectile]] is a brilliant project
