@@ -108,4 +108,5 @@ Load language modules:
 #+BEGIN_SRC emacs-lisp
 (org-babel-load-file (expand-file-name "tao-clojure.org" tao-module-dir))
 (org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
+(org-babel-load-file (expand-file-name "tao-ruby.org" tao-module-dir))
 #+END_SRC

@@ -2,11 +2,9 @@
 
 * Clojure
 
-Various modes related to markup languages, e.g.: XML, JSON, Yaml, Markdown
-etc.
+Configuration for [[http://clojure.org][Clojure]] programming language.
 
 #+BEGIN_SRC emacs-lisp
-
 (bundle! clojure-mode
   (eval-after-load 'clojure-mode
     '(progn
