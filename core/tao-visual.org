@@ -4,6 +4,19 @@
 
 Editor settings related to visual style or visual aids.
 
+** Theme
+
+*** Qsimpleq
+
+Bright, nice on the eye visual theme.
+
+#+BEGIN_SRC emacs-lisp
+;; treat qsimpleq theme as safe
+(setq custom-safe-themes (quote ("48441785d77807dce4e71b065f17504fbdfb6cbcd475523d20da4f1a14fbddac" qsimpleq-theme)))
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" tao-dir))
+(load-theme 'qsimpleq)
+#+END_SRC
+
 ** Fill column indicator
 
 #+BEGIN_QUOTE
@@ -38,7 +51,6 @@ better.
 
   -- [[https://github.com/jlr/rainbow-delimiters][https://github.com/jlr/rainbow-delimiters]]
 #+END_QUOTE
-
 
 #+BEGIN_SRC emacs-lisp
 (bundle rainbow-delimiters
