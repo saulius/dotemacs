@@ -56,3 +56,19 @@ better.
 (bundle rainbow-delimiters
  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
+
+** diminish
+
+Modeline gets really messy with lots of packages installed. [[https://github.com/emacsmirror/diminish][diminish]] fixes
+that by removing predefined minor modes from it.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! diminish
+  (diminish 'company-mode)
+  (diminish 'flycheck-mode)
+  (diminish 'helm-mode)
+  (diminish 'projectile-mode)
+  (diminish 'smartparens-mode)
+  (diminish 'whitespace-mode)
+  (diminish 'undo-tree-mode))
+#+END_SRC
