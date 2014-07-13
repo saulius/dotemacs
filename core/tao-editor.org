@@ -23,6 +23,9 @@ General editor settings and functionality.
 ;; Also auto refresh dired, but be quiet about it
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
+
+;; Use electric-indent-mode which is a god-sent mode
+(electric-indent-mode 1)
 #+END_SRC
 
 ** Key bindings
