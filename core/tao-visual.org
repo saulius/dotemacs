@@ -23,3 +23,24 @@ I really do care about text/code line width, so:
   (add-hook 'text-mode-hook 'fci-mode)
   (add-hook 'prog-mode-hook 'fci-mode))
 #+END_SRC
+
+** rainbow delimiters
+
+Rainbow delimiters is like rainbow parentheses, but less intrusive and generally
+better.
+
+#+BEGIN_QUOTE
+  Rainbow Delimiters is a "rainbow parentheses"-like mode which highlights
+  parentheses, brackets, and braces according to their depth. Each successive
+  level is highlighted in a different color. This makes it easy to spot
+  matching delimiters, orient yourself in the code, and tell which statements
+  are at a given depth.
+
+  -- [[https://github.com/jlr/rainbow-delimiters][https://github.com/jlr/rainbow-delimiters]]
+#+END_QUOTE
+
+
+#+BEGIN_SRC emacs-lisp
+(bundle rainbow-delimiters
+ (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC

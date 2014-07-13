@@ -136,7 +136,6 @@ auto complete engine.
   -- [[http://company-mode.github.io/][http://company-mode.github.io/]]
 #+END_QUOTE
 
-
 #+BEGIN_SRC emacs-lisp
 (bundle! company
   (require 'company)
