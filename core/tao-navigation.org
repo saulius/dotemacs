@@ -50,5 +50,15 @@ files etc. Some of Projectile's features:
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle projectile)
+(bundle! projectile
+  (projectile-global-mode)
+
+  (setq projectile-enable-caching t)
+  (setq projectile-globally-ignored-files
+    (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
+            projectile-globally-ignored-files))
+  (setq projectile-globally-ignored-directories
+    (append '("target")
+    projectile-globally-ignored-directories))
+  (setq projectile-require-project-root nil)) ;; any directory can be a project
 #+END_SRC
