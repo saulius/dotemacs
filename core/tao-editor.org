@@ -138,7 +138,36 @@ auto complete engine.
 
 
 #+BEGIN_SRC emacs-lisp
-(bundle company-mode
+(bundle! company
+  (require 'company)
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+
   (add-hook 'text-mode-hook 'company-mode)
   (add-hook 'prog-mode-hook 'company-mode))
+#+END_SRC
+
+** rainbow delimiters
+
+Rainbow delimiters is like rainbow parentheses, but less intrusive and generally
+better.
+
+#+BEGIN_QUOTE
+  Rainbow Delimiters is a "rainbow parentheses"-like mode which highlights
+  parentheses, brackets, and braces according to their depth. Each successive
+  level is highlighted in a different color. This makes it easy to spot
+  matching delimiters, orient yourself in the code, and tell which statements
+  are at a given depth.
+
+  -- [[https://github.com/jlr/rainbow-delimiters][https://github.com/jlr/rainbow-delimiters]]
+#+END_QUOTE
+
+
+#+BEGIN_SRC emacs-lisp
+(bundle rainbow-delimiters
+ (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
