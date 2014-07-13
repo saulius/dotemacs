@@ -83,6 +83,20 @@ Enable flycheck in prog-mode.
   (add-hook 'prog-mode-hook 'flycheck-mode))
 #+END_SRC
 
+** White space
+
+Make sure white space errors are visible in prog mode.
+
+#+BEGIN_SRC emacs-lisp
+(require 'whitespace)
+
+(setq whitespace-line-column 90
+            whitespace-style '(face tabs empty trailing lines-tail))
+
+(add-hook 'text-mode-hook 'whitespace-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+#+END_SRC
+
 ** White space trimmer
 
 Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
