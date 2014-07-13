@@ -104,17 +104,17 @@ Map `,` key to leader for wonderful set of shortcuts.
     (evil-leader/set-key
       "f" 'helm-for-files
       "l" 'helm-locate
-      "c" 'helm-colors
-      "y" 'helm-show-kill-ring
-      "t" 'helm-top
-      "m" 'helm-man-woman
-      "j" 'helm-M-x
+      "x x" 'helm-M-x
       "e" 'helm-find-files
       "b" 'helm-buffers-list))
   ;; use helm-projectile if projectile is available
   (eval-after-load "projectile"
     (evil-leader/set-key
      "f" 'helm-projectile))
+  (eval-after-load "helm-ag"
+    (evil-leader/set-key
+     "a" 'helm-ag
+     "A" 'helm-do-ag))
   (evil-leader/set-key
     "k" 'kill-buffer)
   (global-evil-leader-mode))
