@@ -119,6 +119,9 @@ Map `,` key to leader for wonderful set of shortcuts.
     (evil-leader/set-key
      "a" 'helm-ag
      "A" 'helm-do-ag))
+  (eval-after-load "evil-god-state"
+    (evil-leader/set-key
+      ","  'evil-execute-in-god-state))
   (evil-leader/set-key
     "." 'evil-buffer
     "n" 'rename-this-buffer-and-file
@@ -128,4 +131,21 @@ Map `,` key to leader for wonderful set of shortcuts.
     "w" 'save-buffer
     "W" 'save-buffer-no-whitespace)
   (global-evil-leader-mode))
+#+END_SRC
+
+** god-mode
+
+This is where the duality of Tao comes in play. Evil and God modes in the same
+distribution ;-)
+
+#+BEGIN_QUOTE
+  This is a global minor mode for entering Emacs commands without modifier
+  keys. It's similar to Vim's separation of commands and insertion mode.
+
+  -- [[https://github.com/chrisdone/god-mode][god-mode]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! god-mode)
+(bundle! evil-god-state)
 #+END_SRC
