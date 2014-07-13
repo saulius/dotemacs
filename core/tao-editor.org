@@ -150,23 +150,25 @@ auto complete engine.
   (add-hook 'prog-mode-hook 'company-mode))
 #+END_SRC
 
-** rainbow delimiters
+** smartparens
 
-Rainbow delimiters is like rainbow parentheses, but less intrusive and generally
-better.
+[[https://github.com/Fuco1/smartparens][smartparens]] is paredit 2.0,
+inexchangeable for Lips-like modes. And other modes as well.
 
 #+BEGIN_QUOTE
-  Rainbow Delimiters is a "rainbow parentheses"-like mode which highlights
-  parentheses, brackets, and braces according to their depth. Each successive
-  level is highlighted in a different color. This makes it easy to spot
-  matching delimiters, orient yourself in the code, and tell which statements
-  are at a given depth.
+  Minor mode for Emacs that deals with parens pairs and tries to be smart
+  about it.
 
-  -- [[https://github.com/jlr/rainbow-delimiters][https://github.com/jlr/rainbow-delimiters]]
+  -- [[https://github.com/Fuco1/smartparens][https://github.com/Fuco1/smartparens]]
 #+END_QUOTE
 
-
 #+BEGIN_SRC emacs-lisp
-(bundle rainbow-delimiters
- (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+(bundle! smartparens
+  (require 'smartparens-config)
+  (setq sp-base-key-bindings 'paredit)
+  (setq sp-autoskip-closing-pair 'always)
+  (setq sp-hybrid-kill-entire-symbol nil)
+  (sp-use-paredit-bindings)
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode +1))
 #+END_SRC
