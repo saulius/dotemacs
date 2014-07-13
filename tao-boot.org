@@ -1,0 +1,113 @@
+#+TITLE: Tao
+
+#+BEGIN_QUOTE
+  Tao (pronounced "dao") means literally "the path" or "the way." It is a
+  universal principle that underlies everything from the creation of galaxies
+  to the interaction of human beings. The workings of Tao are vast and often
+  beyond human logic. In order to understand Tao, reasoning alone will not
+  suffice. One must also apply intuition.
+
+  -- http://www.taoism.net/articles/what_tao.htm
+#+END_QUOTE
+
+* Introduction
+
+Personal Emacs configuration written with aims to learn Emacs-Lisp, Babel,
+org-mode and, of course, build a perfect development enviroment.
+
+Sources of inspiration:
+- [[Oh My Emacs][https://github.com/xiaohanyu/oh-my-emacs/]]
+- [[https://github.com/nakkaya/emacs][https://github.com/nakkaya/emacs]]
+
+The latest version is at https://github.com/saulius/tao.
+
+** Installation
+
+1. Install Emacs 24+.
+2. Checkout tao to your ~/.emacs.d directory:
+    #+BEGIN_SRC sh
+    cd ~
+    git clone http://github.com/saulius/tao .emacs.d
+    #+END_SRC
+3. Launch Emacs!
+
+** Package management
+
+Tao uses the wonderful [[https://github.com/dimitri/el-get][el-get]] package
+manager. el-get allows package installation from various sources as well as
+many other niceties.
+
+#+BEGIN_QUOTE
+  El-Get allows you to install and manage elisp code for Emacs. It supports
+  lots of different types of sources and is able to install them, update
+  them and remove them, but more importantly it will init them for you. That
+  means it will require the features you need, load the necessary files,
+  set the Info paths so that C-h i shows the new documentation you now
+  depend on, and finally call your own initialisation code for you to setup
+  the extension. Or call it a package.
+
+  -- https://github.com/dimitri/el-get
+#+END_QUOTE
+
+Tao also uses small helper library called [[https://github.com/tarao/bundle-el][bundle]]
+for wrapping el-get calls and writing package configuration.
+
+#+BEGIN_SRC emacs-lisp
+;; install bundle
+(add-to-list 'el-get-sources
+             '(:name bundle :type github :pkgname "tarao/bundle-el"))
+(el-get 'sync 'bundle)
+#+END_SRC
+
+[[https://github.com/tarao/bundle-el][bundle]] will:
+
+#+BEGIN_QUOTE
+  * Wrap el-get with easy syntax.
+    * Avoiding long lines of el-get recipes.
+  * A package requirement and its configuration are put at the same place in
+    your Emacs init file.
+  * Configurations are automatically byte-compiled when they are loaded for
+    the first time.
+    * This gives you a chance to find errors in your configuration.
+
+  -- https://github.com/tarao/bundle-el
+#+END_QUOTE
+
+** Structure
+
+Tao consists of core modules and language specific modules. Core modules
+reside in `core` directory, language specific modules are in `modules`
+directory. `core` modules will be loaded by default. Language specific modes
+are optional and can be loaded on demand.
+
+Make sure all modules are loadable, extend `load-path` with relevant paths:
+
+#+BEGIN_SRC emacs-lisp
+(defvar tao-dir user-emacs-directory
+  "The dir where tao lives.")
+(defvar tao-core-dir (expand-file-name "core" tao-dir)
+  "The dir where tao core modules live.")
+(defvar tao-module-dir (expand-file-name "modules" tao-dir)
+  "The dir where tao custom, language specific modules live.")
+#+END_SRC
+
+Load all core modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "tao-core.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-editor.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-misc.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-navigation.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-visual.org" tao-core-dir))
+;; OSX specific Tao module
+(when (eq system-type 'darwin)
+  (org-babel-load-file (expand-file-name "tao-osx.org" tao-core-dir)))
+#+END_SRC
+
+Load language modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "tao-clojure.org" tao-module-dir))
+(org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
+(org-babel-load-file (expand-file-name "tao-ruby.org" tao-module-dir))
+#+END_SRC

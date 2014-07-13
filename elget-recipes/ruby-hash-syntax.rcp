@@ -1,4 +1,0 @@
-(:name ruby-hash-syntax
-       :website "https://github.com/purcell/ruby-hash-syntax"
-       :type github
-       :pkgname "purcell/ruby-hash-syntax")

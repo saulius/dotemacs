@@ -1,0 +1,191 @@
+#+TITLE: tao-editor
+
+* Editor settings
+
+General editor settings and functionality.
+
+** Editing related settings
+
+#+BEGIN_SRC emacs-lisp
+;; don't use tabs to indent
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 2)
+
+;; don't let next-line add new lines at end of file
+(setq next-line-add-newlines nil)
+
+;; make edited files end with a carriage return
+(setq require-final-newline t)
+
+;; Auto refresh buffers
+(global-auto-revert-mode 1)
+
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; Use electric-indent-mode which is a god-sent mode
+(electric-indent-mode 1)
+#+END_SRC
+
+** Key bindings
+
+#+BEGIN_SRC emacs-lisp
+;; [Home] & [End] key should take you to beginning and end of lines..
+(global-set-key [home] 'beginning-of-line)
+(global-set-key [end] 'end-of-line)
+#+END_SRC
+
+** Spell checker
+
+Uses [[http://www.emacswiki.org/emacs/FlySpell][Flyspell]] and [[http://aspell.net/][GNU Aspell]].
+Install aspell to enable spell checker. The code snippet is mostly borrowed from
+[[https://github.com/bbatsov/prelude/blob/master/core/prelude-editor.el][prelude]].
+
+#+BEGIN_SRC emacs-lisp
+(require 'flyspell)
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+(defun tao-enable-flyspell ()
+  "Enable command flyspell-mode."
+  (when (executable-find ispell-program-name)
+    (flyspell-mode +1)))
+
+(add-hook 'text-mode-hook 'tao-enable-flyspell)
+#+END_SRC
+
+** Syntax checker
+
+Use [[https://github.com/flycheck/flycheck][flycheck]] is which is a better
+[[http://flymake.sourceforge.net/][flymake]]. Flycheck:
+
+#+BEGIN_QUOTE
+  * Supports over 30 programming and markup languages with more than 60 different syntax checking tools
+  * Fully automatic, fail-safe, on-the-fly syntax checking in background
+  * Nice error indication and highlighting
+  * Optional error list popup
+  * Many customization options
+  * A comprehensive manual
+  * A simple interface to define new syntax checkers
+  * A “doesn't get in your way” guarantee
+  * Many 3rd party extensions
+
+  -- https://github.com/flycheck/flycheck
+#+END_QUOTE
+
+Enable flycheck in prog-mode.
+
+#+BEGIN_SRC emacs-lisp
+(bundle flycheck
+  (eval-after-load 'flycheck
+    '(setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)))
+  (add-hook 'prog-mode-hook 'flycheck-mode))
+#+END_SRC
+
+** White space
+
+Make sure white space errors are visible in prog mode.
+
+#+BEGIN_SRC emacs-lisp
+(require 'whitespace)
+
+(setq whitespace-line-column 90
+            whitespace-style '(face tabs empty trailing lines-tail))
+
+(add-hook 'text-mode-hook 'whitespace-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+#+END_SRC
+
+** White space trimmer
+
+Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
+
+#+BEGIN_QUOTE
+  ws-butler -- an unobtrusive way to trim spaces from end of line
+
+  Only lines touched get trimmed. If the white space at end of
+  buffer is changed, then blank lines at the end of buffer are
+  truncated respecting require-final-newline
+
+  Trimming only happens when saving.
+
+  -- [[https://github.com/lewang/ws-butler][https://github.com/lewang/ws-butler]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! ws-butler
+  :type github
+  :pkgname "lewang/ws-butler"
+  :website "https://github.com/lewang/ws-butler"
+
+  (add-hook 'prog-mode-hook 'ws-butler-mode))
+#+END_SRC
+
+** saveplace
+
+Save cursor positions of edited files between Emacs sessions. As seen in from [[http://whattheemacsd.com/init.el-03.html]].
+
+#+BEGIN_SRC emacs-lisp
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" tao-dir))
+#+END_SRC
+
+** auto completion
+
+Tao uses [[https://github.com/company-mode/company-mode][company mode]] as
+auto complete engine.
+
+#+BEGIN_QUOTE
+  Company is a text completion framework for Emacs. The name stands for
+  "complete anything". It uses pluggable back-ends and front-ends to retrieve
+  and display completion candidates.
+
+  It comes with several back-ends such as Elisp, Clang, Semantic, Eclim,
+  Ropemacs, Ispell, CMake, BBDB, Yasnippet, dabbrev, etags, gtags, files,
+  keywords and a few others.
+
+  The CAPF back-end provides a bridge to the standard
+  completion-at-point-functions facility, and thus works with any major mode
+  that defines a proper completion function
+
+  -- [[http://company-mode.github.io/][http://company-mode.github.io/]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! company
+  (require 'company)
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+
+  (add-hook 'text-mode-hook 'company-mode)
+  (add-hook 'prog-mode-hook 'company-mode))
+#+END_SRC
+
+** smartparens
+
+[[https://github.com/Fuco1/smartparens][smartparens]] is paredit 2.0,
+inexchangeable for Lips-like modes. And other modes as well.
+
+#+BEGIN_QUOTE
+  Minor mode for Emacs that deals with parens pairs and tries to be smart
+  about it.
+
+  -- [[https://github.com/Fuco1/smartparens][https://github.com/Fuco1/smartparens]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! smartparens
+  (require 'smartparens-config)
+  (setq sp-base-key-bindings 'paredit)
+  (setq sp-autoskip-closing-pair 'always)
+  (setq sp-hybrid-kill-entire-symbol nil)
+  (sp-use-paredit-bindings)
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode +1))
+#+END_SRC

@@ -1,5 +1,0 @@
-(:name evil-surround
-       :website "https://github.com/timcharper/evil-surround"
-       :type github
-       :pkgname "timcharper/evil-surround"
-       :depends (evil))

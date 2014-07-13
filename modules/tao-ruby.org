@@ -1,0 +1,30 @@
+#+TITLE: tao-ruby
+
+* Ruby
+
+Configuration for [[http://ruby-lang.org][Ruby]] programming language.
+
+** General settings
+
+General settings like indent levels, syntax coloring etc provided by
+[[https://github.com/zenspider/enhanced-ruby-mode][enh-ruby-mode]].
+
+#+BEGIN_SRC emacs-lisp
+(bundle enh-ruby-mode)
+#+END_SRC
+
+Indentation aids are provided by [[http://github.com/qoobaa/ruby-electric][ruby-electric]] mode.
+
+#+BEGIN_SRC emacs-lisp
+(bundle ruby-electric
+  (add-hook 'ruby-mode-hook 'ruby-electric-mode))
+#+END_SRC
+
+Interactive REPL and method documentation provided by [[https://github.com/dgutov/robe][Robe mode]].
+
+#+BEGIN_SRC emacs-lisp
+(bundle robe-mode
+  (eval-after-load 'company-mode
+    (push 'company-robe company-backends))
+  (add-hook 'ruby-mode-hook 'robe-mode))
+#+END_SRC

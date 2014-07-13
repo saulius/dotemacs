@@ -1,0 +1,64 @@
+#+TITLE: tao-navigation
+
+* Navigating around
+
+** Helm
+
+This project uses Emacs [[http://emacs-helm.github.io/helm/][Helm]] package for
+navigation and jumping around.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! helm
+ (require 'helm-config)
+ (setq helm-input-idle-delay 0.2)
+ (helm-mode t))
+#+END_SRC
+
+** helm-ag
+
+[[https://github.com/ggreer/the_silver_searcher][the silver searcher]] is a brilliant code searching utility.
+Lets integrate it to our helm setup.
+
+#+BEGIN_SRC emacs-lisp
+(bundle helm-ag)
+#+END_SRC
+
+** Projectile
+
+[[https://github.com/bbatsov/projectile][Projectile]] is a brilliant project
+interaction library for Emacs. Navigate around files, buffers, recently opened
+files etc. Some of Projectile's features:
+
+#+BEGIN_QUOTE
+  * jump to a file in project
+  * jump to a directory in project
+  * jump to a file in a directory
+  * jump to a project buffer
+  * jump to a test in project
+  * toggle between code and its test
+  * jump to recently visited files in the project
+  * switch between projects you have worked on
+  * kill all project buffers
+  * replace in project
+  * multi-occur in project buffers
+  * grep in project
+  * regenerate project etags or gtags (requires gtags).
+  * visit project in dired
+  * run make in a project with a single key chord
+
+  -- https://github.com/bbatsov/projectile
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! projectile
+  (projectile-global-mode)
+
+  (setq projectile-enable-caching t)
+  (setq projectile-globally-ignored-files
+    (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
+            projectile-globally-ignored-files))
+  (setq projectile-globally-ignored-directories
+    (append '("target")
+    projectile-globally-ignored-directories))
+  (setq projectile-require-project-root nil)) ;; any directory can be a project
+#+END_SRC

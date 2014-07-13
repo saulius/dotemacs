@@ -1,0 +1,151 @@
+#+TITLE: tao-core
+
+* Core settings
+
+Tao-core contains general editor settings. Check further comments below.
+
+#+BEGIN_SRC emacs-lisp
+;; UTF-8 all the things
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; do not create symbolic lock files
+;; http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files/12974060#12974060
+(setq create-lockfiles nil)
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
+
+;; disable auto save
+(setq auto-save-default nil)
+
+;; Do not really want to type yes or no each time, so:
+;; yes/no => y/n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Use text-mode for unknown files
+;; from https://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html
+(setq-default major-mode 'text-mode)
+
+(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+#+END_SRC
+
+* Evil
+
+Long time [[http://www.vim.org][Vim]] fan cannot live without [[https://gitorious.org/evil][evil-mode]].
+So install and load it as soon as possible, because:
+
+#+BEGIN_QUOTE
+  Because Vim is better editor and Emacs is better everything else.
+
+  -- The internet
+#+END_QUOTE
+
+** key-chord-mode
+
+#+BEGIN_QUOTE
+Key-chord lets you bind commands to combination of key-strokes. Here a
+"key chord" means two keys pressed simultaneously, or a single key quickly
+pressed twice.
+#+END_QUOTE
+
+Used to exit insert/visual evil modes.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! key-chord
+   (key-chord-mode 1))
+#+END_SRC
+
+** evil-mode
+
+#+BEGIN_SRC emacs-lisp
+(bundle! evil
+   (key-chord-define evil-insert-state-map "qq" 'evil-normal-state)
+   (key-chord-define evil-visual-state-map "qq" 'evil-normal-state)
+
+   ;; moving around windows VIM style
+   (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+   (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+   (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+   (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+
+  (setq
+    ;; this stops evil from overwriting the cursor color
+    evil-default-cursor t
+    evil-default-state 'normal
+    ;; Don't wait for any other keys after escape is pressed.
+    evil-esc-delay 0
+    evil-auto-indent t
+    evil-regexp-search t
+    evil-want-C-i-jump t)
+  (add-hook 'text-mode-hook 'turn-on-evil-mode)
+  (add-hook 'prog-mode-hook 'turn-on-evil-mode)
+  (add-hook 'comint-mode-hook 'turn-on-evil-mode)
+  (add-hook 'Info-mode-hook 'turn-off-evil-mode))
+#+END_SRC
+
+** evil-leader
+
+Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-leader]].
+Map `,` key to leader for wonderful set of shortcuts.
+
+#+BEGIN_SRC emacs-lisp
+(bundle evil-leader
+  (evil-leader/set-leader ",")
+  (eval-after-load "helm"
+    (evil-leader/set-key
+      "f" 'helm-for-files
+      "l" 'helm-locate
+      "x x" 'helm-M-x
+      "e" 'helm-find-files
+      "b" 'helm-buffers-list))
+  ;; use helm-projectile if projectile is available
+  (eval-after-load "projectile"
+    (evil-leader/set-key
+     "f"   'helm-projectile
+     "x p" 'projectile-switch-project
+     "x i" 'projectile-invalidate-cache))
+  (eval-after-load "helm-ag"
+    (evil-leader/set-key
+     "a" 'helm-ag
+     "A" 'helm-do-ag))
+  (eval-after-load "evil-god-state"
+    (evil-leader/set-key
+      ","  'evil-execute-in-god-state))
+  (evil-leader/set-key
+    "." 'evil-buffer
+    "n" 'rename-this-buffer-and-file
+    "k" 'kill-this-buffer-and-window
+    "K" 'kill-this-buffer
+    "k" 'kill-buffer
+    "w" 'save-buffer
+    "W" 'save-buffer-no-whitespace)
+  (global-evil-leader-mode))
+#+END_SRC
+
+** god-mode
+
+This is where the duality of Tao comes in play. Evil and God modes in the same
+distribution ;-)
+
+#+BEGIN_QUOTE
+  This is a global minor mode for entering Emacs commands without modifier
+  keys. It's similar to Vim's separation of commands and insertion mode.
+
+  -- [[https://github.com/chrisdone/god-mode][god-mode]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(bundle! god-mode)
+(bundle! evil-god-state)
+#+END_SRC
