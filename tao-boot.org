@@ -96,6 +96,7 @@ Load all core modules:
 #+BEGIN_SRC emacs-lisp
 (org-babel-load-file (expand-file-name "tao-core.org" tao-core-dir))
 (org-babel-load-file (expand-file-name "tao-editor.org" tao-core-dir))
+(org-babel-load-file (expand-file-name "tao-misc.org" tao-core-dir))
 (org-babel-load-file (expand-file-name "tao-navigation.org" tao-core-dir))
 (org-babel-load-file (expand-file-name "tao-visual.org" tao-core-dir))
 ;; OSX specific Tao module
