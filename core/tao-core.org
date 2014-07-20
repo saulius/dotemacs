@@ -70,8 +70,9 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! evil
-   (key-chord-define evil-insert-state-map "qq" 'evil-normal-state)
-   (key-chord-define evil-visual-state-map "qq" 'evil-normal-state)
+   (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
+   (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
+   (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
 
    ;; moving around windows VIM style
    (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
