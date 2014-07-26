@@ -148,5 +148,5 @@ distribution ;-)
 
 #+BEGIN_SRC emacs-lisp
 (bundle! god-mode)
-(bundle! evil-god-state)
+(bundle! gridaphobe/evil-god-state)
 #+END_SRC
