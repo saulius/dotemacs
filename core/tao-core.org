@@ -70,6 +70,8 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! evil
+   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+   (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
    (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
    (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
    (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
@@ -131,6 +133,9 @@ Map `,` key to leader for wonderful set of shortcuts.
     "k" 'kill-buffer
     "w" 'save-buffer
     "W" 'save-buffer-no-whitespace)
+  (eval-after-load "evil-nerd-commenter"
+    (evil-leader/set-key
+      "c" 'evilnc-comment-or-uncomment-lines))
   (global-evil-leader-mode))
 #+END_SRC
 

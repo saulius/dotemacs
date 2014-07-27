@@ -189,3 +189,13 @@ inexchangeable for Lips-like modes. And other modes as well.
   (smartparens-global-mode t)
   (show-smartparens-global-mode +1))
 #+END_SRC
+
+** commenting
+
+[[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] helps greatly with
+commenting and uncomment lines and regions.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! evil-nerd-commenter
+  (setq evilnc-hotkey-comment-operator "\\"))
+#+END_SRC
