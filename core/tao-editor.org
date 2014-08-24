@@ -200,11 +200,20 @@ commenting and uncomment lines and regions.
   (setq evilnc-hotkey-comment-operator "\\"))
 #+END_SRC
 
-** magit
+** source control management
+*** magit
 
 [[https://github.com/magit/magit][magic]] Magit is an interface to the version
 control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! magit)
+#+END_SRC
+
+*** git timemachine
+
+Step through historic versions of git controlled file using everyone's favourite editor
+
+#+BEGIN_SRC emacs-lisp
+(bundle! git-timemachine)
 #+END_SRC
