@@ -136,6 +136,9 @@ Map `,` key to leader for wonderful set of shortcuts.
   (eval-after-load "evil-nerd-commenter"
     (evil-leader/set-key
       "c" 'evilnc-comment-or-uncomment-lines))
+  (eval-after-load "magic"
+    (evil-leader/set-key
+      "g"  'magit-status))
   (global-evil-leader-mode))
 #+END_SRC
 

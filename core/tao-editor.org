@@ -199,3 +199,12 @@ commenting and uncomment lines and regions.
 (bundle! evil-nerd-commenter
   (setq evilnc-hotkey-comment-operator "\\"))
 #+END_SRC
+
+** magit
+
+[[https://github.com/magit/magit][magic]] Magit is an interface to the version
+control system Git, implemented as an Emacs extension.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! magit)
+#+END_SRC
