@@ -154,7 +154,7 @@ auto complete engine.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle! company
+(bundle company-mode
   (require 'company)
   (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
