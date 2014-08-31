@@ -61,7 +61,12 @@ files etc. Some of Projectile's features:
 #+BEGIN_SRC emacs-lisp
 (bundle! projectile
   (projectile-global-mode)
+  (require 'helm-projectile)
 
+  (setq helm-projectile-sources-list
+   '(helm-source-projectile-files-list
+     helm-source-projectile-buffers-list
+     helm-source-projectile-recentf-list))
   (setq projectile-enable-caching t)
   (setq projectile-globally-ignored-files
     (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
