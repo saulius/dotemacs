@@ -190,6 +190,17 @@ inexchangeable for Lips-like modes. And other modes as well.
   (show-smartparens-global-mode +1))
 #+END_SRC
 
+** expand region
+
+Expand region increases the selected region by semantic units.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! expand-region)
+
+(define-key evil-visual-state-map (kbd "e") 'er/expand-region)
+(define-key evil-visual-state-map (kbd "E") 'er/contract-region)
+#+END_SRC
+
 ** commenting
 
 [[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] helps greatly with
