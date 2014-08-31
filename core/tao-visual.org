@@ -20,15 +20,26 @@ Editor settings related to visual style or visual aids.
 
 ** Theme
 
-*** Qsimpleq
-
-Bright, nice on the eye visual theme.
+*** Solarized
 
 #+BEGIN_SRC emacs-lisp
-;; treat qsimpleq theme as safe
-(setq custom-safe-themes (quote ("48441785d77807dce4e71b065f17504fbdfb6cbcd475523d20da4f1a14fbddac" qsimpleq-theme)))
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" tao-dir))
-(load-theme 'qsimpleq)
+(bundle bbatsov/solarized-emacs)
+;; make the modeline high contrast
+(setq solarized-high-contrast-mode-line t)
+;; Use less bolding
+(setq solarized-use-less-bold t)
+;; Puts the underline below the font bottomline instead of the baseline.
+(setq x-underline-at-descent-line t)
+(require 'solarized)
+#+END_SRC
+
+*** Solar theme switcher
+
+Changes theme based off daylight or fixed times.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! tanzoniteblack/solar-theme-switcher)
+(switch-theme-by-daylight 'solarized-light 'solarized-dark)
 #+END_SRC
 
 ** Fill column indicator
