@@ -122,6 +122,10 @@ Map `,` key to leader for wonderful set of shortcuts.
     (evil-leader/set-key
      "a" 'helm-ag
      "A" 'helm-do-ag))
+  (eval-after-load "helm-swoop"
+    (evil-leader/set-key
+     "o" 'helm-swoop
+     "O" 'helm-multi-swoop))
   (eval-after-load "evil-god-state"
     (evil-leader/set-key
       ","  'evil-execute-in-god-state))

@@ -23,6 +23,15 @@ Lets integrate it to our helm setup.
 (bundle helm-ag)
 #+END_SRC
 
+** helm-swoop
+
+[[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]] allows efficiently
+hopping squeezed lines powered by Emacs helm interface.
+ is a brilliant code searching utility
+#+BEGIN_SRC emacs-lisp
+(bundle helm-swoop)
+#+END_SRC
+
 ** Projectile
 
 [[https://github.com/bbatsov/projectile][Projectile]] is a brilliant project
