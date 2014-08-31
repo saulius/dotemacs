@@ -116,7 +116,7 @@ Map `,` key to leader for wonderful set of shortcuts.
   (eval-after-load "projectile"
     (evil-leader/set-key
      "f"   'helm-projectile
-     "x p" 'projectile-switch-project
+     "x p" 'helm-projectile-switch-project
      "x i" 'projectile-invalidate-cache))
   (eval-after-load "helm-ag"
     (evil-leader/set-key
