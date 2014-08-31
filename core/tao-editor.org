@@ -201,6 +201,14 @@ Expand region increases the selected region by semantic units.
 (define-key evil-visual-state-map (kbd "E") 'er/contract-region)
 #+END_SRC
 
+** evil-surround
+
+Evil motions for surround things based on [[https://github.com/tpope/vim-surround][vim-surround]].
+
+#+BEGIN_SRC emacs-lisp
+(bundle! evil-surround)
+#+END_SRC
+
 ** commenting
 
 [[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] helps greatly with
