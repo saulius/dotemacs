@@ -4,6 +4,12 @@
 
 Editor settings related to visual style or visual aids.
 
+** General
+
+#+BEGIN_SRC emacs-lisp
+(setq ring-bell-function 'ignore)
+#+END_SRC
+
 ** Fonts
 
 #+BEGIN_SRC emacs-lisp
