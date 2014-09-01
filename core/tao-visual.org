@@ -8,6 +8,12 @@ Editor settings related to visual style or visual aids.
 
 #+BEGIN_SRC emacs-lisp
 (setq ring-bell-function 'ignore)
+;; show line numbers in mode line
+(line-number-mode t)
+;; show column numbers in mode line
+(column-number-mode t)
+;; show file size in mode line
+(size-indication-mode t)
 #+END_SRC
 
 ** Fonts
