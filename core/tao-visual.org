@@ -87,21 +87,27 @@ that by removing predefined minor modes from it.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! diminish
+  (eval-after-load "company"
+    '(diminish 'company-mode))
+  (eval-after-load "eldoc"
+    '(diminish 'eldoc-mode))
   (eval-after-load "flyspell"
     '(diminish 'flyspell-mode))
   (eval-after-load "flycheck"
     '(diminish 'flycheck-mode))
   (diminish 'abbrev-mode)
-  (eval-after-load "auto-revert-mode"
-    '(diminish 'auto-revert-mode))
-  (eval-after-load "company"
-    '(diminish 'company-mode))
   (eval-after-load "helm"
     '(diminish 'helm-mode))
+  (eval-after-load "magit"
+    '(diminish 'magit-auto-revert-mode))
   (eval-after-load "projectile"
     '(diminish 'projectile-mode))
   (eval-after-load "smartparens"
     '(diminish 'smartparens-mode))
+  (eval-after-load "ws-butler"
+    '(diminish 'ws-butler-mode))
+  (diminish 'auto-fill-function)
+  (diminish 'highlight-changes-mode)
   (diminish 'whitespace-mode)
   (diminish 'undo-tree-mode))
 #+END_SRC
