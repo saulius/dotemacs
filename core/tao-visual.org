@@ -98,6 +98,8 @@ that by removing predefined minor modes from it.
   (diminish 'abbrev-mode)
   (eval-after-load "helm"
     '(diminish 'helm-mode))
+  (eval-after-load "hilit-chg"
+    '(diminish 'highlight-changes-mode))
   (eval-after-load "magit"
     '(diminish 'magit-auto-revert-mode))
   (eval-after-load "projectile"
@@ -107,7 +109,6 @@ that by removing predefined minor modes from it.
   (eval-after-load "ws-butler"
     '(diminish 'ws-butler-mode))
   (diminish 'auto-fill-function)
-  (diminish 'highlight-changes-mode)
   (diminish 'whitespace-mode)
   (diminish 'undo-tree-mode))
 #+END_SRC
