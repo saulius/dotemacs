@@ -136,6 +136,7 @@ Map `,` key to leader for wonderful set of shortcuts.
     "K" 'kill-this-buffer
     "k" 'kill-buffer
     "x l" 'linum-mode
+    "x f" 'auto-fill-mode
     "w" 'save-buffer
     "W" 'save-buffer-no-whitespace)
   (eval-after-load "evil-nerd-commenter"
