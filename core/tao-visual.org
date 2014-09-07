@@ -80,6 +80,45 @@ better.
  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 
+** popwin
+
+popwin is a popup window manager for Emacs which makes you free from the hell
+of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! popwin
+ (setq display-buffer-function 'popwin:display-buffer)
+
+ (setq popwin:special-display-config
+  '(("*Help*"  :height 20)
+    ("*Completions*" :noselect t)
+    ("*Messages*" :noselect t :height 20)
+    ("*compilation*" :noselect t)
+    ("*Backtrace*" :height 20)
+    ("*Messages*" :height 20)
+    ("*Occur*" :noselect t)
+    ("*Ido Completions*" :noselect t :height 20)
+    ("*magit-commit*" :noselect t :height 30 :width 80 :stick t)
+    ("*magit-diff*" :noselect t :height 30 :width 80)
+    ("*magit-edit-log*" :noselect t :height 15 :width 80)
+    ("\\*ansi-term\\*.*" :regexp t :height 20)
+    ("*shell*" :height 30)
+    ("*nrepl-error*" :noselect t)
+    ("*nrepl-doc*" :height 20 :stick t)
+    ("*nrepl-src*" :height 20 :stick t)
+    ("*nrepl-result*" :height 20 :stick t)
+    ("*nrepl-macroexpansion*" :height 20 :stick t)
+    ("*cider-error*" :height 20 :stick t)
+    ("*cider-doc*" :height 10 :stick t)
+    ("*cider-src*" :height 20 :stick t)
+    ("*cider-result*" :height 20 :stick t)
+    ("*cider-macroexpansion*" :height 20 :stick t)
+    ("*Kill Ring*" :height 20)
+    ("*Compile-Log*" :height 20 :stick t)
+    ("*git-gutter:diff*" :height 20 :stick t)))
+  (popwin-mode 1))
+#+END_SRC
+
 ** diminish
 
 Modeline gets really messy with lots of packages installed. [[https://github.com/emacsmirror/diminish][diminish]] fixes
