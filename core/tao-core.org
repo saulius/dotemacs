@@ -38,6 +38,16 @@ Tao-core contains general editor settings. Check further comments below.
 (setq-default major-mode 'text-mode)
 
 (global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+
+(setq
+ require-final-newline t                ;auto add newline at the end of file
+ default-major-mode 'text-mode          ;use text mode per default
+ history-length 250                     ;default is 30
+ tab-always-indent 'complete            ;try to complete before identing
+ confirm-nonexistent-file-or-buffer nil ;don't ask to create a buffer
+ recentf-max-saved-items 5000           ;same up to 5000 recent files
+ kill-ring-max 5000                     ;truncate kill ring after 5000 entries
+ mark-ring-max 5000)                    ;truncate mark ring after 5000 entries
 #+END_SRC
 
 * Evil
