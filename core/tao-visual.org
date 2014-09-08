@@ -96,6 +96,7 @@ of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
     ("*compilation*" :noselect t)
     ("*Backtrace*" :height 20)
     ("*Messages*" :height 20)
+    ("*ag search*" :height 20)
     ("*Occur*" :noselect t)
     ("*Ido Completions*" :noselect t :height 20)
     ("*magit-commit*" :noselect t :height 30 :width 80 :stick t)

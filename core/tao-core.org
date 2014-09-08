@@ -156,33 +156,20 @@ Map `,` key to leader for wonderful set of shortcuts.
 #+BEGIN_SRC emacs-lisp
 (bundle evil-leader
   (evil-leader/set-leader ",")
-  (eval-after-load "helm"
-    (evil-leader/set-key
-      "f" 'helm-for-files
-      "l" 'helm-locate
-      "x x" 'helm-M-x
-      "e" 'helm-find-files
-      "b" 'helm-buffers-list))
+  (evil-leader/set-key
+   "b" 'projectile-switch-to-buffer)
   (eval-after-load "popwin"
     (evil-leader/set-key
       "B" 'popwin:popup-last-buffer))
-  ;; use helm-projectile if projectile is available
-  (eval-after-load "projectile"
+   (eval-after-load "projectile"
     (evil-leader/set-key
-     "f"   'helm-projectile
-     "x p" 'helm-projectile-switch-project
+     "f"   'projectile-find-file
+     "o"   'projectile-multi-occur
+     "x p" 'projectile-switch-project
      "x i" 'projectile-invalidate-cache))
-  (eval-after-load "helm-ag"
+  (eval-after-load "ag"
     (evil-leader/set-key
-     "a" 'helm-ag
-     "A" 'helm-do-ag))
-  (eval-after-load "helm-swoop"
-    (evil-leader/set-key
-     "o" 'helm-swoop
-     "O" 'helm-multi-swoop))
-  (eval-after-load "evil-god-state"
-    (evil-leader/set-key
-      ","  'evil-execute-in-god-state))
+     "a" 'ag))
   (evil-leader/set-key
     "." 'evil-buffer
     "n" 'rename-this-buffer-and-file

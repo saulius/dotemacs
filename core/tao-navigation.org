@@ -37,5 +37,14 @@ files etc. Some of Projectile's features:
   (setq projectile-globally-ignored-directories
     (append '("target")
     projectile-globally-ignored-directories))
-  (setq projectile-require-project-root nil)) ;; any directory can be a project
+  (setq projectile-require-project-root nil)
+  (projectile-global-mode)) ;; any directory can be a project
+#+END_SRC
+
+** Ag
+
+#+BEGIN_SRC emacs-lisp
+(bundle! ag
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers t))
 #+END_SRC
