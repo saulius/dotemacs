@@ -72,8 +72,14 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
+(bundle! ace-jump-mode)
 (bundle! key-chord
-   (key-chord-mode 1))
+  (key-chord-mode 1)
+  (key-chord-define-global "EE" 'evil-mode)
+  (key-chord-define-global "jj" 'ace-jump-word-mode)
+  (key-chord-define-global "jl" 'ace-jump-line-mode)
+  (key-chord-define-global "jk" 'ace-jump-char-mode))
+(bundle! space-chord)
 #+END_SRC
 
 ** evil-mode
@@ -160,21 +166,4 @@ Map `,` key to leader for wonderful set of shortcuts.
       "g"  'magit-status
       "G"  'magit-blame-mode))
   (global-evil-leader-mode))
-#+END_SRC
-
-** god-mode
-
-This is where the duality of Tao comes in play. Evil and God modes in the same
-distribution ;-)
-
-#+BEGIN_QUOTE
-  This is a global minor mode for entering Emacs commands without modifier
-  keys. It's similar to Vim's separation of commands and insertion mode.
-
-  -- [[https://github.com/chrisdone/god-mode][god-mode]]
-#+END_QUOTE
-
-#+BEGIN_SRC emacs-lisp
-(bundle! god-mode)
-(bundle! gridaphobe/evil-god-state)
 #+END_SRC

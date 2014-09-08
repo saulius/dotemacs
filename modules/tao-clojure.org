@@ -27,7 +27,12 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
        (defun cider-repl-mode-defaults ()
          (subword-mode 1)
          (smartparens-strict-mode 1)
-         (cider-repl-toggle-pretty-printing))
+         (space-chord-define clojure-mode-map "," 'cider-test-run-tests)
+         (space-chord-define clojure-mode-map "n" 'cider-repl-set-ns)
+         (space-chord-define clojure-mode-map "l" 'cider-load-current-buffer)
+         (space-chord-define clojure-mode-map "c" 'cider-eval-defun-at-point)
+         (space-chord-define clojure-mode-map "d" 'cider-doc-map)
+         (space-chord-define clojure-mode-map "r" 'cider-switch-to-repl-buffer))
 
        (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
        ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
