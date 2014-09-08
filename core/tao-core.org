@@ -117,6 +117,7 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
+(bundle! smex)
 (setq
   ;; Speed up ido by using less candidates
   ido-max-prospects 10
@@ -166,7 +167,8 @@ Map `,` key to leader for wonderful set of shortcuts.
      "f"   'projectile-find-file
      "o"   'projectile-multi-occur
      "x p" 'projectile-switch-project
-     "x i" 'projectile-invalidate-cache))
+     "x i" 'projectile-invalidate-cache
+     "x x" 'smex))
   (eval-after-load "ag"
     (evil-leader/set-key
      "a" 'ag))
