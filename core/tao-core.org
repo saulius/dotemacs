@@ -155,10 +155,16 @@ Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-le
 Map `,` key to leader for wonderful set of shortcuts.
 
 #+BEGIN_SRC emacs-lisp
+(defun bury-buffer-delete-window ()
+  (interactive)
+  (bury-buffer)
+  (delete-window))
+
 (bundle evil-leader
   (evil-leader/set-leader ",")
   (evil-leader/set-key
-   "b" 'projectile-switch-to-buffer)
+   "b" 'projectile-switch-to-buffer
+   "e" 'ido-find-file)
   (eval-after-load "popwin"
     (evil-leader/set-key
       "B" 'popwin:popup-last-buffer))
@@ -175,9 +181,7 @@ Map `,` key to leader for wonderful set of shortcuts.
   (evil-leader/set-key
     "." 'evil-buffer
     "n" 'rename-this-buffer-and-file
-    "k" 'kill-this-buffer-and-window
-    "K" 'kill-this-buffer
-    "k" 'kill-buffer
+    "k" 'bury-buffer-delete-window
     "x l" 'linum-mode
     "x f" 'auto-fill-mode
     "w" 'save-buffer
