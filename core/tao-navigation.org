@@ -2,36 +2,6 @@
 
 * Navigating around
 
-** Helm
-
-This project uses Emacs [[http://emacs-helm.github.io/helm/][Helm]] package for
-navigation and jumping around.
-
-#+BEGIN_SRC emacs-lisp
-(bundle! helm
- (require 'helm-config)
- (setq helm-input-idle-delay 0.2)
- (helm-mode t))
-#+END_SRC
-
-** helm-ag
-
-[[https://github.com/ggreer/the_silver_searcher][the silver searcher]] is a brilliant code searching utility.
-Lets integrate it to our helm setup.
-
-#+BEGIN_SRC emacs-lisp
-(bundle helm-ag)
-#+END_SRC
-
-** helm-swoop
-
-[[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]] allows efficiently
-hopping squeezed lines powered by Emacs helm interface.
- is a brilliant code searching utility
-#+BEGIN_SRC emacs-lisp
-(bundle helm-swoop)
-#+END_SRC
-
 ** Projectile
 
 [[https://github.com/bbatsov/projectile][Projectile]] is a brilliant project
@@ -60,13 +30,6 @@ files etc. Some of Projectile's features:
 
 #+BEGIN_SRC emacs-lisp
 (bundle! projectile
-  (projectile-global-mode)
-  (require 'helm-projectile)
-
-  (setq helm-projectile-sources-list
-   '(helm-source-projectile-files-list
-     helm-source-projectile-buffers-list
-     helm-source-projectile-recentf-list))
   (setq projectile-enable-caching t)
   (setq projectile-globally-ignored-files
     (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")

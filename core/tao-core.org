@@ -113,6 +113,41 @@ Used to exit insert/visual evil modes.
   (add-hook 'Info-mode-hook 'turn-off-evil-mode))
 #+END_SRC
 
+** ido
+
+#+BEGIN_SRC emacs-lisp
+;; configure ido
+(setq
+  ;; Speed up ido by using less candidates
+  ido-max-prospects 10
+  ;; Match arbitrary points in strings
+  ido-enable-prefix nil
+  ;; Match across entire string
+  ido-enable-flex-matching t
+  ;; Create a new buffer if there's no match candidate
+  ido-create-new-buffer 'always
+  ;; Don't try and guess if the string under point is a file
+  ido-use-filename-at-point nil
+  ;; case-insensitive matching
+  ido-case-fold t
+  ido-everywhere t
+  ;; go back in time if required
+  ido-use-faces nil
+  ido-vertical-define-keys 'C-n-C-p-up-down-left-right
+  ido-use-virtual-buffers nil)
+
+(require 'ido)
+(ido-mode t)
+
+(bundle! ido-vertical-mode
+  (ido-vertical-mode t))
+
+(bundle flx
+  (setq gc-cons-threshold 20000000)
+  (require 'flx-ido)
+  (flx-ido-mode 1))
+#+END_SRC
+
 ** evil-leader
 
 Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-leader]].

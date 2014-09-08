@@ -135,8 +135,6 @@ that by removing predefined minor modes from it.
   (eval-after-load "flycheck"
     '(diminish 'flycheck-mode))
   (diminish 'abbrev-mode)
-  (eval-after-load "helm"
-    '(diminish 'helm-mode))
   (eval-after-load "hilit-chg"
     '(diminish 'highlight-changes-mode))
   (eval-after-load "magit"
