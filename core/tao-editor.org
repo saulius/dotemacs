@@ -227,6 +227,9 @@ control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! magit)
+(bundle! git-commit-mode)
+(bundle! git-rebase-mode
+  (add-hook 'git-rebase-mode-hook 'turn-off-evil-mode))
 #+END_SRC
 
 *** git timemachine
