@@ -196,5 +196,10 @@ Map `,` key to leader for wonderful set of shortcuts.
     (evil-leader/set-key
       "g"  'magit-status
       "G"  'magit-blame-mode))
+  (eval-after-load "git-gutter"
+    (evil-leader/set-key
+      "u p" 'git-gutter:popup-hunk
+      "u s" 'git-gutter:stage-hunk
+      "u r" 'git-gutter:revert-hunk))
   (global-evil-leader-mode))
 #+END_SRC

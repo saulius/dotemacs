@@ -239,3 +239,13 @@ Step through historic versions of git controlled file using everyone's favourite
 #+BEGIN_SRC emacs-lisp
 (bundle! git-timemachine)
 #+END_SRC
+
+*** git gutter
+
+Show an indication in the gutter area indicating whether a line has
+been inserted, modified or deleted.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! git-gutter
+ (global-git-gutter-mode t))
+#+END_SRC
