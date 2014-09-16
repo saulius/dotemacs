@@ -148,6 +148,8 @@ Used to exit insert/visual evil modes.
   (setq gc-cons-threshold 20000000)
   (require 'flx-ido)
   (flx-ido-mode 1))
+
+(bundle! DarwinAwardWinner/ido-ubiquitous)
 #+END_SRC
 
 ** evil-leader
