@@ -146,6 +146,8 @@ that by removing predefined minor modes from it.
     '(diminish 'smartparens-mode))
   (eval-after-load "ws-butler"
     '(diminish 'ws-butler-mode))
+  (eval-after-load "git-gutter"
+    '(diminish 'git-gutter-mode))
   (diminish 'auto-fill-function)
   (diminish 'whitespace-mode)
   (diminish 'undo-tree-mode))
