@@ -163,8 +163,10 @@ Map `,` key to leader for wonderful set of shortcuts.
   (bury-buffer)
   (delete-window))
 
+
 (bundle evil-leader
   (evil-leader/set-leader ",")
+  (setq evil-leader/in-all-states t)
   (evil-leader/set-key
    "b" 'projectile-switch-to-buffer
    "e" 'ido-find-file)
