@@ -12,6 +12,15 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
          (smartparens-strict-mode 1)
          (subword-mode 1))
 
+         (evil-leader/set-key-for-mode 'clojure-mode
+           ", ," 'cider-reset-test-run-tests
+           ", e" 'cider-repl-reset
+           ", n" 'cider-repl-set-ns
+           ", k" 'cider-load-current-buffer
+           ", c" 'cider-eval-defun-at-point
+           ", d" 'cider-doc-map
+           ", r" 'cider-switch-to-repl-buffer)
+
        (setq my-clojure-mode-hook 'clojure-mode-defaults)
 
        (add-hook 'my-clojure-mode-hook (lambda ()
@@ -24,15 +33,28 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     '(progn
        (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
+       (defun cider-repl-command (cmd)
+         "Execute commands on the cider repl"
+         (cider-switch-to-repl-buffer)
+         (goto-char (point-max))
+         (insert cmd)
+         (cider-repl-return)
+         (cider-switch-to-last-clojure-buffer))
+
+       (defun cider-repl-reset ()
+         "Assumes reloaded + tools.namespace is used to reload everything"
+         (interactive)
+         (save-some-buffers)
+         (cider-repl-command "(user/reset)"))
+
+       (defun cider-reset-test-run-tests ()
+         (interactive)
+         (cider-repl-reset)
+         (cider-test-run-tests))
+
        (defun cider-repl-mode-defaults ()
          (subword-mode 1)
-         (smartparens-strict-mode 1)
-         (space-chord-define clojure-mode-map "," 'cider-test-run-tests)
-         (space-chord-define clojure-mode-map "n" 'cider-repl-set-ns)
-         (space-chord-define clojure-mode-map "l" 'cider-load-current-buffer)
-         (space-chord-define clojure-mode-map "c" 'cider-eval-defun-at-point)
-         (space-chord-define clojure-mode-map "d" 'cider-doc-map)
-         (space-chord-define clojure-mode-map "r" 'cider-switch-to-repl-buffer))
+         (smartparens-strict-mode 1))
 
        (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
        ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
