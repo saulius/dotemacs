@@ -5,8 +5,8 @@
 ;; hide startup splash screen
 (setq inhibit-startup-screen t)
 
-;;debug
-(setq debug-on-error t)
+;; debug
+; (setq debug-on-error t)
 
 (when (version< emacs-version "24.0")
   (error "GNU Emacs 24 is needed, current version %s" emacs-version))
