@@ -17,3 +17,5 @@ semanticdb/
 *#
 tao*.el
 bundle/*
+flycheck_org-clock-save.el
+bookmarks

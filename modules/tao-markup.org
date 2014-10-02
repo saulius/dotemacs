@@ -48,5 +48,6 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
 
 #+BEGIN_SRC emacs-lisp
 (bundle! markdown-mode
-  (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode)))
+  (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.mkd" . markdown-mode)))
 #+END_SRC

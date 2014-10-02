@@ -78,6 +78,8 @@ Used to exit insert/visual evil modes.
   (key-chord-define-global "EE" 'evil-mode)
   (key-chord-define-global "XX" 'smex)
   (key-chord-define-global "OA" 'org-agenda)
+  (key-chord-define-global "OF" 'visit-org-agenda-files)
+  (key-chord-define-global "OT" 'open-org-global-todo)
   (key-chord-define-global "jj" 'ace-jump-word-mode)
   (key-chord-define-global "jl" 'ace-jump-line-mode)
   (key-chord-define-global "jk" 'ace-jump-char-mode))
