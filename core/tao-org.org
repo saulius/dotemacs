@@ -22,7 +22,7 @@
 
 (require 'remember)
 
-(setq org-directory (concat tao-dir "org/"))
+(setq org-directory "~/Dropbox/org/")
 (setq org-global-agenda-file-name "/agenda.org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-log-done t)
