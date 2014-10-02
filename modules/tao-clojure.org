@@ -15,6 +15,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
          (evil-leader/set-key-for-mode 'clojure-mode
            ", ," 'cider-reset-test-run-tests
            ", e" 'cider-repl-reset
+           ", c" 'check-parens
            ", n" 'cider-repl-set-ns
            ", k" 'cider-load-current-buffer
            ", c" 'cider-eval-defun-at-point
