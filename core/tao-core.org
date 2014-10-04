@@ -166,13 +166,26 @@ Map `,` key to leader for wonderful set of shortcuts.
   (bury-buffer)
   (delete-window))
 
+(require 'term)
+(setq system-uses-terminfo nil)
+
+(defun open-ansi-term ()
+  "Toggle an ansi-term buffer."
+  (interactive)
+  (when (not (get-buffer "*ansi-term*"))
+      (save-window-excursion (ansi-term (getenv "SHELL"))))
+  (if (equal (buffer-name) "*ansi-term*")
+      (quit-window)
+    (switch-to-buffer-other-window "*ansi-term*")))
 
 (bundle evil-leader
   (evil-leader/set-leader ",")
   (setq evil-leader/in-all-states t)
   (evil-leader/set-key
    "b" 'projectile-switch-to-buffer
-   "e" 'ido-find-file)
+   "e" 'ido-find-file
+   "t" 'open-ansi-term
+   "T" 'eshell)
   (eval-after-load "popwin"
     (evil-leader/set-key
       "B" 'popwin:popup-last-buffer))
