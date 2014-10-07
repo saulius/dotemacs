@@ -199,6 +199,9 @@ Map `,` key to leader for wonderful set of shortcuts.
   (eval-after-load "ag"
     (evil-leader/set-key
      "a" 'ag))
+  (eval-after-load "browse-kill-ring"
+    (evil-leader/set-key
+     "x k" 'browse-kill-ring))
   (evil-leader/set-key
     "." 'evil-buffer
     "n" 'rename-this-buffer-and-file

@@ -249,3 +249,8 @@ been inserted, modified or deleted.
 (bundle! git-gutter
  (global-git-gutter-mode t))
 #+END_SRC
+
+*** kill ring browser
+#+BEGIN_SRC emacs-lisp
+(bundle! browse-kill-ring)
+#+END_SRC
