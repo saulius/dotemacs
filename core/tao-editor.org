@@ -254,3 +254,11 @@ been inserted, modified or deleted.
 #+BEGIN_SRC emacs-lisp
 (bundle! browse-kill-ring)
 #+END_SRC
+** aggressive indent
+
+aggressive-indent-mode is a minor mode that keeps your code always indented.
+It reindents after every command, making it more reliable than electric-indent-mode.
+
+#+BEGIN_SRC emacs-lisp
+(bundle! aggressive-indent)
+#+END_SRC

@@ -222,5 +222,8 @@ Map `,` key to leader for wonderful set of shortcuts.
       "u p" 'git-gutter:popup-hunk
       "u s" 'git-gutter:stage-hunk
       "u r" 'git-gutter:revert-hunk))
+  (eval-after-load "aggressive-indent"
+    (evil-leader/set-key
+      "x I" 'aggressive-indent-mode))
   (global-evil-leader-mode))
 #+END_SRC
