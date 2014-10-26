@@ -4,13 +4,34 @@
 
 Configuration for [[http://ruby-lang.org][Ruby]] programming language.
 
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+
+** Chruby
+
+#+BEGIN_SRC emacs-lisp
+(bundle! chruby
+  (chruby "2.1"))
+#+END_SRC
+
 ** General settings
 
 General settings like indent levels, syntax coloring etc provided by
 [[https://github.com/zenspider/enhanced-ruby-mode][enh-ruby-mode]].
 
 #+BEGIN_SRC emacs-lisp
-(bundle enh-ruby-mode)
+(bundle enh-ruby-mode
+  (setq enh-ruby-indent-level 2
+        enh-ruby-deep-indent-paren nil
+        enh-ruby-bounce-deep-indent t
+        enh-ruby-hanging-indent-level 0)
+
+  (add-hook 'enh-ruby-mode-hook
+            (function (lambda ()
+                (setq evil-shift-width enh-ruby-indent-level
+                      indent-tabs-mode nil
+                      tab-width 2)
+                (robe-mode)))))
 #+END_SRC
 
 Indentation aids are provided by [[http://github.com/qoobaa/ruby-electric][ruby-electric]] mode.
