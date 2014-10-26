@@ -225,5 +225,8 @@ Map `,` key to leader for wonderful set of shortcuts.
   (eval-after-load "aggressive-indent"
     (evil-leader/set-key
       "x I" 'aggressive-indent-mode))
+  (eval-after-load "flycheck"
+    (evil-leader/set-key
+      "E" 'flycheck-list-errors))
   (global-evil-leader-mode))
 #+END_SRC

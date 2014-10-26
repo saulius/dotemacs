@@ -77,9 +77,8 @@ Use [[https://github.com/flycheck/flycheck][flycheck]] is which is a better
 Enable flycheck in prog-mode.
 
 #+BEGIN_SRC emacs-lisp
-(bundle flycheck
-  (eval-after-load 'flycheck
-    '(setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)))
+(bundle! flycheck
+  (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
   (add-hook 'prog-mode-hook 'flycheck-mode))
 #+END_SRC
 
