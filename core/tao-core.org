@@ -90,17 +90,22 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 (bundle! evil
-   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
-   (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
-   (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
-   (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
-   (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
+  (setq evil-emacs-state-cursor  '("red" box))
+  (setq evil-normal-state-cursor '("gray" box))
+  (setq evil-visual-state-cursor '("gray" box))
+  (setq evil-insert-state-cursor '("gray" bar))
+  (setq evil-motion-state-cursor '("gray" box))
+  (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+  (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
+  (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
+  (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
+  (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
 
-   ;; moving around windows VIM style
-   (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
-   (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
-   (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
-   (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+  ;; moving around windows VIM style
+  (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
 
   (setq
     ;; this stops evil from overwriting the cursor color
