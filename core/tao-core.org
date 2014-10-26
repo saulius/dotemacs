@@ -120,6 +120,11 @@ Used to exit insert/visual evil modes.
   (add-hook 'prog-mode-hook 'turn-on-evil-mode)
   (add-hook 'comint-mode-hook 'turn-on-evil-mode)
   (add-hook 'Info-mode-hook 'turn-off-evil-mode))
+
+(bundle! syl20bnr/evil-escape
+  (add-hook 'evil-mode-hook
+    (lambda ()
+      (evil-escape-mode))))
 #+END_SRC
 
 ** ido
