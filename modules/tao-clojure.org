@@ -64,3 +64,9 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
        (add-hook 'repl-mode-hook (lambda ()
                                  (run-hooks 'cider-repl-mode-hook))))))
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(bundle! evil-lisp-state
+  (define-key evil-normal-state-map "L" 'evil-lisp-state)
+  (setq evil-lisp-state-cursor  '("orange" bar)))
+#+END_SRC
