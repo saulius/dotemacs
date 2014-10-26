@@ -116,15 +116,16 @@ Used to exit insert/visual evil modes.
     evil-auto-indent t
     evil-regexp-search t
     evil-want-C-i-jump t)
+
   (add-hook 'text-mode-hook 'turn-on-evil-mode)
   (add-hook 'prog-mode-hook 'turn-on-evil-mode)
   (add-hook 'comint-mode-hook 'turn-on-evil-mode)
   (add-hook 'Info-mode-hook 'turn-off-evil-mode))
 
 (bundle! syl20bnr/evil-escape
-  (add-hook 'evil-mode-hook
+  (add-hook 'evil-local-mode-hook
     (lambda ()
-      (evil-escape-mode))))
+      (evil-escape-mode t))))
 #+END_SRC
 
 ** ido
