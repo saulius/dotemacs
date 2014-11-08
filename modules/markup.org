@@ -1,4 +1,4 @@
-#+TITLE: tao-markup
+#+TITLE: markup
 
 * Markup
 
@@ -30,7 +30,7 @@ Be prepared.
 ** JSON
 
 #+BEGIN_SRC emacs-lisp
-(bundle! json-mode)
+(req-package json-mode)
 #+END_SRC
 
 ** Yaml
@@ -39,15 +39,21 @@ Since I use [[https://www.ruby-lang.org/en/][Ruby]] and [[http://www.ansible.com
 it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! yaml-mode
-  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
+(req-package yaml-mode
+  :defer t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+    (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))))
 #+END_SRC
 
 ** Markdown
 
 #+BEGIN_SRC emacs-lisp
-(bundle! markdown-mode
-  (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.mkd" . markdown-mode)))
+(req-package markdown-mode
+  :defer t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.mkd" . markdown-mode))))
 #+END_SRC

@@ -1,0 +1,84 @@
+#+TITLE: navigation
+
+* Navigating around
+
+** Projectile
+
+[[https://github.com/bbatsov/projectile][Projectile]] is a brilliant project
+interaction library for Emacs. Navigate around files, buffers, recently opened
+files etc. Some of Projectile's features:
+
+#+BEGIN_QUOTE
+  * jump to a file in project
+  * jump to a directory in project
+  * jump to a file in a directory
+  * jump to a project buffer
+  * jump to a test in project
+  * toggle between code and its test
+  * jump to recently visited files in the project
+  * switch between projects you have worked on
+  * kill all project buffers
+  * replace in project
+  * multi-occur in project buffers
+  * grep in project
+  * regenerate project etags or gtags (requires gtags).
+  * visit project in dired
+  * run make in a project with a single key chord
+
+  -- https://github.com/bbatsov/projectile
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(req-package projectile
+  :diminish projectile-mode
+  :require evil-leader
+  :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+      "f"   'projectile-find-file
+      "o"   'projectile-multi-occur
+      "x p" 'projectile-switch-project
+      "x i" 'projectile-invalidate-cache
+      "x x" 'smex))
+  :init
+  (progn
+    (require 'projectile)
+    (setq projectile-enable-caching t)
+    (setq projectile-globally-ignored-files
+      (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
+              projectile-globally-ignored-files))
+    (setq projectile-globally-ignored-directories
+      (append '("target")
+      projectile-globally-ignored-directories))
+    (setq projectile-require-project-root nil)
+
+    ;; advice from http://cupfullofcode.com/invalidate-projectile-cache-on-delete/
+    (defadvice delete-file (before purge-from-projectile-cache (filename &optional trash))
+      (if (projectile-project-p)
+          (progn
+            (let* ((true-filename (file-truename filename))
+                   (relative-filename (file-relative-name true-filename (projectile-project-root))))
+              (if (projectile-file-cached-p relative-filename (projectile-project-root))
+                  (projectile-purge-file-from-cache relative-filename))))))
+
+    (ad-activate 'delete-file)
+
+    (projectile-global-mode))) ;; any directory can be a project
+#+END_SRC
+
+** Ag
+
+#+BEGIN_SRC emacs-lisp
+(req-package ag
+  :defer t
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key
+            "a" 'ag))
+  :init
+  (progn
+    (setq ag-highlight-search t)
+    (setq ag-reuse-buffers t)))
+#+END_SRC

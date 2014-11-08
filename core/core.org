@@ -1,0 +1,233 @@
+#+TITLE: core
+
+* Core settings
+
+Core contains general editor settings. Check further comments below.
+
+#+BEGIN_SRC emacs-lisp
+;; UTF-8 all the things
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; do not create symbolic lock files
+;; http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files/12974060#12974060
+(setq create-lockfiles nil)
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
+
+;; disable auto save
+(setq auto-save-default nil)
+
+;; Do not really want to type yes or no each time, so:
+;; yes/no => y/n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Use text-mode for unknown files
+;; from https://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html
+(setq-default major-mode 'text-mode)
+
+(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+
+(setq
+ require-final-newline t                ;auto add newline at the end of file
+ default-major-mode 'text-mode          ;use text mode per default
+ history-length 250                     ;default is 30
+ tab-always-indent 'complete            ;try to complete before identing
+ confirm-nonexistent-file-or-buffer nil ;don't ask to create a buffer
+ recentf-max-saved-items 5000           ;same up to 5000 recent files
+ kill-ring-max 5000                     ;truncate kill ring after 5000 entries
+ mark-ring-max 5000)                    ;truncate mark ring after 5000 entries
+#+END_SRC
+
+* Evil
+
+Long time [[http://www.vim.org][Vim]] fan cannot live without [[https://gitorious.org/evil][evil-mode]].
+So install and load it as soon as possible, because:
+
+#+BEGIN_QUOTE
+  Because Vim is better editor and Emacs is better everything else.
+
+  -- The internet
+#+END_QUOTE
+
+** key-chord-mode
+
+#+BEGIN_QUOTE
+Key-chord lets you bind commands to combination of key-strokes. Here a
+"key chord" means two keys pressed simultaneously, or a single key quickly
+pressed twice.
+#+END_QUOTE
+
+Used to exit insert/visual evil modes.
+
+#+BEGIN_SRC emacs-lisp
+(req-package ace-jump-mode
+  :defer t)
+
+(req-package key-chord
+  :defer t
+  :init
+  (progn
+    (key-chord-mode 1)
+    (key-chord-define-global "EE" 'evil-mode)
+    (key-chord-define-global "DD" 'toggle-debug-on-error)
+    (key-chord-define-global "XX" 'smex)
+    (key-chord-define-global "OA" 'org-agenda)
+    (key-chord-define-global "OF" 'visit-org-agenda-files)
+    (key-chord-define-global "OT" 'open-org-global-todo)))
+#+END_SRC
+
+** evil-mode
+
+#+BEGIN_SRC emacs-lisp
+(req-package evil
+  :defer t
+  :init
+  (progn
+    (require 'evil)
+    (setq evil-emacs-state-cursor  '("red" box))
+    (setq evil-normal-state-cursor '("gray" box))
+    (setq evil-visual-state-cursor '("gray" box))
+    (setq evil-insert-state-cursor '("gray" bar))
+    (setq evil-motion-state-cursor '("gray" box))
+    (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+    (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
+    (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
+    (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
+    (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
+
+    ;; moving around windows VIM style
+    (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+    (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+    (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+    (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+
+    (setq
+      ;; this stops evil from overwriting the cursor color
+      evil-default-cursor t
+      evil-default-state 'normal
+      ;; Don't wait for any other keys after escape is pressed.
+      evil-esc-delay 0
+      evil-auto-indent t
+      evil-regexp-search t
+      evil-want-C-i-jump t)
+
+    (add-hook 'text-mode-hook 'turn-on-evil-mode)
+    (add-hook 'prog-mode-hook 'turn-on-evil-mode)
+    (add-hook 'comint-mode-hook 'turn-on-evil-mode)
+    (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
+
+(req-package evil-escape
+  :diminish evil-escape-mode
+  :defer t
+  :init
+  (progn
+    (require 'evil-escape)
+    (add-hook 'evil-local-mode-hook
+      (lambda ()
+        (evil-escape-mode t)))))
+#+END_SRC
+
+** ido
+
+#+BEGIN_SRC emacs-lisp
+;; configure ido
+(req-package smex
+  :defer t)
+(setq
+  ;; Speed up ido by using less candidates
+  ido-max-prospects 10
+  ;; Match arbitrary points in strings
+  ido-enable-prefix nil
+  ;; Match across entire string
+  ido-enable-flex-matching t
+  ;; Create a new buffer if there's no match candidate
+  ido-create-new-buffer 'always
+  ;; Don't try and guess if the string under point is a file
+  ido-use-filename-at-point nil
+  ;; case-insensitive matching
+  ido-case-fold t
+  ido-everywhere t
+  ;; go back in time if required
+  ido-use-faces nil
+  ido-vertical-define-keys 'C-n-C-p-up-down-left-right
+  ido-use-virtual-buffers nil)
+
+(require 'ido)
+(ido-mode t)
+
+(req-package ido-vertical-mode
+  :defer t
+  :init
+  (progn
+    (ido-vertical-mode t)))
+
+(req-package flx
+  :defer t
+  :init
+  (progn
+   (setq gc-cons-threshold 20000000)
+   (require 'flx-ido)
+   (flx-ido-mode 1)))
+
+(req-package ido-ubiquitous
+  :init
+  :defer t
+  (progn (ido-ubiquitous-mode)))
+#+END_SRC
+
+** evil-leader
+
+Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-leader]].
+Map `,` key to leader for wonderful set of shortcuts.
+
+#+BEGIN_SRC emacs-lisp
+(defun bury-buffer-delete-window ()
+  (interactive)
+  (bury-buffer)
+  (delete-window))
+
+(require 'term)
+(setq system-uses-terminfo nil)
+
+(defun open-ansi-term ()
+  "Toggle an ansi-term buffer."
+  (interactive)
+  (when (not (get-buffer "*ansi-term*"))
+      (save-window-excursion (ansi-term (getenv "SHELL"))))
+  (if (equal (buffer-name) "*ansi-term*")
+      (quit-window)
+    (switch-to-buffer-other-window "*ansi-term*")))
+
+(req-package evil-leader
+  :defer t
+  :init
+  (progn
+    (require 'evil-leader)
+    (evil-leader/set-leader ",")
+    (setq evil-leader/in-all-states t)
+    (evil-leader/set-key
+      "."   'evil-buffer
+      "b"   'projectile-switch-to-buffer
+      "e"   'ido-find-file
+      "n"   'rename-this-buffer-and-file
+      "k"   'bury-buffer-delete-window
+      "t"   'open-ansi-term
+      "T"   'eshell
+      "x l" 'linum-mode
+      "x f" 'auto-fill-mode
+      "w"   'save-buffer
+      "W"   'save-buffer-no-whitespace)
+   (global-evil-leader-mode)))
+#+END_SRC

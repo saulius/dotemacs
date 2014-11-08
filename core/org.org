@@ -1,24 +1,31 @@
-#+TITLE: tao-org
+#+TITLE: org
 
 * Org mode configuration
 
 #+BEGIN_SRC emacs-lisp
-(bundle! org-pomodoro)
-(bundle edwtjo/evil-org-mode
-  (require 'evil-org))
+(req-package org-pomodoro
+  :defer t)
+
+;; TODO
+;;(bundle edwtjo/evil-org-mode
+;;  (require 'evil-org))
 
 (require 'org-agenda)
 
-(evil-leader/set-key-for-mode 'org-mode
-  ", i" 'org-clock-in
-  ", o" 'org-clock-out
-  ", c" 'org-clock-jump-to-current-clock
-  ", d" 'org-clock-display
-  ", e" 'org-set-effort
-  ", p" 'org-pomodoro
-  ", t" 'org-set-tags-command
-  ", m" 'org-clock-modify-effort-estimate
-  ", s" 'org-schedule)
+(req-package org
+  :defer t
+  :init
+  (progn
+    (evil-leader/set-key-for-mode 'org-mode
+      ", i" 'org-clock-in
+      ", o" 'org-clock-out
+      ", c" 'org-clock-jump-to-current-clock
+      ", d" 'org-clock-display
+      ", e" 'org-set-effort
+      ", p" 'org-pomodoro
+      ", t" 'org-set-tags-command
+      ", m" 'org-clock-modify-effort-estimate
+      ", s" 'org-schedule)))
 
 (require 'remember)
 

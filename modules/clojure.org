@@ -1,0 +1,82 @@
+#+TITLE: clojure
+
+* Clojure
+
+Configuration for [[http://clojure.org][Clojure]] programming language.
+
+#+BEGIN_SRC emacs-lisp
+(req-package clojure-mode
+  :defer t
+  :init
+  (progn
+    (eval-after-load 'clojure-mode
+      '(progn
+         (defun clojure-mode-defaults ()
+           (smartparens-strict-mode 1)
+           (subword-mode 1))
+
+           (evil-leader/set-key-for-mode 'clojure-mode
+             ", ," 'cider-reset-test-run-tests
+             ", e" 'cider-repl-reset
+             ", c" 'check-parens
+             ", n" 'cider-repl-set-ns
+             ", k" 'cider-load-current-buffer
+             ", c" 'cider-eval-defun-at-point
+             ", d" 'cider-doc-map
+             ", r" 'cider-switch-to-repl-buffer)
+
+         (setq my-clojure-mode-hook 'clojure-mode-defaults)
+
+         (add-hook 'my-clojure-mode-hook (lambda ()
+                                      (run-hooks 'my-clojure-mode-hook)))))))
+
+(req-package cider
+  :defer t
+  :init
+  (progn
+    (setq cider-repl-pop-to-buffer-on-connect t)
+    (setq cider-prompt-save-file-on-load nil)
+
+    (eval-after-load 'cider
+      '(progn
+         (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+
+         (defun cider-repl-command (cmd)
+           "Execute commands on the cider repl"
+           (cider-switch-to-repl-buffer)
+           (goto-char (point-max))
+           (insert cmd)
+           (cider-repl-return)
+           (cider-switch-to-last-clojure-buffer))
+
+         (defun cider-repl-reset ()
+           "Assumes reloaded + tools.namespace is used to reload everything"
+           (interactive)
+           (save-some-buffers)
+           (cider-repl-command "(user/reset)"))
+
+         (defun cider-reset-test-run-tests ()
+           (interactive)
+           (cider-repl-reset)
+           (cider-test-run-tests))
+
+         (defun cider-repl-mode-defaults ()
+           (subword-mode 1)
+           (smartparens-strict-mode 1))
+
+         (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
+         ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
+         (setq cider-prompt-save-file-on-load nil)
+
+         (add-hook 'repl-mode-hook (lambda ()
+                                   (run-hooks 'cider-repl-mode-hook)))))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(req-package evil-lisp-state
+  :defer t
+  :init
+  (progn
+    (define-key evil-normal-state-map "L" 'evil-lisp-state)
+    (setq evil-lisp-state-cursor  '("orange" bar))))
+#+END_SRC

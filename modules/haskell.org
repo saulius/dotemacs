@@ -1,0 +1,25 @@
+#+TITLE: haskell
+
+* Haskell
+
+Configuration for [[http://www.haskell.org/][Haskell]] programming language.
+
+#+BEGIN_SRC emacs-lisp
+(when (executable-find "ghc")
+  (req-package haskell-mode
+    :defer t
+    :init
+    (progn
+      (eval-after-load 'haskell-mode
+        '(progn
+          (defun haskell-mode-defaults ()
+            (subword-mode +1)
+            (turn-on-haskell-doc-mode)
+            (turn-on-haskell-indentation)
+            (interactive-haskell-mode +1))
+
+          (setq haskell-mode-hook 'haskell-mode-defaults)
+
+          (add-hook 'haskell-mode-hook (lambda ()
+                                       (run-hooks 'haskell-mode-hook))))))))
+#+END_SRC

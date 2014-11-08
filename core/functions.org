@@ -1,4 +1,4 @@
-#+TITLE: tao-misc
+#+TITLE: misc
 
 * Misc
 

@@ -15,7 +15,9 @@ ac-comphist.dat
 semanticdb/
 .#*
 *#
-tao*.el
+core/*.el
+modules/*.el
+boot.el
 bundle/*
 flycheck_org-clock-save.el
 bookmarks

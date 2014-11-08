@@ -1,0 +1,104 @@
+#+TITLE: Emacs config
+
+* Introduction
+
+Personal Emacs configuration written with aims to learn Emacs-Lisp, Babel,
+org-mode and, of course, build a perfect development enviroment.
+
+Sources of inspiration:
+- [[Oh My Emacs][https://github.com/xiaohanyu/oh-my-emacs/]]
+- [[https://github.com/nakkaya/emacs][https://github.com/nakkaya/emacs]]
+
+The latest version is at https://github.com/saulius/dotemacs.
+
+** Installation
+
+1. Install Emacs 24.4+.
+2. Checkout the distribution to your ~/.emacs.d directory:
+    #+BEGIN_SRC sh
+    cd ~
+    git clone http://github.com/saulius/dotemacs .emacs.d
+    #+END_SRC
+3. Launch Emacs!
+
+** Package management
+
+It uses the wonderful [[https://github.com/dimitri/el-get][el-get]] package
+manager. el-get allows package installation from various sources as well as
+many other niceties.
+
+#+BEGIN_QUOTE
+  El-Get allows you to install and manage elisp code for Emacs. It supports
+  lots of different types of sources and is able to install them, update
+  them and remove them, but more importantly it will init them for you. That
+  means it will require the features you need, load the necessary files,
+  set the Info paths so that C-h i shows the new documentation you now
+  depend on, and finally call your own initialisation code for you to setup
+  the extension. Or call it a package.
+
+  -- https://github.com/dimitri/el-get
+#+END_QUOTE
+
+It also uses small helper library called [[https://github.com/edvorg/req-package][req-package]]
+for wrapping el-get calls and providing niceties of [[https://github.com/jwiegley/use-package][use-package]]
+
+#+BEGIN_QUOTE
+  req-package is a macro wrapper on top of use-package.
+  It’s goal is to simplify package dependencies management,
+  when using use-package for your .emacs.
+
+  -- https://github.com/edvorg/req-package
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'req-package)
+(require 'req-package)
+(package-initialize)
+(setq req-package-providers '(req-package-try-el-get req-package-try-elpa))
+#+END_SRC
+
+** Structure
+
+It consists of core modules and language specific modules. Core modules
+reside in `core` directory, language specific modules are in `modules`
+directory. `core` modules will be loaded by default. Language specific modes
+are optional and can be loaded on demand.
+
+Make sure all modules are loadable, extend `load-path` with relevant paths:
+
+#+BEGIN_SRC emacs-lisp
+(defvar config-dir user-emacs-directory
+  "The dir where config lives.")
+(defvar config-core-dir (expand-file-name "core" config-dir)
+  "The dir where config core modules live.")
+(defvar config-module-dir (expand-file-name "modules" config-dir)
+  "The dir where config custom, language specific modules live.")
+#+END_SRC
+
+Load all core modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "functions.org" config-core-dir))
+(org-babel-load-file (expand-file-name "core.org" config-core-dir))
+(org-babel-load-file (expand-file-name "editor.org" config-core-dir))
+(org-babel-load-file (expand-file-name "org.org" config-core-dir))
+(org-babel-load-file (expand-file-name "navigation.org" config-core-dir))
+(org-babel-load-file (expand-file-name "visual.org" config-core-dir))
+;; OSX specific config module
+(when (eq system-type 'darwin)
+  (org-babel-load-file (expand-file-name "osx.org" config-core-dir)))
+#+END_SRC
+
+Load language modules:
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "clojure.org" config-module-dir))
+(org-babel-load-file (expand-file-name "markup.org" config-module-dir))
+(org-babel-load-file (expand-file-name "ruby.org" config-module-dir))
+#+END_SRC
+
+Make req-package do its magic:
+
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
+#+END_SRC

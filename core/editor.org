@@ -1,4 +1,4 @@
-#+TITLE: tao-editor
+#+TITLE: editor
 
 * Editor settings
 
@@ -47,12 +47,13 @@ Install aspell to enable spell checker. The code snippet is mostly borrowed from
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
 
-(defun tao-enable-flyspell ()
+(defun config-enable-flyspell ()
   "Enable command flyspell-mode."
   (when (executable-find ispell-program-name)
-    (flyspell-mode +1)))
+    (flyspell-mode +1)
+    (diminish 'flyspell-mode)))
 
-(add-hook 'text-mode-hook 'tao-enable-flyspell)
+(add-hook 'text-mode-hook 'config-enable-flyspell)
 #+END_SRC
 
 ** Syntax checker
@@ -77,9 +78,19 @@ Use [[https://github.com/flycheck/flycheck][flycheck]] is which is a better
 Enable flycheck in prog-mode.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! flycheck
-  (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
-  (add-hook 'prog-mode-hook 'flycheck-mode))
+(req-package flycheck
+  :diminish flycheck-mode
+  :require evil-leader
+  :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+           "E" 'flycheck-list-errors))
+  :init
+  (progn
+    (require 'flycheck)
+    (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
+    (add-hook 'prog-mode-hook 'flycheck-mode)))
 #+END_SRC
 
 ** White space
@@ -113,12 +124,12 @@ Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle! ws-butler
-  :type github
-  :pkgname "lewang/ws-butler"
-  :website "https://github.com/lewang/ws-butler"
-
-  (add-hook 'prog-mode-hook 'ws-butler-mode))
+(req-package ws-butler
+  :diminish ws-butler-mode
+  :defer t
+  :init
+  (progn
+    (add-hook 'prog-mode-hook 'ws-butler-mode)))
 #+END_SRC
 
 ** saveplace
@@ -128,12 +139,12 @@ Save cursor positions of edited files between Emacs sessions. As seen in from [[
 #+BEGIN_SRC emacs-lisp
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" tao-dir))
+(setq save-place-file (expand-file-name ".places" config-dir))
 #+END_SRC
 
 ** auto completion
 
-Tao uses [[https://github.com/company-mode/company-mode][company mode]] as
+The config uses [[https://github.com/company-mode/company-mode][company mode]] as
 auto complete engine.
 
 #+BEGIN_QUOTE
@@ -153,17 +164,20 @@ auto complete engine.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle company-mode
-  (require 'company)
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  ;; invert the navigation direction if the the completion popup-isearch-match
-  ;; is displayed on top (happens near the bottom of windows)
-  (setq company-tooltip-flip-when-above t)
+(req-package company-mode
+  :diminish company-mode
+  :defer t
+  (progn
+    (require 'company)
+    (setq company-idle-delay 0.5)
+    (setq company-tooltip-limit 10)
+    (setq company-minimum-prefix-length 2)
+    ;; invert the navigation direction if the the completion popup-isearch-match
+    ;; is displayed on top (happens near the bottom of windows)
+    (setq company-tooltip-flip-when-above t)
 
-  (add-hook 'text-mode-hook 'company-mode)
-  (add-hook 'prog-mode-hook 'company-mode))
+    (add-hook 'text-mode-hook 'company-mode)
+    (add-hook 'prog-mode-hook 'company-mode)))
 #+END_SRC
 
 ** smartparens
@@ -179,14 +193,19 @@ inexchangeable for Lips-like modes. And other modes as well.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle! smartparens
-  (require 'smartparens-config)
-  (setq sp-base-key-bindings 'paredit)
-  (setq sp-autoskip-closing-pair 'always)
-  (setq sp-hybrid-kill-entire-symbol nil)
-  (sp-use-paredit-bindings)
-  (smartparens-global-mode t)
-  (show-smartparens-global-mode +1))
+(req-package smartparens
+  :diminish smartparens-mode
+  :defer t
+  :init
+  (progn
+    (require 'smartparens)
+    (require 'smartparens-config)
+    (setq sp-base-key-bindings 'paredit)
+    (setq sp-autoskip-closing-pair 'always)
+    (setq sp-hybrid-kill-entire-symbol nil)
+    (sp-use-paredit-bindings)
+    (smartparens-global-mode t)
+    (show-smartparens-global-mode +1)))
 #+END_SRC
 
 ** expand region
@@ -194,10 +213,12 @@ inexchangeable for Lips-like modes. And other modes as well.
 Expand region increases the selected region by semantic units.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! expand-region)
-
-(define-key evil-visual-state-map (kbd "e") 'er/expand-region)
-(define-key evil-visual-state-map (kbd "E") 'er/contract-region)
+(req-package expand-region
+  :defer t
+  :init
+  (progn
+    (define-key evil-visual-state-map (kbd "e") 'er/expand-region)
+    (define-key evil-visual-state-map (kbd "E") 'er/contract-region)))
 #+END_SRC
 
 ** evil-surround
@@ -205,7 +226,8 @@ Expand region increases the selected region by semantic units.
 Evil motions for surround things based on [[https://github.com/tpope/vim-surround][vim-surround]].
 
 #+BEGIN_SRC emacs-lisp
-(bundle! evil-surround)
+(req-package evil-surround
+  :defer t)
 #+END_SRC
 
 ** commenting
@@ -214,21 +236,44 @@ Evil motions for surround things based on [[https://github.com/tpope/vim-surroun
 commenting and uncomment lines and regions.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! evil-nerd-commenter
-  (setq evilnc-hotkey-comment-operator "\\"))
+(req-package evil-nerd-commenter
+  :defer t
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key
+           "c" 'evilnc-comment-or-uncomment-lines))
+  :init
+  (progn
+    (setq evilnc-hotkey-comment-operator "\\")))
 #+END_SRC
 
 ** source control management
+
 *** magit
 
 [[https://github.com/magit/magit][magic]] Magit is an interface to the version
 control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! magit)
-(bundle! git-commit-mode)
-(bundle! git-rebase-mode
-  (add-hook 'git-rebase-mode-hook 'turn-off-evil-mode))
+(req-package magit
+  :diminish magit-auto-revert-mode
+  :require evil-leader
+  :init
+  (progn
+    (evil-leader/set-key
+           "g"  'magit-status
+           "G"  'magit-blame-mode))
+  :defer t)
+
+(req-package git-commit-mode
+  :defer t)
+
+(req-package git-rebase-mode
+  :defer t
+  :init
+  (progn
+    (add-hook 'git-rebase-mode-hook 'turn-off-evil-mode)))
 #+END_SRC
 
 *** git timemachine
@@ -236,7 +281,8 @@ control system Git, implemented as an Emacs extension.
 Step through historic versions of git controlled file using everyone's favourite editor
 
 #+BEGIN_SRC emacs-lisp
-(bundle! git-timemachine)
+(req-package git-timemachine
+  :defer t)
 #+END_SRC
 
 *** git gutter
@@ -245,19 +291,43 @@ Show an indication in the gutter area indicating whether a line has
 been inserted, modified or deleted.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! git-gutter
- (global-git-gutter-mode t))
+(req-package git-gutter
+  :diminish git-gutter-mode
+  :require evil-leader
+  :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+      "u p" 'git-gutter:popup-hunk
+      "u s" 'git-gutter:stage-hunk
+      "u r" 'git-gutter:revert-hunk))
+  :init
+  (progn
+    (global-git-gutter-mode t)))
 #+END_SRC
 
 *** kill ring browser
 #+BEGIN_SRC emacs-lisp
-(bundle! browse-kill-ring)
+(req-package browse-kill-ring
+  :defer t
+  :require evil-leader
+  :init
+  (progn
+    (evil-leader/set-key
+            "x k" 'browse-kill-ring)))
 #+END_SRC
+
 ** aggressive indent
 
 aggressive-indent-mode is a minor mode that keeps your code always indented.
 It reindents after every command, making it more reliable than electric-indent-mode.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! aggressive-indent)
+(req-package aggressive-indent
+  :defer t
+  :require evil-leader
+  :init
+  (progn
+     (evil-leader/set-key
+       "x I" 'aggressive-indent-mode)))
 #+END_SRC

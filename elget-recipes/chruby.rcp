@@ -1,0 +1,5 @@
+(:name chruby
+ :website "https://github.com/plexus/chruby.el"
+ :description "Emacs support for the Chruby version switcher for Ruby"
+ :type github
+ :pkgname "plexus/chruby.el")
