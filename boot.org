@@ -78,9 +78,9 @@ Make sure all modules are loadable, extend `load-path` with relevant paths:
 Load all core modules:
 
 #+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "functions.org" config-core-dir))
 (org-babel-load-file (expand-file-name "core.org" config-core-dir))
 (org-babel-load-file (expand-file-name "editor.org" config-core-dir))
-(org-babel-load-file (expand-file-name "misc.org" config-core-dir))
 (org-babel-load-file (expand-file-name "org.org" config-core-dir))
 (org-babel-load-file (expand-file-name "navigation.org" config-core-dir))
 (org-babel-load-file (expand-file-name "visual.org" config-core-dir))
