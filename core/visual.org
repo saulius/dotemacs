@@ -1,4 +1,4 @@
-#+TITLE: tao-visual
+#+TITLE: visual
 
 * Graphical settings
 

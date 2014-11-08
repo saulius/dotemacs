@@ -1,4 +1,4 @@
-#+TITLE: tao-editor
+#+TITLE: editor
 
 * Editor settings
 
@@ -47,12 +47,12 @@ Install aspell to enable spell checker. The code snippet is mostly borrowed from
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
 
-(defun tao-enable-flyspell ()
+(defun config-enable-flyspell ()
   "Enable command flyspell-mode."
   (when (executable-find ispell-program-name)
     (flyspell-mode +1)))
 
-(add-hook 'text-mode-hook 'tao-enable-flyspell)
+(add-hook 'text-mode-hook 'config-enable-flyspell)
 #+END_SRC
 
 ** Syntax checker
@@ -131,12 +131,12 @@ Save cursor positions of edited files between Emacs sessions. As seen in from [[
 #+BEGIN_SRC emacs-lisp
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" tao-dir))
+(setq save-place-file (expand-file-name ".places" config-dir))
 #+END_SRC
 
 ** auto completion
 
-Tao uses [[https://github.com/company-mode/company-mode][company mode]] as
+The config uses [[https://github.com/company-mode/company-mode][company mode]] as
 auto complete engine.
 
 #+BEGIN_QUOTE

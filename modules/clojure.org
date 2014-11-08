@@ -1,4 +1,4 @@
-#+TITLE: tao-clojure
+#+TITLE: clojure
 
 * Clojure
 

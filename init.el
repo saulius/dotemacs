@@ -23,7 +23,7 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/elget-recipes")
 (el-get 'sync)
 
-(org-babel-load-file (expand-file-name "tao-boot.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "org" user-emacs-directory))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

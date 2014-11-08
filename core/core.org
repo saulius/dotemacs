@@ -1,8 +1,8 @@
-#+TITLE: tao-core
+#+TITLE: core
 
 * Core settings
 
-Tao-core contains general editor settings. Check further comments below.
+Core contains general editor settings. Check further comments below.
 
 #+BEGIN_SRC emacs-lisp
 ;; UTF-8 all the things

@@ -1,4 +1,4 @@
-#+TITLE: tao-navigation
+#+TITLE: navigation
 
 * Navigating around
 

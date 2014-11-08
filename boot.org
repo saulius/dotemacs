@@ -1,14 +1,4 @@
-#+TITLE: Tao
-
-#+BEGIN_QUOTE
-  Tao (pronounced "dao") means literally "the path" or "the way." It is a
-  universal principle that underlies everything from the creation of galaxies
-  to the interaction of human beings. The workings of Tao are vast and often
-  beyond human logic. In order to understand Tao, reasoning alone will not
-  suffice. One must also apply intuition.
-
-  -- http://www.taoism.net/articles/what_tao.htm
-#+END_QUOTE
+#+TITLE: Emacs config
 
 * Introduction
 
@@ -19,21 +9,21 @@ Sources of inspiration:
 - [[Oh My Emacs][https://github.com/xiaohanyu/oh-my-emacs/]]
 - [[https://github.com/nakkaya/emacs][https://github.com/nakkaya/emacs]]
 
-The latest version is at https://github.com/saulius/tao.
+The latest version is at https://github.com/saulius/dotemacs.
 
 ** Installation
 
-1. Install Emacs 24+.
-2. Checkout tao to your ~/.emacs.d directory:
+1. Install Emacs 24.4+.
+2. Checkout the distribution to your ~/.emacs.d directory:
     #+BEGIN_SRC sh
     cd ~
-    git clone http://github.com/saulius/tao .emacs.d
+    git clone http://github.com/saulius/dotemacs .emacs.d
     #+END_SRC
 3. Launch Emacs!
 
 ** Package management
 
-Tao uses the wonderful [[https://github.com/dimitri/el-get][el-get]] package
+It uses the wonderful [[https://github.com/dimitri/el-get][el-get]] package
 manager. el-get allows package installation from various sources as well as
 many other niceties.
 
@@ -49,7 +39,7 @@ many other niceties.
   -- https://github.com/dimitri/el-get
 #+END_QUOTE
 
-Tao also uses small helper library called [[https://github.com/edvorg/req-package][req-package]]
+It also uses small helper library called [[https://github.com/edvorg/req-package][req-package]]
 for wrapping el-get calls and providing niceties of [[https://github.com/jwiegley/use-package][use-package]]
 
 #+BEGIN_QUOTE
@@ -69,7 +59,7 @@ for wrapping el-get calls and providing niceties of [[https://github.com/jwiegle
 
 ** Structure
 
-Tao consists of core modules and language specific modules. Core modules
+It consists of core modules and language specific modules. Core modules
 reside in `core` directory, language specific modules are in `modules`
 directory. `core` modules will be loaded by default. Language specific modes
 are optional and can be loaded on demand.
@@ -77,34 +67,34 @@ are optional and can be loaded on demand.
 Make sure all modules are loadable, extend `load-path` with relevant paths:
 
 #+BEGIN_SRC emacs-lisp
-(defvar tao-dir user-emacs-directory
-  "The dir where tao lives.")
-(defvar tao-core-dir (expand-file-name "core" tao-dir)
-  "The dir where tao core modules live.")
-(defvar tao-module-dir (expand-file-name "modules" tao-dir)
-  "The dir where tao custom, language specific modules live.")
+(defvar config-dir user-emacs-directory
+  "The dir where config lives.")
+(defvar config-core-dir (expand-file-name "core" config-dir)
+  "The dir where config core modules live.")
+(defvar config-module-dir (expand-file-name "modules" config-dir)
+  "The dir where config custom, language specific modules live.")
 #+END_SRC
 
 Load all core modules:
 
 #+BEGIN_SRC emacs-lisp
-(org-babel-load-file (expand-file-name "tao-core.org" tao-core-dir))
-(org-babel-load-file (expand-file-name "tao-editor.org" tao-core-dir))
-(org-babel-load-file (expand-file-name "tao-misc.org" tao-core-dir))
-(org-babel-load-file (expand-file-name "tao-org.org" tao-core-dir))
-(org-babel-load-file (expand-file-name "tao-navigation.org" tao-core-dir))
-(org-babel-load-file (expand-file-name "tao-visual.org" tao-core-dir))
-;; OSX specific Tao module
+(org-babel-load-file (expand-file-name "core.org" config-core-dir))
+(org-babel-load-file (expand-file-name "editor.org" config-core-dir))
+(org-babel-load-file (expand-file-name "misc.org" config-core-dir))
+(org-babel-load-file (expand-file-name "o-org.org" config-core-dir))
+(org-babel-load-file (expand-file-name "navigation.org" config-core-dir))
+(org-babel-load-file (expand-file-name "visual.org" config-core-dir))
+;; OSX specific config module
 (when (eq system-type 'darwin)
-  (org-babel-load-file (expand-file-name "tao-osx.org" tao-core-dir)))
+  (org-babel-load-file (expand-file-name "osx.org" config-core-dir)))
 #+END_SRC
 
 Load language modules:
 
 #+BEGIN_SRC emacs-lisp
-;;(org-babel-load-file (expand-file-name "tao-clojure.org" tao-module-dir))
-;;(org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
-;;(org-babel-load-file (expand-file-name "tao-ruby.org" tao-module-dir))
+;;(org-babel-load-file (expand-file-name "clojure.org" config-module-dir))
+;;(org-babel-load-file (expand-file-name "markup.org" config-module-dir))
+;;(org-babel-load-file (expand-file-name "ruby.org" config-module-dir))
 #+END_SRC
 
 Make req-package do its magic:

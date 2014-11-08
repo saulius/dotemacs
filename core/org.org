@@ -1,4 +1,4 @@
-#+TITLE: tao-org
+#+TITLE: org
 
 * Org mode configuration
 
