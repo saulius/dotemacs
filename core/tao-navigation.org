@@ -29,33 +29,41 @@ files etc. Some of Projectile's features:
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(bundle! projectile
-  (setq projectile-enable-caching t)
-  (setq projectile-globally-ignored-files
-    (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
-            projectile-globally-ignored-files))
-  (setq projectile-globally-ignored-directories
-    (append '("target")
-    projectile-globally-ignored-directories))
-  (setq projectile-require-project-root nil)
-  (projectile-global-mode)) ;; any directory can be a project
+(req-package projectile
+  :defer t
+  :init
+  (progn
+    (require 'projectile)
+    (setq projectile-enable-caching t)
+    (setq projectile-globally-ignored-files
+      (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
+              projectile-globally-ignored-files))
+    (setq projectile-globally-ignored-directories
+      (append '("target")
+      projectile-globally-ignored-directories))
+    (setq projectile-require-project-root nil)
 
-;; advice from http://cupfullofcode.com/invalidate-projectile-cache-on-delete/
-(defadvice delete-file (before purge-from-projectile-cache (filename &optional trash))
-  (if (projectile-project-p)
-      (progn
-        (let* ((true-filename (file-truename filename))
-               (relative-filename (file-relative-name true-filename (projectile-project-root))))
-          (if (projectile-file-cached-p relative-filename (projectile-project-root))
-              (projectile-purge-file-from-cache relative-filename))))))
+    ;; advice from http://cupfullofcode.com/invalidate-projectile-cache-on-delete/
+    (defadvice delete-file (before purge-from-projectile-cache (filename &optional trash))
+      (if (projectile-project-p)
+          (progn
+            (let* ((true-filename (file-truename filename))
+                   (relative-filename (file-relative-name true-filename (projectile-project-root))))
+              (if (projectile-file-cached-p relative-filename (projectile-project-root))
+                  (projectile-purge-file-from-cache relative-filename))))))
 
-(ad-activate 'delete-file)
+    (ad-activate 'delete-file)
+
+    (projectile-global-mode))) ;; any directory can be a project
 #+END_SRC
 
 ** Ag
 
 #+BEGIN_SRC emacs-lisp
-(bundle! ag
-  (setq ag-highlight-search t)
-  (setq ag-reuse-buffers t))
+(req-package ag
+  :defer t
+  :init
+  (progn
+    (setq ag-highlight-search t)
+    (setq ag-reuse-buffers t)))
 #+END_SRC

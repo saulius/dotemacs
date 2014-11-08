@@ -72,67 +72,81 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
-(bundle! ace-jump-mode)
-(bundle! key-chord
-  (key-chord-mode 1)
-  (key-chord-define-global "EE" 'evil-mode)
-  (key-chord-define-global "DD" 'toggle-debug-on-error)
-  (key-chord-define-global "XX" 'smex)
-  (key-chord-define-global "OA" 'org-agenda)
-  (key-chord-define-global "OF" 'visit-org-agenda-files)
-  (key-chord-define-global "OT" 'open-org-global-todo)
-  (key-chord-define-global "jj" 'ace-jump-word-mode)
-  (key-chord-define-global "jl" 'ace-jump-line-mode)
-  (key-chord-define-global "jk" 'ace-jump-char-mode))
+(req-package ace-jump-mode
+  :defer t)
+
+(req-package key-chord
+  :defer t
+  :init
+  (progn
+    (key-chord-mode 1)
+    (key-chord-define-global "EE" 'evil-mode)
+    (key-chord-define-global "DD" 'toggle-debug-on-error)
+    (key-chord-define-global "XX" 'smex)
+    (key-chord-define-global "OA" 'org-agenda)
+    (key-chord-define-global "OF" 'visit-org-agenda-files)
+    (key-chord-define-global "OT" 'open-org-global-todo)
+    (key-chord-define-global "jj" 'ace-jump-word-mode)
+    (key-chord-define-global "jl" 'ace-jump-line-mode)
+    (key-chord-define-global "jk" 'ace-jump-char-mode)))
 #+END_SRC
 
 ** evil-mode
 
 #+BEGIN_SRC emacs-lisp
-(bundle! evil
-  (setq evil-emacs-state-cursor  '("red" box))
-  (setq evil-normal-state-cursor '("gray" box))
-  (setq evil-visual-state-cursor '("gray" box))
-  (setq evil-insert-state-cursor '("gray" bar))
-  (setq evil-motion-state-cursor '("gray" box))
-  (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
-  (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
-  (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
-  (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
-  (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
+(req-package evil
+  :defer t
+  :init
+  (progn
+    (require 'evil)
+    (setq evil-emacs-state-cursor  '("red" box))
+    (setq evil-normal-state-cursor '("gray" box))
+    (setq evil-visual-state-cursor '("gray" box))
+    (setq evil-insert-state-cursor '("gray" bar))
+    (setq evil-motion-state-cursor '("gray" box))
+    (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+    (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
+    (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
+    (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
+    (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
 
-  ;; moving around windows VIM style
-  (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
-  (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+    ;; moving around windows VIM style
+    (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+    (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+    (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+    (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
 
-  (setq
-    ;; this stops evil from overwriting the cursor color
-    evil-default-cursor t
-    evil-default-state 'normal
-    ;; Don't wait for any other keys after escape is pressed.
-    evil-esc-delay 0
-    evil-auto-indent t
-    evil-regexp-search t
-    evil-want-C-i-jump t)
+    (setq
+      ;; this stops evil from overwriting the cursor color
+      evil-default-cursor t
+      evil-default-state 'normal
+      ;; Don't wait for any other keys after escape is pressed.
+      evil-esc-delay 0
+      evil-auto-indent t
+      evil-regexp-search t
+      evil-want-C-i-jump t)
 
-  (add-hook 'text-mode-hook 'turn-on-evil-mode)
-  (add-hook 'prog-mode-hook 'turn-on-evil-mode)
-  (add-hook 'comint-mode-hook 'turn-on-evil-mode)
-  (add-hook 'Info-mode-hook 'turn-off-evil-mode))
+    (add-hook 'text-mode-hook 'turn-on-evil-mode)
+    (add-hook 'prog-mode-hook 'turn-on-evil-mode)
+    (add-hook 'comint-mode-hook 'turn-on-evil-mode)
+    (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
-(bundle! syl20bnr/evil-escape
-  (add-hook 'evil-local-mode-hook
-    (lambda ()
-      (evil-escape-mode t))))
+(req-package evil-escape
+  :defer t
+  :init
+  (progn
+    (require 'evil-escape)
+    (add-hook 'evil-local-mode-hook
+      (lambda ()
+        (evil-escape-mode t)))))
 #+END_SRC
 
 ** ido
 
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
-(bundle! smex)
+(req-package smex
+  :defer t)
 (setq
   ;; Speed up ido by using less candidates
   ido-max-prospects 10
@@ -155,15 +169,24 @@ Used to exit insert/visual evil modes.
 (require 'ido)
 (ido-mode t)
 
-(bundle! ido-vertical-mode
-  (ido-vertical-mode t))
+(req-package ido-vertical-mode
+  :defer t
+  :init
+  (progn
+    (ido-vertical-mode t)))
 
-(bundle flx
-  (setq gc-cons-threshold 20000000)
-  (require 'flx-ido)
-  (flx-ido-mode 1))
+(req-package flx
+  :defer t
+  :init
+  (progn
+   (setq gc-cons-threshold 20000000)
+   (require 'flx-ido)
+   (flx-ido-mode 1)))
 
-(bundle! DarwinAwardWinner/ido-ubiquitous)
+(req-package ido-ubiquitous
+  :init
+  :defer t
+  (progn (ido-ubiquitous-mode)))
 #+END_SRC
 
 ** evil-leader
@@ -189,55 +212,59 @@ Map `,` key to leader for wonderful set of shortcuts.
       (quit-window)
     (switch-to-buffer-other-window "*ansi-term*")))
 
-(bundle evil-leader
-  (evil-leader/set-leader ",")
-  (setq evil-leader/in-all-states t)
-  (evil-leader/set-key
-   "b" 'projectile-switch-to-buffer
-   "e" 'ido-find-file
-   "t" 'open-ansi-term
-   "T" 'eshell)
-  (eval-after-load "popwin"
+(req-package evil-leader
+  :defer t
+  :init
+  (progn
+    (require 'evil-leader)
+    (evil-leader/set-leader ",")
+    (setq evil-leader/in-all-states t)
     (evil-leader/set-key
-      "B" 'popwin:popup-last-buffer))
-   (eval-after-load "projectile"
+      "b" 'projectile-switch-to-buffer
+      "e" 'ido-find-file
+      "t" 'open-ansi-term
+      "T" 'eshell)
+    (eval-after-load "popwin"
+      (evil-leader/set-key
+        "B" 'popwin:popup-last-buffer))
+    (eval-after-load "projectile"
+      (evil-leader/set-key
+        "f"   'projectile-find-file
+        "o"   'projectile-multi-occur
+        "x p" 'projectile-switch-project
+        "x i" 'projectile-invalidate-cache
+        "x x" 'smex))
+    (eval-after-load "ag"
+      (evil-leader/set-key
+        "a" 'ag))
+    (eval-after-load "browse-kill-ring"
+      (evil-leader/set-key
+        "x k" 'browse-kill-ring))
     (evil-leader/set-key
-     "f"   'projectile-find-file
-     "o"   'projectile-multi-occur
-     "x p" 'projectile-switch-project
-     "x i" 'projectile-invalidate-cache
-     "x x" 'smex))
-  (eval-after-load "ag"
-    (evil-leader/set-key
-     "a" 'ag))
-  (eval-after-load "browse-kill-ring"
-    (evil-leader/set-key
-     "x k" 'browse-kill-ring))
-  (evil-leader/set-key
-    "." 'evil-buffer
-    "n" 'rename-this-buffer-and-file
-    "k" 'bury-buffer-delete-window
-    "x l" 'linum-mode
-    "x f" 'auto-fill-mode
-    "w" 'save-buffer
-    "W" 'save-buffer-no-whitespace)
-  (eval-after-load "evil-nerd-commenter"
-    (evil-leader/set-key
-      "c" 'evilnc-comment-or-uncomment-lines))
-  (eval-after-load "magit"
-    (evil-leader/set-key
-      "g"  'magit-status
-      "G"  'magit-blame-mode))
-  (eval-after-load "git-gutter"
-    (evil-leader/set-key
-      "u p" 'git-gutter:popup-hunk
-      "u s" 'git-gutter:stage-hunk
-      "u r" 'git-gutter:revert-hunk))
-  (eval-after-load "aggressive-indent"
-    (evil-leader/set-key
-      "x I" 'aggressive-indent-mode))
-  (eval-after-load "flycheck"
-    (evil-leader/set-key
-      "E" 'flycheck-list-errors))
-  (global-evil-leader-mode))
+      "." 'evil-buffer
+      "n" 'rename-this-buffer-and-file
+      "k" 'bury-buffer-delete-window
+      "x l" 'linum-mode
+      "x f" 'auto-fill-mode
+      "w" 'save-buffer
+      "W" 'save-buffer-no-whitespace)
+   (eval-after-load "evil-nerd-commenter"
+     (evil-leader/set-key
+       "c" 'evilnc-comment-or-uncomment-lines))
+   (eval-after-load "magit"
+     (evil-leader/set-key
+       "g"  'magit-status
+       "G"  'magit-blame-mode))
+   (eval-after-load "git-gutter"
+     (evil-leader/set-key
+       "u p" 'git-gutter:popup-hunk
+       "u s" 'git-gutter:stage-hunk
+       "u r" 'git-gutter:revert-hunk))
+   (eval-after-load "aggressive-indent"
+     (evil-leader/set-key
+       "x I" 'aggressive-indent-mode))
+   (eval-after-load "flycheck"
+     (evil-leader/set-key
+       "E" 'flycheck-list-errors))
+   (global-evil-leader-mode)))
 #+END_SRC

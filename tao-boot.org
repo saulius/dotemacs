@@ -49,29 +49,23 @@ many other niceties.
   -- https://github.com/dimitri/el-get
 #+END_QUOTE
 
-Tao also uses small helper library called [[https://github.com/tarao/bundle-el][bundle]]
-for wrapping el-get calls and writing package configuration.
-
-#+BEGIN_SRC emacs-lisp
-;; install bundle
-(add-to-list 'el-get-sources
-             '(:name bundle :type github :pkgname "tarao/bundle-el"))
-(el-get 'sync 'bundle)
-#+END_SRC
-
-[[https://github.com/tarao/bundle-el][bundle]] will:
+Tao also uses small helper library called [[https://github.com/edvorg/req-package][req-package]]
+for wrapping el-get calls and providing niceties of [[https://github.com/jwiegley/use-package][use-package]]
 
 #+BEGIN_QUOTE
-  * Wrap el-get with easy syntax.
-    * Avoiding long lines of el-get recipes.
-  * A package requirement and its configuration are put at the same place in
-    your Emacs init file.
-  * Configurations are automatically byte-compiled when they are loaded for
-    the first time.
-    * This gives you a chance to find errors in your configuration.
+  req-package is a macro wrapper on top of use-package.
+  It’s goal is to simplify package dependencies management,
+  when using use-package for your .emacs.
 
-  -- https://github.com/tarao/bundle-el
+  -- https://github.com/edvorg/req-package
 #+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'req-package)
+(require 'req-package)
+(package-initialize)
+(setq req-package-providers '(req-package-try-el-get req-package-try-elpa))
+#+END_SRC
 
 ** Structure
 
@@ -108,7 +102,13 @@ Load all core modules:
 Load language modules:
 
 #+BEGIN_SRC emacs-lisp
-(org-babel-load-file (expand-file-name "tao-clojure.org" tao-module-dir))
-(org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
-(org-babel-load-file (expand-file-name "tao-ruby.org" tao-module-dir))
+;;(org-babel-load-file (expand-file-name "tao-clojure.org" tao-module-dir))
+;;(org-babel-load-file (expand-file-name "tao-markup.org" tao-module-dir))
+;;(org-babel-load-file (expand-file-name "tao-ruby.org" tao-module-dir))
+#+END_SRC
+
+Make req-package do its magic:
+
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
 #+END_SRC
