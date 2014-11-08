@@ -80,7 +80,12 @@ Enable flycheck in prog-mode.
 #+BEGIN_SRC emacs-lisp
 (req-package flycheck
   :diminish flycheck-mode
+  :require evil-leader
   :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+           "E" 'flycheck-list-errors))
   :init
   (progn
     (require 'flycheck)
@@ -233,12 +238,18 @@ commenting and uncomment lines and regions.
 #+BEGIN_SRC emacs-lisp
 (req-package evil-nerd-commenter
   :defer t
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key
+           "c" 'evilnc-comment-or-uncomment-lines))
   :init
   (progn
     (setq evilnc-hotkey-comment-operator "\\")))
 #+END_SRC
 
 ** source control management
+
 *** magit
 
 [[https://github.com/magit/magit][magic]] Magit is an interface to the version
@@ -247,9 +258,17 @@ control system Git, implemented as an Emacs extension.
 #+BEGIN_SRC emacs-lisp
 (req-package magit
   :diminish magit-auto-revert-mode
+  :require evil-leader
+  :init
+  (progn
+    (evil-leader/set-key
+           "g"  'magit-status
+           "G"  'magit-blame-mode))
   :defer t)
+
 (req-package git-commit-mode
   :defer t)
+
 (req-package git-rebase-mode
   :defer t
   :init
@@ -274,7 +293,14 @@ been inserted, modified or deleted.
 #+BEGIN_SRC emacs-lisp
 (req-package git-gutter
   :diminish git-gutter-mode
+  :require evil-leader
   :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+      "u p" 'git-gutter:popup-hunk
+      "u s" 'git-gutter:stage-hunk
+      "u r" 'git-gutter:revert-hunk))
   :init
   (progn
     (global-git-gutter-mode t)))
@@ -283,8 +309,14 @@ been inserted, modified or deleted.
 *** kill ring browser
 #+BEGIN_SRC emacs-lisp
 (req-package browse-kill-ring
-  :defer t)
+  :defer t
+  :require evil-leader
+  :init
+  (progn
+    (evil-leader/set-key
+            "x k" 'browse-kill-ring)))
 #+END_SRC
+
 ** aggressive indent
 
 aggressive-indent-mode is a minor mode that keeps your code always indented.
@@ -292,5 +324,10 @@ It reindents after every command, making it more reliable than electric-indent-m
 
 #+BEGIN_SRC emacs-lisp
 (req-package aggressive-indent
-  :defer t)
+  :defer t
+  :require evil-leader
+  :init
+  (progn
+     (evil-leader/set-key
+       "x I" 'aggressive-indent-mode)))
 #+END_SRC

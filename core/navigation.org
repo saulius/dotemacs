@@ -31,7 +31,16 @@ files etc. Some of Projectile's features:
 #+BEGIN_SRC emacs-lisp
 (req-package projectile
   :diminish projectile-mode
+  :require evil-leader
   :defer t
+  :config
+  (progn
+    (evil-leader/set-key
+      "f"   'projectile-find-file
+      "o"   'projectile-multi-occur
+      "x p" 'projectile-switch-project
+      "x i" 'projectile-invalidate-cache
+      "x x" 'smex))
   :init
   (progn
     (require 'projectile)
@@ -63,6 +72,11 @@ files etc. Some of Projectile's features:
 #+BEGIN_SRC emacs-lisp
 (req-package ag
   :defer t
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key
+            "a" 'ag))
   :init
   (progn
     (setq ag-highlight-search t)

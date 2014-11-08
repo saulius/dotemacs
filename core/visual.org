@@ -94,6 +94,11 @@ of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
 #+BEGIN_SRC emacs-lisp
 (req-package popwin
   :defer t
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key
+            "B" 'popwin:popup-last-buffer))
   :init
   (progn
     (setq display-buffer-function 'popwin:display-buffer)

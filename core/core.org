@@ -218,51 +218,16 @@ Map `,` key to leader for wonderful set of shortcuts.
     (evil-leader/set-leader ",")
     (setq evil-leader/in-all-states t)
     (evil-leader/set-key
-      "b" 'projectile-switch-to-buffer
-      "e" 'ido-find-file
-      "t" 'open-ansi-term
-      "T" 'eshell)
-    (eval-after-load "popwin"
-      (evil-leader/set-key
-        "B" 'popwin:popup-last-buffer))
-    (eval-after-load "projectile"
-      (evil-leader/set-key
-        "f"   'projectile-find-file
-        "o"   'projectile-multi-occur
-        "x p" 'projectile-switch-project
-        "x i" 'projectile-invalidate-cache
-        "x x" 'smex))
-    (eval-after-load "ag"
-      (evil-leader/set-key
-        "a" 'ag))
-    (eval-after-load "browse-kill-ring"
-      (evil-leader/set-key
-        "x k" 'browse-kill-ring))
-    (evil-leader/set-key
-      "." 'evil-buffer
-      "n" 'rename-this-buffer-and-file
-      "k" 'bury-buffer-delete-window
+      "."   'evil-buffer
+      "b"   'projectile-switch-to-buffer
+      "e"   'ido-find-file
+      "n"   'rename-this-buffer-and-file
+      "k"   'bury-buffer-delete-window
+      "t"   'open-ansi-term
+      "T"   'eshell
       "x l" 'linum-mode
       "x f" 'auto-fill-mode
-      "w" 'save-buffer
-      "W" 'save-buffer-no-whitespace)
-   (eval-after-load "evil-nerd-commenter"
-     (evil-leader/set-key
-       "c" 'evilnc-comment-or-uncomment-lines))
-   (eval-after-load "magit"
-     (evil-leader/set-key
-       "g"  'magit-status
-       "G"  'magit-blame-mode))
-   (eval-after-load "git-gutter"
-     (evil-leader/set-key
-       "u p" 'git-gutter:popup-hunk
-       "u s" 'git-gutter:stage-hunk
-       "u r" 'git-gutter:revert-hunk))
-   (eval-after-load "aggressive-indent"
-     (evil-leader/set-key
-       "x I" 'aggressive-indent-mode))
-   (eval-after-load "flycheck"
-     (evil-leader/set-key
-       "E" 'flycheck-list-errors))
+      "w"   'save-buffer
+      "W"   'save-buffer-no-whitespace)
    (global-evil-leader-mode)))
 #+END_SRC
