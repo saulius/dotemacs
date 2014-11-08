@@ -10,8 +10,11 @@ Configuration for [[http://ruby-lang.org][Ruby]] programming language.
 ** Chruby
 
 #+BEGIN_SRC emacs-lisp
-(bundle! chruby
-  (chruby "2.1"))
+(req-package chruby
+  :defer t
+  :init
+  (progn
+    (chruby "2.1")))
 #+END_SRC
 
 ** General settings
@@ -20,52 +23,65 @@ General settings like indent levels, syntax coloring etc provided by
 [[https://github.com/zenspider/enhanced-ruby-mode][enh-ruby-mode]].
 
 #+BEGIN_SRC emacs-lisp
-(bundle enh-ruby-mode
-  (setq enh-ruby-indent-level 2
-        enh-ruby-deep-indent-paren nil
-        enh-ruby-bounce-deep-indent t
-        enh-ruby-hanging-indent-level 0)
+(req-package enh-ruby-mode
+  :defer t
+  :init
+  (progn
+    (setq enh-ruby-indent-level 2
+          enh-ruby-deep-indent-paren nil
+          enh-ruby-bounce-deep-indent t
+          enh-ruby-hanging-indent-level 0)
 
-  (add-hook 'enh-ruby-mode-hook
-            (function (lambda ()
-                (setq evil-shift-width enh-ruby-indent-level
-                      indent-tabs-mode nil
-                      tab-width 2)
-                (robe-mode)))))
+    (add-hook 'enh-ruby-mode-hook
+              (function (lambda ()
+                  (setq evil-shift-width enh-ruby-indent-level
+                        indent-tabs-mode nil
+                        tab-width 2)
+                  (robe-mode))))))
 #+END_SRC
 
 Indentation aids are provided by [[http://github.com/qoobaa/ruby-electric][ruby-electric]] mode.
 
 #+BEGIN_SRC emacs-lisp
-(bundle ruby-electric
-  (add-hook 'ruby-mode-hook 'ruby-electric-mode))
+(req-package ruby-electric
+  :defer t
+  :init
+  (progn
+    (add-hook 'ruby-mode-hook 'ruby-electric-mode)))
 #+END_SRC
 
 Interactive REPL and method documentation provided by [[https://github.com/dgutov/robe][Robe mode]].
 
 #+BEGIN_SRC emacs-lisp
-(bundle robe-mode
-  (eval-after-load 'company-mode
-    (push 'company-robe company-backends))
-  (add-hook 'ruby-mode-hook 'robe-mode))
+(req-package robe-mode
+  :defer t
+  :require company
+  :init
+  (progn
+    (eval-after-load 'company-mode
+      (push 'company-robe company-backends))
+    (add-hook 'ruby-mode-hook 'robe-mode)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(bundle bbatsov/rubocop-emacs
-  (add-hook 'ruby-mode-hook 'rubocop-mode)
-  (flycheck-define-checker ruby-rubocop
-    "A Ruby syntax and style checker using the RuboCop tool.
-     See URL `http://batsov.com/rubocop/'."
+(req-package rubocop
+  :defer t
+  :init
+  (progn
+    (add-hook 'ruby-mode-hook 'rubocop-mode)
+    (flycheck-define-checker ruby-rubocop
+      "A Ruby syntax and style checker using the RuboCop tool.
+       See URL `http://batsov.com/rubocop/'."
 
-    :command ("rubocop" "--format" "emacs" "--silent"
-              (config-file "--config" flycheck-rubocoprc)
-              source)
-    :error-patterns
-    ((warning line-start
-              (file-name) ":" line ":" column ": " (or "C" "W") ": " (message)
-              line-end)
-     (error line-start
-            (file-name) ":" line ":" column ": " (or "E" "F") ": " (message)
-            line-end))
-    :modes (enh-ruby-mode motion-mode)))
+      :command ("rubocop" "--format" "emacs" "--silent"
+                (config-file "--config" flycheck-rubocoprc)
+                source)
+      :error-patterns
+      ((warning line-start
+                (file-name) ":" line ":" column ": " (or "C" "W") ": " (message)
+                line-end)
+       (error line-start
+              (file-name) ":" line ":" column ": " (or "E" "F") ": " (message)
+              line-end))
+      :modes (enh-ruby-mode motion-mode))))
 #+END_SRC
