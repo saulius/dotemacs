@@ -50,7 +50,8 @@ Install aspell to enable spell checker. The code snippet is mostly borrowed from
 (defun config-enable-flyspell ()
   "Enable command flyspell-mode."
   (when (executable-find ispell-program-name)
-    (flyspell-mode +1)))
+    (flyspell-mode +1)
+    (diminish 'flyspell-mode)))
 
 (add-hook 'text-mode-hook 'config-enable-flyspell)
 #+END_SRC
@@ -78,6 +79,7 @@ Enable flycheck in prog-mode.
 
 #+BEGIN_SRC emacs-lisp
 (req-package flycheck
+  :diminish flycheck-mode
   :defer t
   :init
   (progn
@@ -118,6 +120,7 @@ Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
 
 #+BEGIN_SRC emacs-lisp
 (req-package ws-butler
+  :diminish ws-butler-mode
   :defer t
   :init
   (progn
@@ -157,6 +160,7 @@ auto complete engine.
 
 #+BEGIN_SRC emacs-lisp
 (req-package company-mode
+  :diminish company-mode
   :defer t
   (progn
     (require 'company)
@@ -185,6 +189,7 @@ inexchangeable for Lips-like modes. And other modes as well.
 
 #+BEGIN_SRC emacs-lisp
 (req-package smartparens
+  :diminish smartparens-mode
   :defer t
   :init
   (progn
@@ -241,6 +246,7 @@ control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
 (req-package magit
+  :diminish magit-auto-revert-mode
   :defer t)
 (req-package git-commit-mode
   :defer t)
@@ -267,6 +273,7 @@ been inserted, modified or deleted.
 
 #+BEGIN_SRC emacs-lisp
 (req-package git-gutter
+  :diminish git-gutter-mode
   :defer t
   :init
   (progn

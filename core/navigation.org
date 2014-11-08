@@ -30,6 +30,7 @@ files etc. Some of Projectile's features:
 
 #+BEGIN_SRC emacs-lisp
 (req-package projectile
+  :diminish projectile-mode
   :defer t
   :init
   (progn

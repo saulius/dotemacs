@@ -132,6 +132,7 @@ Used to exit insert/visual evil modes.
     (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
 (req-package evil-escape
+  :diminish evil-escape-mode
   :defer t
   :init
   (progn
