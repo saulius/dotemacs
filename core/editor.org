@@ -230,6 +230,18 @@ Evil motions for surround things based on [[https://github.com/tpope/vim-surroun
   :defer t)
 #+END_SRC
 
+** evil-matchit
+
+Vim matchit ported into Emacs [https://github.com/redguardtoo/evil-matchit][evil-matchit]].
+
+#+BEGIN_SRC emacs-lisp
+(req-package evil-matchit
+  :defer t
+  :init
+  (progn
+   (global-evil-matchit-mode 1)))
+#+END_SRC
+
 ** commenting
 
 [[https://github.com/redguardtoo/evil-nerd-commenter][evil-nerd-commenter]] helps greatly with
