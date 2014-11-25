@@ -47,8 +47,12 @@ Editor settings related to visual style or visual aids.
 Changes theme based off daylight or fixed times.
 
 #+BEGIN_SRC emacs-lisp
-;;(bundle! tanzoniteblack/solar-theme-switcher)
-;;(initialize-solar-theme-switcher 'solarized-light 'solarized-dark)
+(req-package solar-theme-switcher
+  :defer t
+  :init
+  (progn
+    (require 'solar-theme-switcher)
+    (initialize-solar-theme-switcher 'solarized-light 'solarized-dark)))
 #+END_SRC
 
 ** 90 columns per line

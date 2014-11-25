@@ -1,0 +1,5 @@
+(:name solar-theme-switcher
+ :website "https://github.com/tanzoniteblack/solar-theme-switcher"
+ :description "Collection of emac functions to change theme based off daylight or fixed times."
+ :type github
+ :pkgname "tanzoniteblack/solar-theme-switcher")
