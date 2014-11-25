@@ -57,3 +57,23 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
     (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
     (add-to-list 'auto-mode-alist '("\\.mkd" . markdown-mode))))
 #+END_SRC
+
+** SQL
+
+#+BEGIN_SRC emacs-lisp
+(req-package sql
+  :defer t
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.hql\\'" . sql-mode))
+    (add-to-list 'auto-mode-alist '("\\.q\\'" . sql-mode))
+    (add-to-list 'auto-mode-alist '("\\.psql\\'" . sql-mode))
+
+    (add-hook 'sql-mode-hook
+      (lambda ()
+        (sql-highlight-mysql-keywords)))
+    (req-package sql-indent
+      :init
+      (progn
+        (setq-default sql-indent-offset tab-width)))))
+#+END_SRC
