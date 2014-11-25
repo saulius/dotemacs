@@ -85,7 +85,7 @@ Used to exit insert/visual evil modes.
     (key-chord-define-global "XX" 'smex)
     (key-chord-define-global "OA" 'org-agenda)
     (key-chord-define-global "OF" 'visit-org-agenda-files)
-    (key-chord-define-global "OT" 'open-org-global-todo)))
+    (key-chord-define-global "OO" 'open-org-global-todo)))
 #+END_SRC
 
 ** evil-mode
@@ -103,9 +103,6 @@ Used to exit insert/visual evil modes.
     (setq evil-motion-state-cursor '("gray" box))
     (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
     (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
-    (key-chord-define evil-insert-state-map ",q" 'evil-normal-state)
-    (key-chord-define evil-visual-state-map ",q" 'evil-normal-state)
-    (key-chord-define evil-normal-state-map ",q" 'evil-normal-state) ;; = noop
 
     ;; moving around windows VIM style
     (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
