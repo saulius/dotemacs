@@ -251,12 +251,10 @@ commenting and uncomment lines and regions.
 (req-package evil-nerd-commenter
   :defer t
   :require evil-leader
-  :config
-  (progn
-    (evil-leader/set-key
-           "c" 'evilnc-comment-or-uncomment-lines))
   :init
   (progn
+    (evil-leader/set-key
+           "c" 'evilnc-comment-or-uncomment-lines)
     (setq evilnc-hotkey-comment-operator "\\")))
 #+END_SRC
 
