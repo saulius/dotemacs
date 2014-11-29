@@ -164,11 +164,10 @@ auto complete engine.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package company-mode
+(req-package company
   :diminish company-mode
-  :defer t
+  :config
   (progn
-    (require 'company)
     (setq company-idle-delay 0.5)
     (setq company-tooltip-limit 10)
     (setq company-minimum-prefix-length 2)
