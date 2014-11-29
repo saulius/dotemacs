@@ -55,12 +55,12 @@ Interactive REPL and method documentation provided by [[https://github.com/dguto
 #+BEGIN_SRC emacs-lisp
 (req-package robe-mode
   :defer t
+  :diminish robe-mode
   :require company
   :init
   (progn
-    (eval-after-load 'company-mode
-      (push 'company-robe company-backends))
-    (add-hook 'ruby-mode-hook 'robe-mode)))
+    (add-to-list 'company-backends 'company-robe))
+    (add-hook 'ruby-mode-hook 'robe-mode))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
