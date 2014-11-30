@@ -123,6 +123,7 @@ Used to exit insert/visual evil modes.
     (add-hook 'text-mode-hook 'turn-on-evil-mode)
     (add-hook 'prog-mode-hook 'turn-on-evil-mode)
     (add-hook 'comint-mode-hook 'turn-on-evil-mode)
+    (add-hook 'org-mode-hook 'turn-on-evil-mode)
     (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
 (req-package evil-escape
