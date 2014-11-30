@@ -340,3 +340,24 @@ It reindents after every command, making it more reliable than electric-indent-m
      (evil-leader/set-key
        "x I" 'aggressive-indent-mode)))
 #+END_SRC
+
+** undo tree
+
+VIM style undo/redo with visualizer.
+
+#+BEGIN_SRC emacs-lisp
+(req-package undo-tree
+  :defer t
+  :config
+  (progn
+   (setq undo-tree-auto-save-history t)
+   (setq undo-tree-history-directory-alist
+    `(("." . ,(concat config-dir "undo"))))
+   (setq undo-tree-visualizer-timestamps t)
+   (setq undo-tree-visualizer-diff t))
+  :init
+  (progn
+    (evil-leader/set-key
+      "U"   'undo-tree-visualize)
+    (global-undo-tree-mode)))
+#+END_SRC

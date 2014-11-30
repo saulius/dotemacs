@@ -21,3 +21,4 @@ boot.el
 bundle/*
 flycheck_org-clock-save.el
 bookmarks
+undo/*
