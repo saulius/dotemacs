@@ -6,9 +6,10 @@
 (req-package org-pomodoro
   :defer t)
 
-;; TODO
-;;(bundle edwtjo/evil-org-mode
-;;  (require 'evil-org))
+(req-package evil-org-mode
+  :defer t
+  :init
+  (require 'evil-org))
 
 (require 'org-agenda)
 
@@ -18,6 +19,7 @@
   (progn
     (evil-leader/set-key-for-mode 'org-mode
       ", i" 'org-clock-in
+      ", C" 'org-toggle-checkbox
       ", o" 'org-clock-out
       ", c" 'org-clock-jump-to-current-clock
       ", d" 'org-clock-display
