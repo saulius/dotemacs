@@ -160,3 +160,24 @@ that by removing predefined minor modes from it.
     (diminish 'whitespace-mode)
     (diminish 'undo-tree-mode)))
 #+END_SRC
+
+** guide-key-mode
+
+#+BEGIN_SRC emacs-lisp
+(req-package guide-key-tip
+  :defer t
+  :init
+  (progn
+    (setq guide-key/guide-key-sequence `("C-x"
+                                         "C-c"
+                                         "g"
+                                         ,evil-leader/leader
+                                         "z"
+                                         "C-h")
+                guide-key/recursive-key-sequence-flag t
+                guide-key/popup-window-position 'bottom
+                guide-key/idle-delay 0.5
+                guide-key/text-scale-amount 0)
+    (guide-key-mode 1)
+    (diminish 'guide-key-mode)))
+#+END_SRC
