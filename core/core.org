@@ -83,6 +83,7 @@ Used to exit insert/visual evil modes.
     (key-chord-define-global "DD" 'toggle-debug-on-error)
     (key-chord-define-global "XX" 'smex)
     (key-chord-define-global "OA" 'org-agenda)
+    (key-chord-define-global "WW" 'other-window)
     (key-chord-define-global "OF" 'visit-org-agenda-files)
     (key-chord-define-global "OO" 'open-org-global-todo)))
 #+END_SRC
