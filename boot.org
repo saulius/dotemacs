@@ -99,6 +99,7 @@ Load language modules:
 
 #+BEGIN_SRC emacs-lisp
 (org-babel-load-file (expand-file-name "clojure.org" config-module-dir))
+(org-babel-load-file (expand-file-name "scala.org" config-module-dir))
 (org-babel-load-file (expand-file-name "markup.org" config-module-dir))
 (org-babel-load-file (expand-file-name "ruby.org" config-module-dir))
 #+END_SRC
