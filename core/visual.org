@@ -98,7 +98,7 @@ popwin is a popup window manager for Emacs which makes you free from the hell
 of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package popwin
+(req-package popwin
   :defer t
   :ensure evil-leader
   :config
@@ -165,7 +165,7 @@ that by removing predefined minor modes from it.
 ** guide-key-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package guide-key-tip
+(req-package guide-key-tip
   :defer t
   :init
   (progn

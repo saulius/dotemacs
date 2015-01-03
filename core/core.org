@@ -143,6 +143,7 @@ Used to exit insert/visual evil modes.
 ;; configure ido
 (req-stable-package smex
   :defer t)
+
 (setq
   ;; Speed up ido by using less candidates
   ido-max-prospects 10
@@ -167,9 +168,7 @@ Used to exit insert/visual evil modes.
 
 (req-stable-package ido-vertical-mode
   :defer t
-  :init
-  (progn
-    (ido-vertical-mode t)))
+  :init (ido-vertical-mode t))
 
 (req-stable-package flx-ido
   :defer t

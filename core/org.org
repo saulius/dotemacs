@@ -6,7 +6,7 @@
 (req-stable-package org-pomodoro
   :defer t)
 
-(req-stable-package evil-org
+(req-package evil-org
   :defer t
   :init
   (require 'evil-org))

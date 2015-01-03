@@ -31,7 +31,7 @@ files etc. Some of Projectile's features:
 #+BEGIN_SRC emacs-lisp
 (req-stable-package projectile
   :diminish projectile-mode
-  :ensure evil-leader
+  :require evil-leader
   :defer t
   :config
   (progn
@@ -75,8 +75,7 @@ files etc. Some of Projectile's features:
   :ensure evil-leader
   :config
   (progn
-    (evil-leader/set-key
-            "a" 'ag))
+    (evil-leader/set-key "a" 'ag))
   :init
   (progn
     (setq ag-highlight-search t)

@@ -25,9 +25,11 @@ most of the time for stability.
   (interactive)
   (bury-buffer)
   (delete-window))
+#+END_SRC
 
 ** Open ansi term with correct shell
 
+#+BEGIN_SRC emacs-lisp
 (defun open-ansi-term ()
   "Toggle an ansi-term buffer."
   (interactive)
