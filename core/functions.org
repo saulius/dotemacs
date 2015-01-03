@@ -13,9 +13,9 @@ most of the time for stability.
 #+BEGIN_SRC emacs-lisp
 (defmacro req-stable-package (name &rest args)
   "Requires stable package version from Melpa Stable"
-  (list 'progn
-    `(add-to-list 'package-pinned-packages '(,name . "melpa-stable"))
-    (list 'req-package name args)))
+  `(progn
+    (add-to-list 'package-pinned-packages '(,name . "melpa-stable"))
+    (req-package ,name ,@args)))
 #+END_SRC
 
 ** Bury buffer helper function
