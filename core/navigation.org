@@ -29,9 +29,9 @@ files etc. Some of Projectile's features:
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package projectile
+(req-stable-package projectile
   :diminish projectile-mode
-  :require evil-leader
+  :ensure evil-leader
   :defer t
   :config
   (progn
@@ -70,9 +70,9 @@ files etc. Some of Projectile's features:
 ** Ag
 
 #+BEGIN_SRC emacs-lisp
-(req-package ag
+(req-stable-package ag
   :defer t
-  :require evil-leader
+  :ensure evil-leader
   :config
   (progn
     (evil-leader/set-key

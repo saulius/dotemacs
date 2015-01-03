@@ -37,13 +37,12 @@ Core contains general editor settings. Check further comments below.
 ;; from https://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html
 (setq-default major-mode 'text-mode)
 
-(global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-
 (setq
  require-final-newline t                ;auto add newline at the end of file
  default-major-mode 'text-mode          ;use text mode per default
  history-length 250                     ;default is 30
  tab-always-indent 'complete            ;try to complete before identing
+ indent-line-function 'indent-relative-maybe
  confirm-nonexistent-file-or-buffer nil ;don't ask to create a buffer
  recentf-max-saved-items 5000           ;same up to 5000 recent files
  kill-ring-max 5000                     ;truncate kill ring after 5000 entries
@@ -72,7 +71,7 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
-(req-package ace-jump-mode
+(req-stable-package ace-jump-mode
   :defer t)
 
 (req-package key-chord
@@ -84,6 +83,7 @@ Used to exit insert/visual evil modes.
     (key-chord-define-global "DD" 'toggle-debug-on-error)
     (key-chord-define-global "XX" 'smex)
     (key-chord-define-global "OA" 'org-agenda)
+    (key-chord-define-global "WW" 'other-window)
     (key-chord-define-global "OF" 'visit-org-agenda-files)
     (key-chord-define-global "OO" 'open-org-global-todo)))
 #+END_SRC
@@ -91,7 +91,7 @@ Used to exit insert/visual evil modes.
 ** evil-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-package evil
+(req-stable-package evil
   :defer t
   :init
   (progn
@@ -126,7 +126,7 @@ Used to exit insert/visual evil modes.
     (add-hook 'org-mode-hook 'turn-on-evil-mode)
     (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
-(req-package evil-escape
+(req-stable-package evil-escape
   :diminish evil-escape-mode
   :defer t
   :init
@@ -141,7 +141,7 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
-(req-package smex
+(req-stable-package smex
   :defer t)
 (setq
   ;; Speed up ido by using less candidates
@@ -165,13 +165,13 @@ Used to exit insert/visual evil modes.
 (require 'ido)
 (ido-mode t)
 
-(req-package ido-vertical-mode
+(req-stable-package ido-vertical-mode
   :defer t
   :init
   (progn
     (ido-vertical-mode t)))
 
-(req-package flx
+(req-stable-package flx-ido
   :defer t
   :init
   (progn
@@ -179,10 +179,9 @@ Used to exit insert/visual evil modes.
    (require 'flx-ido)
    (flx-ido-mode 1)))
 
-(req-package ido-ubiquitous
-  :init
+(req-stable-package ido-ubiquitous
   :defer t
-  (progn (ido-ubiquitous-mode)))
+  :init (ido-ubiquitous-mode))
 #+END_SRC
 
 ** evil-leader
@@ -191,24 +190,10 @@ Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-le
 Map `,` key to leader for wonderful set of shortcuts.
 
 #+BEGIN_SRC emacs-lisp
-(defun bury-buffer-delete-window ()
-  (interactive)
-  (bury-buffer)
-  (delete-window))
-
 (require 'term)
 (setq system-uses-terminfo nil)
 
-(defun open-ansi-term ()
-  "Toggle an ansi-term buffer."
-  (interactive)
-  (when (not (get-buffer "*ansi-term*"))
-      (save-window-excursion (ansi-term (getenv "SHELL"))))
-  (if (equal (buffer-name) "*ansi-term*")
-      (quit-window)
-    (switch-to-buffer-other-window "*ansi-term*")))
-
-(req-package evil-leader
+(req-stable-package evil-leader
   :defer t
   :init
   (progn
@@ -225,6 +210,7 @@ Map `,` key to leader for wonderful set of shortcuts.
       "T"   'eshell
       "x l" 'linum-mode
       "x f" 'auto-fill-mode
+      "x g" 'guide-key-mode
       "w"   'save-buffer
       "W"   'save-buffer-no-whitespace)
    (global-evil-leader-mode)))

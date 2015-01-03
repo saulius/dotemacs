@@ -5,7 +5,7 @@
 Configuration for [[http://clojure.org][Clojure]] programming language.
 
 #+BEGIN_SRC emacs-lisp
-(req-package clojure-mode
+(req-stable-package clojure-mode
   :defer t
   :init
   (progn
@@ -30,7 +30,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
          (add-hook 'my-clojure-mode-hook (lambda ()
                                       (run-hooks 'my-clojure-mode-hook)))))))
 
-(req-package cider
+(req-stable-package cider
   :defer t
   :init
   (progn

@@ -30,7 +30,7 @@ Be prepared.
 ** JSON
 
 #+BEGIN_SRC emacs-lisp
-(req-package json-mode)
+(req-stable-package json-mode)
 #+END_SRC
 
 ** Yaml
@@ -39,7 +39,7 @@ Since I use [[https://www.ruby-lang.org/en/][Ruby]] and [[http://www.ansible.com
 it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand.
 
 #+BEGIN_SRC emacs-lisp
-(req-package yaml-mode
+(req-stable-package yaml-mode
   :defer t
   :config
   (progn
@@ -50,7 +50,7 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
 ** Markdown
 
 #+BEGIN_SRC emacs-lisp
-(req-package markdown-mode
+(req-stable-package markdown-mode
   :defer t
   :config
   (progn
