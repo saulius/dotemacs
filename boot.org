@@ -53,8 +53,14 @@ for wrapping el-get calls and providing niceties of [[https://github.com/jwiegle
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'req-package)
 (require 'req-package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" .
+                                 "http://stable.melpa.org/packages/"))
+
+(when (boundp 'package-pinned-packages)
+  (setq package-pinned-packages ()))
+
 (package-initialize)
-(setq req-package-providers '(req-package-try-el-get req-package-try-elpa))
 #+END_SRC
 
 ** Structure

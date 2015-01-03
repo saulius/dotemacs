@@ -4,6 +4,40 @@
 
 Random functions and helpers
 
+** Stable package installer for req-package
+
+I need this because req-package ignores contents of package-pinned-packages
+and installs latest available version from Melpa. I'd like to use Melpa stable
+most of the time for stability.
+
+#+BEGIN_SRC emacs-lisp
+(defmacro req-stable-package (name &rest args)
+  "Requires stable package version from Melpa Stable"
+  (list 'progn
+    `(add-to-list 'package-pinned-packages '(,name . "melpa-stable"))
+    (list 'req-package name args)))
+#+END_SRC
+
+** Bury buffer helper function
+
+#+BEGIN_SRC emacs-lisp
+(defun bury-buffer-delete-window ()
+  (interactive)
+  (bury-buffer)
+  (delete-window))
+
+** Open ansi term with correct shell
+
+(defun open-ansi-term ()
+  "Toggle an ansi-term buffer."
+  (interactive)
+  (when (not (get-buffer "*ansi-term*"))
+      (save-window-excursion (ansi-term (getenv "SHELL"))))
+  (if (equal (buffer-name) "*ansi-term*")
+      (quit-window)
+    (switch-to-buffer-other-window "*ansi-term*")))
+#+END_SRC
+
 ** Rename buffer and file
 
 Renames current buffer and file
@@ -48,4 +82,10 @@ Saves current buffer killing whitespace
   (interactive)
   (kill-this-buffer)
   (delete-window))
+
+(defun font-zoom-reset-font-size ()
+ (interactive)
+ (progn
+  (setq font-zoom-index default-font-zoom-index)
+  (set-frame-font (nth font-zoom-index font-zoom-list))))
 #+END_SRC
