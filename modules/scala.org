@@ -1,0 +1,31 @@
+#+TITLE: scala
+
+* Scala
+
+Configuration for [[http://scala-lang.org/][Scala]] programming language.
+
+#+BEGIN_SRC emacs-lisp
+(req-stable-package scala-mode2
+  :defer t
+  :init
+  (progn
+    (eval-after-load 'scala-mode2
+      '(progn
+        (evil-leader/set-key-for-mode 'scala-mode
+         ", f"   'ensime-format-source
+         ", i"   'ensime-inspect-type-at-point
+         ", d"   'ensime-show-doc-for-symbol-at-point
+         ", e"   'ensime-show-all-errors-and-warnings
+         ", g t" 'ensime-goto-test
+         ", g i" 'ensime-goto-impl
+         ", j"   'ensime-edit-definition
+         ", t"   'ensime-sbt-do-test-only
+         ", T"   'ensime-sbt-do-test-quick
+         ", c"   'ensime-typecheck-current-file)))))
+
+(req-package yasnippet
+  :defer t)
+
+(req-package ensime
+  :defer t)
+#+END_SRC
