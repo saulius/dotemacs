@@ -71,7 +71,7 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
-(req-package ace-jump-mode
+(req-stable-package ace-jump-mode
   :defer t)
 
 (req-package key-chord
@@ -91,7 +91,7 @@ Used to exit insert/visual evil modes.
 ** evil-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-package evil
+(req-stable-package evil
   :defer t
   :init
   (progn
@@ -126,7 +126,7 @@ Used to exit insert/visual evil modes.
     (add-hook 'org-mode-hook 'turn-on-evil-mode)
     (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
-(req-package evil-escape
+(req-stable-package evil-escape
   :diminish evil-escape-mode
   :defer t
   :init
@@ -141,7 +141,7 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
-(req-package smex
+(req-stable-package smex
   :defer t)
 (setq
   ;; Speed up ido by using less candidates
@@ -165,13 +165,13 @@ Used to exit insert/visual evil modes.
 (require 'ido)
 (ido-mode t)
 
-(req-package ido-vertical-mode
+(req-stable-package ido-vertical-mode
   :defer t
   :init
   (progn
     (ido-vertical-mode t)))
 
-(req-package flx
+(req-stable-package flx-ido
   :defer t
   :init
   (progn
@@ -179,10 +179,9 @@ Used to exit insert/visual evil modes.
    (require 'flx-ido)
    (flx-ido-mode 1)))
 
-(req-package ido-ubiquitous
-  :init
+(req-stable-package ido-ubiquitous
   :defer t
-  (progn (ido-ubiquitous-mode)))
+  :init (ido-ubiquitous-mode))
 #+END_SRC
 
 ** evil-leader
@@ -191,24 +190,10 @@ Evil mode is not complete without [[https://github.com/cofi/evil-leader][evil-le
 Map `,` key to leader for wonderful set of shortcuts.
 
 #+BEGIN_SRC emacs-lisp
-(defun bury-buffer-delete-window ()
-  (interactive)
-  (bury-buffer)
-  (delete-window))
-
 (require 'term)
 (setq system-uses-terminfo nil)
 
-(defun open-ansi-term ()
-  "Toggle an ansi-term buffer."
-  (interactive)
-  (when (not (get-buffer "*ansi-term*"))
-      (save-window-excursion (ansi-term (getenv "SHELL"))))
-  (if (equal (buffer-name) "*ansi-term*")
-      (quit-window)
-    (switch-to-buffer-other-window "*ansi-term*")))
-
-(req-package evil-leader
+(req-stable-package evil-leader
   :defer t
   :init
   (progn

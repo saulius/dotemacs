@@ -50,8 +50,7 @@ Install aspell to enable spell checker. The code snippet is mostly borrowed from
 (defun config-enable-flyspell ()
   "Enable command flyspell-mode."
   (when (executable-find ispell-program-name)
-    (flyspell-mode +1)
-    (diminish 'flyspell-mode)))
+    (flyspell-mode +1)))
 
 (add-hook 'text-mode-hook 'config-enable-flyspell)
 #+END_SRC
@@ -78,9 +77,9 @@ Use [[https://github.com/flycheck/flycheck][flycheck]] is which is a better
 Enable flycheck in prog-mode.
 
 #+BEGIN_SRC emacs-lisp
-(req-package flycheck
+(req-stable-package flycheck
   :diminish flycheck-mode
-  :require evil-leader
+  :ensure evil-leader
   :defer t
   :config
   (progn
@@ -124,7 +123,7 @@ Using [[https://github.com/lewang/ws-butler][ws-bulter]] to trim white space.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package ws-butler
+(req-stable-package ws-butler
   :diminish ws-butler-mode
   :defer t
   :init
@@ -164,7 +163,7 @@ auto complete engine.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package company
+(req-stable-package company
   :diminish company-mode
   :config
   (progn
@@ -192,7 +191,7 @@ inexchangeable for Lips-like modes. And other modes as well.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package smartparens
+(req-stable-package smartparens
   :diminish smartparens-mode
   :defer t
   :init
@@ -212,7 +211,7 @@ inexchangeable for Lips-like modes. And other modes as well.
 Expand region increases the selected region by semantic units.
 
 #+BEGIN_SRC emacs-lisp
-(req-package expand-region
+(req-stable-package expand-region
   :defer t
   :init
   (progn
@@ -234,7 +233,7 @@ Evil motions for surround things based on [[https://github.com/tpope/vim-surroun
 Vim matchit ported into Emacs [https://github.com/redguardtoo/evil-matchit][evil-matchit]].
 
 #+BEGIN_SRC emacs-lisp
-(req-package evil-matchit
+(req-stable-package evil-matchit
   :defer t
   :init
   (progn
@@ -247,9 +246,9 @@ Vim matchit ported into Emacs [https://github.com/redguardtoo/evil-matchit][evil
 commenting and uncomment lines and regions.
 
 #+BEGIN_SRC emacs-lisp
-(req-package evil-nerd-commenter
+(req-stable-package evil-nerd-commenter
   :defer t
-  :require evil-leader
+  :ensure evil-leader
   :init
   (progn
     (evil-leader/set-key
@@ -265,9 +264,9 @@ commenting and uncomment lines and regions.
 control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
-(req-package magit
+(req-stable-package magit
   :diminish magit-auto-revert-mode
-  :require evil-leader
+  :ensure evil-leader
   :init
   (progn
     (evil-leader/set-key
@@ -275,10 +274,10 @@ control system Git, implemented as an Emacs extension.
            "G"  'magit-blame-mode))
   :defer t)
 
-(req-package git-commit-mode
+(req-stable-package git-commit-mode
   :defer t)
 
-(req-package git-rebase-mode
+(req-stable-package git-rebase-mode
   :defer t
   :init
   (progn
@@ -290,7 +289,7 @@ control system Git, implemented as an Emacs extension.
 Step through historic versions of git controlled file using everyone's favourite editor
 
 #+BEGIN_SRC emacs-lisp
-(req-package git-timemachine
+(req-stable-package git-timemachine
   :defer t)
 #+END_SRC
 
@@ -300,9 +299,9 @@ Show an indication in the gutter area indicating whether a line has
 been inserted, modified or deleted.
 
 #+BEGIN_SRC emacs-lisp
-(req-package git-gutter
+(req-stable-package git-gutter
   :diminish git-gutter-mode
-  :require evil-leader
+  :ensure evil-leader
   :defer t
   :config
   (progn
@@ -317,9 +316,9 @@ been inserted, modified or deleted.
 
 *** kill ring browser
 #+BEGIN_SRC emacs-lisp
-(req-package browse-kill-ring
+(req-stable-package browse-kill-ring
   :defer t
-  :require evil-leader
+  :ensure evil-leader
   :init
   (progn
     (evil-leader/set-key
@@ -332,9 +331,9 @@ aggressive-indent-mode is a minor mode that keeps your code always indented.
 It reindents after every command, making it more reliable than electric-indent-mode.
 
 #+BEGIN_SRC emacs-lisp
-(req-package aggressive-indent
+(req-stable-package aggressive-indent
   :defer t
-  :require evil-leader
+  :ensure evil-leader
   :init
   (progn
      (evil-leader/set-key

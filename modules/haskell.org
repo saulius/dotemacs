@@ -6,7 +6,7 @@ Configuration for [[http://www.haskell.org/][Haskell]] programming language.
 
 #+BEGIN_SRC emacs-lisp
 (when (executable-find "ghc")
-  (req-package haskell-mode
+  (req-stable-package haskell-mode
     :defer t
     :init
     (progn

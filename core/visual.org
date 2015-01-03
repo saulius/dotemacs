@@ -29,7 +29,7 @@ Editor settings related to visual style or visual aids.
 *** Solarized
 
 #+BEGIN_SRC emacs-lisp
-(req-package solarized-emacs
+(req-package solarized-theme
   :defer t
   :init
   (progn
@@ -85,7 +85,7 @@ better.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-package rainbow-delimiters
+(req-stable-package rainbow-delimiters
   :defer t
   :init
   (progn
@@ -98,9 +98,9 @@ popwin is a popup window manager for Emacs which makes you free from the hell
 of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
 
 #+BEGIN_SRC emacs-lisp
-(req-package popwin
+(req-stable-package popwin
   :defer t
-  :require evil-leader
+  :ensure evil-leader
   :config
   (progn
     (evil-leader/set-key
@@ -147,7 +147,7 @@ Modeline gets really messy with lots of packages installed. [[https://github.com
 that by removing predefined minor modes from it.
 
 #+BEGIN_SRC emacs-lisp
-(req-package diminish
+(req-stable-package diminish
   :defer t
   :init
   (progn
@@ -158,13 +158,14 @@ that by removing predefined minor modes from it.
       '(diminish 'highlight-changes-mode))
     (diminish 'auto-fill-function)
     (diminish 'whitespace-mode)
+    (diminish 'flyspell-mode)
     (diminish 'undo-tree-mode)))
 #+END_SRC
 
 ** guide-key-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-package guide-key-tip
+(req-stable-package guide-key-tip
   :defer t
   :init
   (progn
