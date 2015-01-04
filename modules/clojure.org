@@ -19,6 +19,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
              ", ," 'cider-reset-test-run-tests
              ", e" 'cider-repl-reset
              ", c" 'check-parens
+             ", J" 'cider-jack-in
              ", n" 'cider-repl-set-ns
              ", k" 'cider-load-current-buffer
              ", c" 'cider-eval-defun-at-point
