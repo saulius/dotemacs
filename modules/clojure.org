@@ -21,10 +21,15 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
              ", c" 'check-parens
              ", J" 'cider-jack-in
              ", n" 'cider-repl-set-ns
-             ", k" 'cider-load-current-buffer
+             ", k" 'cider-load-buffer
              ", c" 'cider-eval-defun-at-point
              ", d" 'cider-doc-map
              ", r" 'cider-switch-to-repl-buffer)
+
+         ;; indent component service lifecycle macros as functions
+         (put-clojure-indent 'init 'defun)
+         (put-clojure-indent 'start 'defun)
+         (put-clojure-indent 'stop 'defun)
 
          (setq my-clojure-mode-hook 'clojure-mode-defaults)
 
