@@ -22,6 +22,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
              ", J" 'cider-jack-in
              ", n" 'cider-repl-set-ns
              ", k" 'cider-load-buffer
+             ", m" 'cider-macroexpand-1
              ", c" 'cider-eval-defun-at-point
              ", d" 'cider-doc-map
              ", r" 'cider-switch-to-repl-buffer)
