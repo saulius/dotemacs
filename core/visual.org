@@ -14,6 +14,8 @@ Editor settings related to visual style or visual aids.
 (column-number-mode t)
 ;; show file size in mode line
 (size-indication-mode t)
+;; always highlight active line
+(global-hl-line-mode 1)
 #+END_SRC
 
 ** Fonts
