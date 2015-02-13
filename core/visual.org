@@ -23,7 +23,7 @@ Editor settings related to visual style or visual aids.
 #+BEGIN_SRC emacs-lisp
 (if (member "DejaVu Sans Mono" (font-family-list))
     (set-face-attribute
-     'default nil :font "DejaVu Sans Mono 14"))
+     'default nil :font "DejaVu Sans Mono 13"))
 #+END_SRC
 
 ** Theme
