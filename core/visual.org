@@ -16,6 +16,8 @@ Editor settings related to visual style or visual aids.
 (size-indication-mode t)
 ;; always highlight active line
 (global-hl-line-mode 1)
+;; the cursor shouldn't blink
+(blink-cursor-mode nil)
 #+END_SRC
 
 ** Fonts
