@@ -225,7 +225,10 @@ Evil motions for surround things based on [[https://github.com/tpope/vim-surroun
 
 #+BEGIN_SRC emacs-lisp
 (req-package evil-surround
-  :defer t)
+  :defer t
+  :init
+  (progn
+   (global-evil-surround-mode 1)))
 #+END_SRC
 
 ** evil-matchit
