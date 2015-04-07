@@ -186,3 +186,13 @@ that by removing predefined minor modes from it.
     (guide-key-mode 1)
     (diminish 'guide-key-mode)))
 #+END_SRC
+
+** flycheck-tip
+
+#+BEGIN_SRC emacs-lisp
+(req-stable-package flycheck-tip
+  :defer t
+  :init
+  (progn
+   (flycheck-tip-use-timer 'verbose)))
+#+END_SRC
