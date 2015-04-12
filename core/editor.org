@@ -293,7 +293,14 @@ Step through historic versions of git controlled file using everyone's favourite
 
 #+BEGIN_SRC emacs-lisp
 (req-stable-package git-timemachine
-  :defer t)
+  :defer t
+  :init
+  (progn
+   (eval-after-load 'git-timemachine
+    '(progn
+      (evil-make-overriding-map git-timemachine-mode-map 'normal)
+      ;; force update evil keymaps after git-timemachine-mode loaded
+      (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))))
 #+END_SRC
 
 *** git gutter
