@@ -31,12 +31,13 @@ files etc. Some of Projectile's features:
 #+BEGIN_SRC emacs-lisp
 (req-stable-package projectile
   :diminish projectile-mode
-  :require evil-leader
+  :ensure evil-leader
   :defer t
   :config
   (progn
     (evil-leader/set-key
       "f"   'projectile-find-file
+      "F"   'projectile-find-file-in-known-projects
       "o"   'projectile-multi-occur
       "x p" 'projectile-switch-project
       "x i" 'projectile-invalidate-cache
