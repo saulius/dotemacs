@@ -22,3 +22,4 @@ bundle/*
 flycheck_org-clock-save.el
 bookmarks
 undo/*
+ensime/
