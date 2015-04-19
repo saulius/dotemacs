@@ -80,7 +80,6 @@ Used to exit insert/visual evil modes.
   (progn
     (key-chord-mode 1)
     (key-chord-define-global "EE" 'evil-mode)
-    (key-chord-define-global "DD" 'toggle-debug-on-error)
     (key-chord-define-global "XX" 'smex)
     (key-chord-define-global "OA" 'org-agenda)
     (key-chord-define-global "WW" 'other-window)
