@@ -158,7 +158,6 @@ Used to exit insert/visual evil modes.
   ido-case-fold t
   ido-everywhere t
   ;; go back in time if required
-  ido-use-faces nil
   ido-vertical-define-keys 'C-n-C-p-up-down-left-right
   ido-use-virtual-buffers nil)
 
@@ -174,6 +173,7 @@ Used to exit insert/visual evil modes.
   :init
   (progn
    (setq gc-cons-threshold 20000000)
+   (setq flx-ido-threshold 10000)
    (require 'flx-ido)
    (flx-ido-mode 1)))
 
