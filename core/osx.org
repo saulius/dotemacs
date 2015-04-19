@@ -25,6 +25,7 @@ Lets fix that.
   (setq ns-command-modifier 'super)
   (setq ns-function-modifier 'hyper)
   (setq ns-use-srgb-colorspace t)
+  (setq ns-pop-up-frames nil)
 
   (when (fboundp 'toggle-frame-fullscreen)
     (define-key global-map (kbd "C-=") 'text-scale-increase)
