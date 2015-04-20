@@ -23,9 +23,6 @@ Configuration for [[http://scala-lang.org/][Scala]] programming language.
          ", T"   'ensime-sbt-do-test-quick
          ", c"   'ensime-typecheck-current-file)))))
 
-(req-package yasnippet
-  :defer t)
-
 (req-package ensime
   :defer t)
 #+END_SRC

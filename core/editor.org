@@ -350,6 +350,22 @@ It reindents after every command, making it more reliable than electric-indent-m
        "x I" 'aggressive-indent-mode)))
 #+END_SRC
 
+** yasnippet
+
+YASnippet is a template system for Emacs. It allows you to type an
+abbreviation and automatically expand it into function templates.
+
+#+BEGIN_SRC emacs-lisp
+(req-package yasnippet
+  :defer 3
+  :diminish yas-minor-mode
+  :config
+  (progn
+   (add-to-list 'yas-snippet-dirs (concat config-dir "snippets"))
+   (setq yas-verbosity 1)
+   (add-hook 'prog-mode-hook (yas-global-mode 1))))
+#+END_SRC
+
 ** undo tree
 
 VIM style undo/redo with visualizer.
