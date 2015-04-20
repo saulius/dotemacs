@@ -88,7 +88,7 @@ Enable flycheck in prog-mode.
   :init
   (progn
     (require 'flycheck)
-    (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc ruby-rubylint))
     (add-hook 'prog-mode-hook 'flycheck-mode)))
 #+END_SRC
 
