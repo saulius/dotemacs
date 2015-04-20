@@ -357,7 +357,7 @@ abbreviation and automatically expand it into function templates.
 
 #+BEGIN_SRC emacs-lisp
 (req-package yasnippet
-  :defer 3
+  :defer 1
   :diminish yas-minor-mode
   :config
   (progn
