@@ -363,7 +363,8 @@ abbreviation and automatically expand it into function templates.
   (progn
    (add-to-list 'yas-snippet-dirs (concat config-dir "snippets"))
    (setq yas-verbosity 1)
-   (add-hook 'prog-mode-hook (yas-global-mode 1))))
+   (yas-reload-all)
+   (add-hook 'prog-mode-hook 'yas-minor-mode)))
 #+END_SRC
 
 ** undo tree
