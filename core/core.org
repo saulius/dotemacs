@@ -29,6 +29,9 @@ Core contains general editor settings. Check further comments below.
 ;; disable auto save
 (setq auto-save-default nil)
 
+;; turn off wordwrap
+(setq-default truncate-lines 1)
+
 ;; Do not really want to type yes or no each time, so:
 ;; yes/no => y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
