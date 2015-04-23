@@ -24,5 +24,8 @@ Configuration for [[http://scala-lang.org/][Scala]] programming language.
          ", c"   'ensime-typecheck-current-file)))))
 
 (req-package ensime
-  :defer t)
+  :defer t
+  :init
+  (progn
+   (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)))
 #+END_SRC
