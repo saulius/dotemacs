@@ -367,6 +367,23 @@ abbreviation and automatically expand it into function templates.
    (add-hook 'prog-mode-hook 'yas-minor-mode)))
 #+END_SRC
 
+** evil-iedit-state
+
+Integrates Evil with iedit state. Multiple-cursors-like functionality.
+
+#+BEGIN_SRC emacs-lisp
+(req-package iedit)
+
+(req-package evil-iedit-state
+  :defer t
+  :init
+  (progn
+    (custom-set-faces
+     '(iedit-occurrence ((t (:inherit lazy-highlight)))))
+    (require 'evil-iedit-state)
+    (evil-leader/set-key "i" 'evil-iedit-state/iedit-mode)))
+#+END_SRC
+
 ** undo tree
 
 VIM style undo/redo with visualizer.
