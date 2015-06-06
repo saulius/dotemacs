@@ -7,6 +7,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
 #+BEGIN_SRC emacs-lisp
 (req-stable-package clojure-mode
   :defer t
+  :mode (("\\.boot$" . clojure-mode))
   :init
   (progn
     (eval-after-load 'clojure-mode
