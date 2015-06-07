@@ -40,30 +40,16 @@ files etc. Some of Projectile's features:
       "F"   'projectile-find-file-in-known-projects
       "o"   'projectile-multi-occur
       "x p" 'projectile-switch-project
-      "x i" 'projectile-invalidate-cache
       "x x" 'smex))
   :init
   (progn
     (require 'projectile)
-    (setq projectile-enable-caching t)
     (setq projectile-globally-ignored-files
       (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
               projectile-globally-ignored-files))
     (setq projectile-globally-ignored-directories
       (append '("target")
       projectile-globally-ignored-directories))
-    (setq projectile-require-project-root nil)
-
-    ;; advice from http://cupfullofcode.com/invalidate-projectile-cache-on-delete/
-    (defadvice delete-file (before purge-from-projectile-cache (filename &optional trash))
-      (if (projectile-project-p)
-          (progn
-            (let* ((true-filename (file-truename filename))
-                   (relative-filename (file-relative-name true-filename (projectile-project-root))))
-              (if (projectile-file-cached-p relative-filename (projectile-project-root))
-                  (projectile-purge-file-from-cache relative-filename))))))
-
-    (ad-activate 'delete-file)
 
     (projectile-global-mode))) ;; any directory can be a project
 #+END_SRC
