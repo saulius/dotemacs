@@ -49,6 +49,14 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
       '(progn
          (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
+         (dolist (mode '(cider-error-buffer
+                         cider-test-report-mode
+                         cider-inspector-mode
+                         cider-macroexpansion-mode
+                         cider-stacktrace-mode
+                         cider-docview-mode))
+          (add-to-list 'evil-emacs-state-modes mode))
+
          (defun cider-repl-command (cmd)
            "Execute commands on the cider repl"
            (cider-switch-to-repl-buffer)
