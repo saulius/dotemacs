@@ -137,7 +137,7 @@ of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
        ("*cider-error*" :height 20 :stick t)
        ("*cider-doc*" :height 10 :stick t)
        ("*cider-src*" :height 20 :stick t)
-       ("*cider-result*" :height 20 :stick t)
+       ("*cider-result*" :height 10 :stick t)
        ("*cider-macroexpansion*" :height 20 :stick t)
        ("*Kill Ring*" :height 20)
        ("*Compile-Log*" :height 20 :stick t)
