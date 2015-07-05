@@ -268,23 +268,23 @@ control system Git, implemented as an Emacs extension.
 
 #+BEGIN_SRC emacs-lisp
 (req-stable-package magit
-  :diminish magit-auto-revert-mode
   :ensure evil-leader
   :init
   (progn
+   (dolist (mode '(magit-mode
+                   magit-status-mode
+                   magit-log-mode
+                   magit-diff-mode
+                   magit-popup-mode
+                   magit-popup-sequence-mode
+                   magit-log-select-mode
+                   git-rebase-mode
+                   magit-revision-mode))
+    (evil-set-initial-state mode 'emacs))
     (evil-leader/set-key
            "g"  'magit-status
            "G"  'magit-blame-mode))
   :defer t)
-
-(req-stable-package git-commit-mode
-  :defer t)
-
-(req-stable-package git-rebase-mode
-  :defer t
-  :init
-  (progn
-    (add-hook 'git-rebase-mode-hook 'turn-off-evil-mode)))
 #+END_SRC
 
 *** git timemachine
