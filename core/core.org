@@ -202,7 +202,7 @@ Map `,` key to leader for wonderful set of shortcuts.
 (use-package evil-leader
   :ensure t
   :config
-  (evil-leader/set-leader ",")
+  (evil-leader/set-leader "<SPC>")
   (setq evil-leader/in-all-states t)
   (evil-leader/set-key
     "b"   'projectile-switch-to-buffer
