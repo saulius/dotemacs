@@ -81,9 +81,6 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
-(use-package ace-jump-mode
-  :ensure t)
-
 (use-package key-chord
   :ensure t
   :config
@@ -216,4 +213,14 @@ Map `,` key to leader for wonderful set of shortcuts.
     "w"   'save-buffer
     "W"   'save-buffer-no-whitespace)
   (global-evil-leader-mode 1))
+#+END_SRC
+
+Ace jump.
+
+#+BEGIN_SRC emacs-lisp
+(use-package ace-jump-mode
+  :ensure t
+  :config
+  (define-key evil-visual-state-map (kbd "j") 'ace-jump-char-mode)
+  (define-key evil-normal-state-map (kbd "j") 'ace-jump-char-mode))
 #+END_SRC
