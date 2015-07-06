@@ -82,15 +82,14 @@ Used to exit insert/visual evil modes.
 (use-package key-chord
   :ensure t
   :config
-  (progn
-    (key-chord-mode 1)
-    (key-chord-define-global "EE" 'evil-mode)
-    (key-chord-define-global "XX" 'smex)
-    (key-chord-define-global "OA" 'org-agenda)
-    (key-chord-define-global ",." 'evil-buffer)
-    (key-chord-define-global ",k" 'bury-buffer-delete-window)
-    (key-chord-define-global "OF" 'visit-org-agenda-files)
-    (key-chord-define-global "OO" 'open-org-global-todo)))
+  (key-chord-mode 1)
+  (key-chord-define-global "EE" 'evil-mode)
+  (key-chord-define-global "XX" 'smex)
+  (key-chord-define-global "OA" 'org-agenda)
+  (key-chord-define-global ",." 'evil-buffer)
+  (key-chord-define-global ",k" 'bury-buffer-delete-window)
+  (key-chord-define-global "OF" 'visit-org-agenda-files)
+  (key-chord-define-global "OO" 'open-org-global-todo))
 #+END_SRC
 
 ** evil-mode
@@ -99,34 +98,34 @@ Used to exit insert/visual evil modes.
 (use-package evil
   :ensure t
   :config
-  (progn
-    (require 'evil)
-    (setq evil-emacs-state-cursor  '("red" box))
-    (setq evil-normal-state-cursor '("gray" box))
-    (setq evil-visual-state-cursor '("gray" box))
-    (setq evil-insert-state-cursor '("gray" bar))
-    (setq evil-motion-state-cursor '("gray" box))
-    (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
-    (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
-    (define-key evil-normal-state-map (kbd "Q") 'delete-other-windows-vertically)
+  (setq evil-emacs-state-cursor  '("red" box))
+  (setq evil-normal-state-cursor '("gray" box))
+  (setq evil-visual-state-cursor '("gray" box))
+  (setq evil-insert-state-cursor '("gray" bar))
+  (setq evil-motion-state-cursor '("gray" box))
+  (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+  (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "Q") 'delete-other-windows-vertically)
 
-    ;; moving around windows VIM style
-    (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
-    (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
-    (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
-    (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+  ;; moving around windows VIM style
+  (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
 
-    (setq
-      ;; this stops evil from overwriting the cursor color
-      evil-default-cursor t
-      evil-default-state 'normal
-      ;; Don't wait for any other keys after escape is pressed.
-      evil-esc-delay 0
-      evil-auto-indent t
-      evil-regexp-search t
-      evil-want-C-i-jump t)
+  (evil-set-initial-state 'term-mode 'emacs)
 
-    (evil-mode)))
+  (setq
+    ;; this stops evil from overwriting the cursor color
+    evil-default-cursor t
+    evil-default-state 'normal
+    ;; Don't wait for any other keys after escape is pressed.
+    evil-esc-delay 0
+    evil-auto-indent t
+    evil-regexp-search t
+    evil-want-C-i-jump t)
+
+  (evil-mode))
 
 (use-package evil-escape
   :ensure t
@@ -142,7 +141,9 @@ Used to exit insert/visual evil modes.
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
 (use-package smex
-  :ensure t)
+  :ensure t
+  :config
+  (evil-leader/set-key "x x" 'smex))
 
 (setq
   ;; Speed up ido by using less candidates
@@ -171,12 +172,11 @@ Used to exit insert/visual evil modes.
 
 (use-package flx-ido
   :ensure t
+  :init
+  (setq gc-cons-threshold 20000000)
+  (setq flx-ido-threshold 10000)
   :config
-  (progn
-   (setq gc-cons-threshold 20000000)
-   (setq flx-ido-threshold 10000)
-   (require 'flx-ido)
-   (flx-ido-mode 1)))
+  (flx-ido-mode 1))
 
 (use-package ido-ubiquitous
   :ensure t
