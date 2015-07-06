@@ -203,8 +203,6 @@ Map `,` key to leader for wonderful set of shortcuts.
     "b"   'projectile-switch-to-buffer
     "e"   'ido-find-file
     "n"   'rename-this-buffer-and-file
-    "t"   'open-ansi-term
-    "T"   'eshell
     "x l" 'linum-mode
     "x f" 'auto-fill-mode
     "x g" 'guide-key-mode

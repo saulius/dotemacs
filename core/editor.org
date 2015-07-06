@@ -381,3 +381,18 @@ in ansi-term or term buffers.
   (evil-leader/set-key
     "s"   'isend-send))
 #+END_SRC
+
+** terminal
+
+sane-term is more sane than multiterm!
+
+#+BEGIN_SRC emacs-lisp
+(use-package sane-term
+  :ensure t
+  :init
+  (setq sane-term-shell-command (getenv "SHELL"))
+  :config
+  (evil-leader/set-key
+    "t" 'sane-term
+    "T" 'sane-term-create))
+#+END_SRC

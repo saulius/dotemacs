@@ -13,24 +13,6 @@ Random functions and helpers
   (delete-window))
 #+END_SRC
 
-** Open ansi term with correct shell
-
-#+BEGIN_SRC emacs-lisp
-(defun open-ansi-term ()
-  "Toggle an ansi-term buffer."
-  (interactive)
-  (when (not (get-buffer "*ansi-term*"))
-      (save-window-excursion (ansi-term (getenv "SHELL"))))
-  (if (equal (buffer-name) "*ansi-term*")
-      (quit-window)
-    (switch-to-buffer-other-window "*ansi-term*")))
-
-;; kill window on term exit
-(defadvice term-handle-exit
-  (after term-kill-buffer-on-exit activate)
-  (kill-buffer))
-#+END_SRC
-
 ** Rename buffer and file
 
 Renames current buffer and file
