@@ -367,3 +367,17 @@ VIM style undo/redo with visualizer.
     "U"   'undo-tree-visualize)
   (global-undo-tree-mode))
 #+END_SRC
+
+** isend-mode
+
+isend-mode is an Emacs extension allowing interaction with code interpreters
+in ansi-term or term buffers.
+
+#+BEGIN_SRC emacs-lisp
+(use-package isend-mode
+  :ensure t
+  :config
+  (add-hook 'isend-mode-hook 'isend-default-shell-setup)
+  (evil-leader/set-key
+    "s"   'isend-send))
+#+END_SRC
