@@ -221,6 +221,8 @@ Ace jump.
 (use-package ace-jump-mode
   :ensure t
   :config
-  (define-key evil-visual-state-map (kbd "j") 'ace-jump-char-mode)
-  (define-key evil-normal-state-map (kbd "j") 'ace-jump-char-mode))
+  (define-key evil-normal-state-map (kbd "<SPC> l") 'ace-jump-line-mode)
+  (define-key evil-normal-state-map (kbd "<SPC> l") 'ace-jump-line-mode)
+  (define-key evil-visual-state-map (kbd "<SPC> j") 'ace-jump-char-mode)
+  (define-key evil-normal-state-map (kbd "<SPC> j") 'ace-jump-char-mode))
 #+END_SRC
