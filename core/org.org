@@ -18,19 +18,18 @@
 (use-package org
   :ensure t
   :defer t
-  :init
-  (progn
-    (evil-leader/set-key-for-mode 'org-mode
-      ", i" 'org-clock-in
-      ", C" 'org-toggle-checkbox
-      ", o" 'org-clock-out
-      ", c" 'org-clock-jump-to-current-clock
-      ", d" 'org-clock-display
-      ", e" 'org-set-effort
-      ", p" 'org-pomodoro
-      ", t" 'org-set-tags-command
-      ", m" 'org-clock-modify-effort-estimate
-      ", s" 'org-schedule)))
+  :config
+  (evil-leader/set-key-for-mode 'org-mode
+    "m i" 'org-clock-in
+    "m C" 'org-toggle-checkbox
+    "m o" 'org-clock-out
+    "m c" 'org-clock-jump-to-current-clock
+    "m d" 'org-clock-display
+    "m e" 'org-set-effort
+    "m p" 'org-pomodoro
+    "m t" 'org-set-tags-command
+    "m m" 'org-clock-modify-effort-estimate
+    "m s" 'org-schedule))
 
 (require 'remember)
 

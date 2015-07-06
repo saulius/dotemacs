@@ -19,16 +19,16 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     (subword-mode 1))
 
   (evil-leader/set-key-for-mode 'clojure-mode
-    ", ," 'cider-reset-test-run-tests
-    ", e" 'cider-repl-reset
-    ", c" 'check-parens
-    ", J" 'cider-jack-in
-    ", n" 'cider-repl-set-ns
-    ", k" 'cider-load-buffer
-    ", m" 'cider-macroexpand-1
-    ", c" 'cider-eval-defun-at-point
-    ", d" 'cider-doc-map
-    ", r" 'cider-switch-to-repl-buffer)
+    "m ," 'cider-reset-test-run-tests
+    "m e" 'cider-repl-reset
+    "m c" 'check-parens
+    "m J" 'cider-jack-in
+    "m n" 'cider-repl-set-ns
+    "m k" 'cider-load-buffer
+    "m m" 'cider-macroexpand-1
+    "m c" 'cider-eval-defun-at-point
+    "m d" 'cider-doc-map
+    "m r" 'cider-switch-to-repl-buffer)
 
    ;; indent component service lifecycle macros as functions
   (put-clojure-indent 'init 'defun)

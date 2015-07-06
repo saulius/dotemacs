@@ -10,16 +10,16 @@ Configuration for [[http://scala-lang.org/][Scala]] programming language.
   :mode (("\\.scala$" . scala-mode))
   :config
   (evil-leader/set-key-for-mode 'scala-mode
-     ", f"   'ensime-format-source
-     ", i"   'ensime-inspect-type-at-point
-     ", d"   'ensime-show-doc-for-symbol-at-point
-     ", e"   'ensime-show-all-errors-and-warnings
-     ", g t" 'ensime-goto-test
-     ", g i" 'ensime-goto-impl
-     ", j"   'ensime-edit-definition
-     ", t"   'ensime-sbt-do-test-only
-     ", T"   'ensime-sbt-do-test-quick
-     ", c"   'ensime-typecheck-current-file))
+     "m f"   'ensime-format-source
+     "m i"   'ensime-inspect-type-at-point
+     "m d"   'ensime-show-doc-for-symbol-at-point
+     "m e"   'ensime-show-all-errors-and-warnings
+     "m g t" 'ensime-goto-test
+     "m g i" 'ensime-goto-impl
+     "m j"   'ensime-edit-definition
+     "m t"   'ensime-sbt-do-test-only
+     "m T"   'ensime-sbt-do-test-quick
+     "m c"   'ensime-typecheck-current-file))
 
 (use-package ensime
   :ensure t
