@@ -19,8 +19,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     (subword-mode 1))
 
   (evil-leader/set-key-for-mode 'clojure-mode
-    "m ," 'cider-reset-test-run-tests
-    "m e" 'cider-repl-reset
+    "m ," 'cider-test-run-tests
     "m p" 'check-parens
     "m J" 'cider-jack-in
     "m n" 'cider-repl-set-ns
@@ -28,7 +27,8 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     "m m" 'cider-macroexpand-1
     "m c" 'cider-eval-defun-at-point
     "m d" 'cider-doc-map
-    "m r" 'cider-switch-to-repl-buffer)
+    "m r" 'cider-refresh
+    "m R" 'cider-reset)
 
    ;; indent component service lifecycle macros as functions
   (put-clojure-indent 'init 'defun)
@@ -42,42 +42,35 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
 
 (use-package cider
   :ensure t
+  :init
+  (setq cider-repl-pop-to-buffer-on-connect t)
+  (setq cider-prompt-save-file-on-load nil)
   :config
-  (progn
-    (setq cider-repl-pop-to-buffer-on-connect t)
-    (setq cider-prompt-save-file-on-load nil)
+  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (dolist (mode '(cider-repl-mode
+                  cider-error-buffer
+                  cider-test-report-mode
+                  cider-inspector-mode
+                  cider-macroexpansion-mode
+                  cider-stacktrace-mode
+                  cider-docview-mode))
+    (evil-set-initial-state mode 'emacs))
 
-     (dolist (mode '(cider-repl-mode
-                     cider-error-buffer
-                     cider-test-report-mode
-                     cider-inspector-mode
-                     cider-macroexpansion-mode
-                     cider-stacktrace-mode
-                     cider-docview-mode))
-       (evil-set-initial-state mode 'emacs))
+  (defun cider-repl-mode-defaults ()
+    (add-hook 'after-save-hook
+          (lambda ()
+             (if (and (boundp 'cider-mode) cider-mode)
+               (cider-refresh))))
+    (subword-mode 1)
+    (smartparens-strict-mode 1))
 
-     (defun cider-repl-reset ()
-       (interactive)
-       (save-some-buffers)
-       (cider-refresh))
+  (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
+  ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
+  (setq cider-prompt-save-file-on-load nil)
 
-     (defun cider-reset-test-run-tests ()
-       (interactive)
-       (cider-repl-reset)
-       (cider-test-run-tests))
-
-     (defun cider-repl-mode-defaults ()
-       (subword-mode 1)
-       (smartparens-strict-mode 1))
-
-     (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
-     ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
-     (setq cider-prompt-save-file-on-load nil)
-
-     (add-hook 'repl-mode-hook (lambda ()
-                               (run-hooks 'cider-repl-mode-hook)))))
+  (add-hook 'cider-mode-hook (lambda ()
+                             (run-hooks 'cider-repl-mode-hook))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
