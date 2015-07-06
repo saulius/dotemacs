@@ -49,7 +49,8 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
 
      (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-     (dolist (mode '(cider-error-buffer
+     (dolist (mode '(cider-repl-mode
+                     cider-error-buffer
                      cider-test-report-mode
                      cider-inspector-mode
                      cider-macroexpansion-mode

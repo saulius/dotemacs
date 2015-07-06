@@ -54,9 +54,7 @@ Core contains general editor settings. Check further comments below.
 ;; No vc backends. I only use git with magit
 (setq vc-handled-backends nil)
 
-;;(require 'cl)
-;;(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
- ;;          (flet ((process-list ())) ad-do-it))
+(global-set-key "\C-w" 'backward-kill-word)
 #+END_SRC
 
 * Evil
