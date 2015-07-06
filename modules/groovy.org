@@ -6,7 +6,8 @@ Configuration for [[http://groovy.codehaus.org/][Groovy]] programming language.
 I don't use it, but need to edit .gradle file arises from time to time.
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package groovy-mode
+(use-package groovy-mode
+  :ensure t
   :defer t
   :mode (("\\.groovy\\'" . groovy-mode)
          ("\\.gradle\\'" . groovy-mode))

@@ -8,11 +8,12 @@ In case I'll run Emacs in GUI mode it won't load environment variables properly.
 Lets fix that.
 
 #+BEGIN_SRC emacs-lisp
-(req-package exec-path-from-shell
-  :if (and window-system (not noninteractive))
-  :init
-  (progn
-    (exec-path-from-shell-initialize))) ;; makes important shell variables like $PATH work
+;;(use-package exec-path-from-shell
+;;  :ensure t
+;;  :if (and window-system (not noninteractive))
+;; :config
+;;  (progn
+;;    (exec-path-from-shell-initialize))) ;; makes important shell variables like $PATH work
 #+END_SRC
 
 ** General settings for GUI Emacs

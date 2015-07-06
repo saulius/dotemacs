@@ -33,32 +33,20 @@ Editor settings related to visual style or visual aids.
 *** Solarized
 
 #+BEGIN_SRC emacs-lisp
-(req-package solarized-theme
-  :defer t
-  :init
-  (progn
-    ;; make the modeline high contrast
-    (setq solarized-high-contrast-mode-line t)
-    ;; Use less bolding
-    (setq solarized-use-less-bold t)
-    ;; Puts the underline below the font bottomline instead of the baseline.
-    (setq x-underline-at-descent-line t)
-    ;; Don't change size of org-mode headlines (but keep other size-changes)
-    (setq solarized-scale-org-headlines nil)
-    (load-theme 'solarized-light t)))
-#+END_SRC
-
-*** Solar theme switcher
-
-Changes theme based off daylight or fixed times.
-
-#+BEGIN_SRC emacs-lisp
-(req-package solar-theme-switcher
-  :defer t
-  :init
-  (progn
-    (require 'solar-theme-switcher)
-    (initialize-solar-theme-switcher 'solarized-light 'solarized-dark)))
+(use-package solarized-theme
+  :ensure t
+  :config
+  ;; make the modeline high contrast
+  (setq solarized-high-contrast-mode-line t)
+  ;; Use less bolding
+  (setq solarized-use-less-bold t)
+  ;; no italics
+  (setq solarized-italic nil)
+  ;; Puts the underline below the font bottomline instead of the baseline.
+  (setq x-underline-at-descent-line t)
+  ;; Don't change size of org-mode headlines (but keep other size-changes)
+  (setq solarized-scale-org-headlines nil)
+  (load-theme 'solarized-dark t))
 #+END_SRC
 
 ** 90 columns per line
@@ -89,11 +77,10 @@ better.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package rainbow-delimiters
-  :defer t
-  :init
-  (progn
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 
 ** popwin
@@ -102,15 +89,12 @@ popwin is a popup window manager for Emacs which makes you free from the hell
 of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
 
 #+BEGIN_SRC emacs-lisp
-(req-package popwin
-  :defer t
-  :ensure evil-leader
+(use-package popwin
+  :ensure t
   :config
   (progn
     (evil-leader/set-key
             "B" 'popwin:popup-last-buffer))
-  :init
-  (progn
     (setq display-buffer-function 'popwin:display-buffer)
     (require 'popwin)
 
@@ -142,7 +126,7 @@ of annoying buffers such like *Help*, *Completions*, *compilation*, and etc.
        ("*Kill Ring*" :height 20)
        ("*Compile-Log*" :height 20 :stick t)
        ("*git-gutter:diff*" :height 20 :stick t)))
-     (popwin-mode 1)))
+    (popwin-mode 1))
 #+END_SRC
 
 ** diminish
@@ -151,8 +135,8 @@ Modeline gets really messy with lots of packages installed. [[https://github.com
 that by removing predefined minor modes from it.
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package diminish
-  :defer t
+(use-package diminish
+  :ensure t
   :init
   (progn
     (eval-after-load "eldoc"
@@ -169,30 +153,19 @@ that by removing predefined minor modes from it.
 ** guide-key-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-package guide-key-tip
-  :defer t
-  :init
-  (progn
-    (setq guide-key/guide-key-sequence `("C-x"
-                                         "C-c"
-                                         "g"
-                                         ,evil-leader/leader
-                                         "z"
-                                         "C-h")
-                guide-key/recursive-key-sequence-flag t
-                guide-key/popup-window-position 'bottom
-                guide-key/idle-delay 0.5
-                guide-key/text-scale-amount 0)
-    (guide-key-mode 1)
-    (diminish 'guide-key-mode)))
-#+END_SRC
-
-** flycheck-tip
-
-#+BEGIN_SRC emacs-lisp
-(req-stable-package flycheck-tip
-  :defer t
-  :init
-  (progn
-   (flycheck-tip-use-timer 'verbose)))
+(use-package guide-key-tip
+  :ensure t
+  :diminish guide-key-mode
+  :config
+  (setq guide-key/guide-key-sequence `("C-x"
+                                       "C-c"
+                                       "g"
+                                       ,evil-leader/leader
+                                       "z"
+                                       "C-h")
+              guide-key/recursive-key-sequence-flag t
+              guide-key/popup-window-position 'bottom
+              guide-key/idle-delay 0.5
+              guide-key/text-scale-amount 0)
+  (guide-key-mode 1))
 #+END_SRC

@@ -53,6 +53,10 @@ Core contains general editor settings. Check further comments below.
 
 ;; No vc backends. I only use git with magit
 (setq vc-handled-backends nil)
+
+;;(require 'cl)
+;;(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+ ;;          (flet ((process-list ())) ad-do-it))
 #+END_SRC
 
 * Evil
@@ -77,12 +81,12 @@ pressed twice.
 Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package ace-jump-mode
-  :defer t)
+(use-package ace-jump-mode
+  :ensure t)
 
-(req-package key-chord
-  :defer t
-  :init
+(use-package key-chord
+  :ensure t
+  :config
   (progn
     (key-chord-mode 1)
     (key-chord-define-global "EE" 'evil-mode)
@@ -97,9 +101,9 @@ Used to exit insert/visual evil modes.
 ** evil-mode
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package evil
-  :defer t
-  :init
+(use-package evil
+  :ensure t
+  :config
   (progn
     (require 'evil)
     (setq evil-emacs-state-cursor  '("red" box))
@@ -109,6 +113,7 @@ Used to exit insert/visual evil modes.
     (setq evil-motion-state-cursor '("gray" box))
     (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
     (define-key evil-visual-state-map (kbd "<escape>") 'evil-normal-state)
+    (define-key evil-normal-state-map (kbd "Q") 'delete-other-windows-vertically)
 
     ;; moving around windows VIM style
     (define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
@@ -132,10 +137,10 @@ Used to exit insert/visual evil modes.
     (add-hook 'org-mode-hook 'turn-on-evil-mode)
     (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
 
-(req-stable-package evil-escape
+(use-package evil-escape
+  :ensure t
   :diminish evil-escape-mode
-  :defer t
-  :init
+  :config
   (progn
     (require 'evil-escape)
     (add-hook 'evil-local-mode-hook
@@ -147,8 +152,8 @@ Used to exit insert/visual evil modes.
 
 #+BEGIN_SRC emacs-lisp
 ;; configure ido
-(req-stable-package smex
-  :defer t)
+(use-package smex
+  :ensure t)
 
 (setq
   ;; Speed up ido by using less candidates
@@ -171,22 +176,24 @@ Used to exit insert/visual evil modes.
 (require 'ido)
 (ido-mode t)
 
-(req-stable-package ido-vertical-mode
-  :defer t
-  :init (ido-vertical-mode t))
+(use-package ido-vertical-mode
+  :ensure t
+  :config (ido-vertical-mode t))
 
-(req-stable-package flx-ido
-  :defer t
-  :init
+(use-package flx-ido
+  :ensure t
+  :config
   (progn
    (setq gc-cons-threshold 20000000)
    (setq flx-ido-threshold 10000)
    (require 'flx-ido)
    (flx-ido-mode 1)))
 
-(req-stable-package ido-ubiquitous
-  :defer t
-  :init (ido-ubiquitous-mode))
+(use-package ido-ubiquitous
+  :ensure t
+  :init
+  (setq magit-completing-read-function 'magit-ido-completing-read)
+  :config (ido-ubiquitous-mode))
 #+END_SRC
 
 ** evil-leader
@@ -198,11 +205,10 @@ Map `,` key to leader for wonderful set of shortcuts.
 (require 'term)
 (setq system-uses-terminfo nil)
 
-(req-stable-package evil-leader
-  :defer t
-  :init
+(use-package evil-leader
+  :ensure t
+  :config
   (progn
-    (require 'evil-leader)
     (evil-leader/set-leader ",")
     (setq evil-leader/in-all-states t)
     (evil-leader/set-key
@@ -216,5 +222,5 @@ Map `,` key to leader for wonderful set of shortcuts.
       "x g" 'guide-key-mode
       "w"   'save-buffer
       "W"   'save-buffer-no-whitespace)
-   (global-evil-leader-mode)))
+    (global-evil-leader-mode)))
 #+END_SRC

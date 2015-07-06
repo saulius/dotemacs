@@ -4,20 +4,6 @@
 
 Random functions and helpers
 
-** Stable package installer for req-package
-
-I need this because req-package ignores contents of package-pinned-packages
-and installs latest available version from Melpa. I'd like to use Melpa stable
-most of the time for stability.
-
-#+BEGIN_SRC emacs-lisp
-(defmacro req-stable-package (name &rest args)
-  "Requires stable package version from Melpa Stable"
-  `(progn
-    (add-to-list 'package-pinned-packages '(,name . "melpa-stable"))
-    (req-package ,name ,@args)))
-#+END_SRC
-
 ** Bury buffer helper function
 
 #+BEGIN_SRC emacs-lisp

@@ -23,44 +23,45 @@ The latest version is at https://github.com/saulius/dotemacs.
 
 ** Package management
 
-It uses the wonderful [[https://github.com/dimitri/el-get][el-get]] package
-manager. el-get allows package installation from various sources as well as
-many other niceties.
+Uses Emacs native package mangement with small helper library called [[https://github.com/jwiegley/use-package][use-package]]
+used to setup and initialize packages.
 
 #+BEGIN_QUOTE
-  El-Get allows you to install and manage elisp code for Emacs. It supports
-  lots of different types of sources and is able to install them, update
-  them and remove them, but more importantly it will init them for you. That
-  means it will require the features you need, load the necessary files,
-  set the Info paths so that C-h i shows the new documentation you now
-  depend on, and finally call your own initialisation code for you to setup
-  the extension. Or call it a package.
+  The use-package macro allows you to isolate package configuration in your
+  .emacs file in a way that is both performance-oriented and, well, tidy. I
+  created it because I have over 80 packages that I use in Emacs, and things
+  were getting difficult to manage. Yet with this utility my total load time
+  is around 2 seconds, with no loss of functionality!
 
-  -- https://github.com/dimitri/el-get
-#+END_QUOTE
-
-It also uses small helper library called [[https://github.com/edvorg/req-package][req-package]]
-for wrapping el-get calls and providing niceties of [[https://github.com/jwiegley/use-package][use-package]]
-
-#+BEGIN_QUOTE
-  req-package is a macro wrapper on top of use-package.
-  It’s goal is to simplify package dependencies management,
-  when using use-package for your .emacs.
-
-  -- https://github.com/edvorg/req-package
+  -- https://github.com/jwiegley/use-package
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'req-package)
-(require 'req-package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" .
-                                 "http://stable.melpa.org/packages/"))
+(require 'package)
 
-(when (boundp 'package-pinned-packages)
-  (setq package-pinned-packages ()))
+(setq package-archives
+      '(("gnu"              . "http://elpa.gnu.org/packages/")
+        ("melpa-stable"     . "http://stable.melpa.org/packages/")
+        ("melpa"            . "http://melpa.org/packages/")))
 
 (package-initialize)
+
+;; make sure use-package is available
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+#+END_SRC
+
+Automagically update packages weekly so we are always up to date on all machines.
+
+#+BEGIN_SRC emacs-lisp
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-interval 7)
+  (auto-package-update-maybe))
 #+END_SRC
 
 ** Structure
@@ -103,10 +104,4 @@ Load language modules:
 (org-babel-load-file (expand-file-name "scala.org" config-module-dir))
 (org-babel-load-file (expand-file-name "markup.org" config-module-dir))
 (org-babel-load-file (expand-file-name "ruby.org" config-module-dir))
-#+END_SRC
-
-Make req-package do its magic:
-
-#+BEGIN_SRC emacs-lisp
-(req-package-finish)
 #+END_SRC

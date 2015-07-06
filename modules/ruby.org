@@ -2,19 +2,12 @@
 
 * Ruby
 
-Configuration for [[http://ruby-lang.org][Ruby]] programming language.
-
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-
 ** Chruby
 
 #+BEGIN_SRC emacs-lisp
-(req-package chruby
-  :defer t
-  :init
-  (progn
-    (chruby "2.2")))
+(use-package chruby
+  :ensure t
+  :config (chruby "2.2"))
 #+END_SRC
 
 ** General settings
@@ -23,50 +16,59 @@ General settings like indent levels, syntax coloring etc provided by
 [[https://github.com/zenspider/enhanced-ruby-mode][enh-ruby-mode]].
 
 #+BEGIN_SRC emacs-lisp
-(req-package enh-ruby-mode
+(use-package enh-ruby-mode
+  :ensure t
   :defer t
-  :init
-  (progn
-    (setq enh-ruby-indent-level 2
-          enh-ruby-deep-indent-paren nil
-          enh-ruby-bounce-deep-indent t
-          enh-ruby-hanging-indent-level 0)
+  :mode (("\\.rb$"        . enh-ruby-mode)
+         ("\\.ru$"        . enh-ruby-mode)
+         ("\\.rake$"      . enh-ruby-mode)
+         ("\\.gemspec$"   . enh-ruby-mode)
+         ("\\.?pryrc$"    . enh-ruby-mode)
+         ("/Gemfile$"     . enh-ruby-mode)
+         ("/Guardfile$"   . enh-ruby-mode)
+         ("/Capfile$"     . enh-ruby-mode)
+         ("/Vagrantfile$" . enh-ruby-mode)
+         ("/Rakefile$"    . enh-ruby-mode))
+  :interpreter ("ruby" . enh-ruby-mode)
+  :config
+  (setq enh-ruby-indent-level 2
+        enh-ruby-deep-indent-paren nil
+        enh-ruby-bounce-deep-indent t
+        enh-ruby-hanging-indent-level 0)
 
-    (add-hook 'enh-ruby-mode-hook
-              (function (lambda ()
-                  (setq evil-shift-width enh-ruby-indent-level
-                        indent-tabs-mode nil
-                        tab-width 2)
-                  (robe-mode))))))
+  (add-hook 'enh-ruby-mode-hook
+            (function (lambda ()
+                (setq evil-shift-width enh-ruby-indent-level
+                      indent-tabs-mode nil
+                      tab-width 2)
+                (robe-mode)))))
 #+END_SRC
 
 Indentation aids are provided by [[http://github.com/qoobaa/ruby-electric][ruby-electric]] mode.
 
 #+BEGIN_SRC emacs-lisp
-(req-package ruby-electric
-  :defer t
-  :init
-  (progn
-    (add-hook 'ruby-mode-hook 'ruby-electric-mode)))
+(use-package ruby-electric
+  :ensure t
+  :diminish ruby-electric-mode
+  :config
+  (add-hook 'enh-ruby-mode-hook 'ruby-electric-mode))
 #+END_SRC
 
 Interactive REPL and method documentation provided by [[https://github.com/dgutov/robe][Robe mode]].
 
 #+BEGIN_SRC emacs-lisp
-(req-package robe-mode
-  :defer t
+(use-package robe
   :diminish robe-mode
-  :require company
-  :init
-  (progn
-    (add-to-list 'company-backends 'company-robe))
-    (add-hook 'ruby-mode-hook 'robe-mode))
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-robe)
+  (add-hook 'enh-ruby-mode-hook 'robe-mode))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(req-package rubocop
-  :defer t
-  :init
-  (progn
-    (add-hook 'ruby-mode-hook 'rubocop-mode)))
+(use-package rubocop
+  :ensure t
+  :diminish rubocop-mode
+  :config
+  (add-hook 'enh-ruby-mode-hook 'rubocop-mode))
 #+END_SRC

@@ -29,42 +29,35 @@ files etc. Some of Projectile's features:
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package projectile
+(use-package projectile
   :diminish projectile-mode
-  :ensure evil-leader
-  :defer t
+  :ensure t
   :config
-  (progn
-    (evil-leader/set-key
-      "f"   'projectile-find-file
-      "F"   'projectile-find-file-in-known-projects
-      "o"   'projectile-multi-occur
-      "x p" 'projectile-switch-project
-      "x x" 'smex))
-  :init
-  (progn
-    (require 'projectile)
-    (setq projectile-globally-ignored-files
-      (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
-              projectile-globally-ignored-files))
-    (setq projectile-globally-ignored-directories
-      (append '("target")
-      projectile-globally-ignored-directories))
+  (evil-leader/set-key
+    "f"   'projectile-find-file
+    "F"   'projectile-find-file-in-known-projects
+    "o"   'projectile-multi-occur
+    "x p" 'projectile-switch-project
+    "x x" 'smex))
+  (require 'projectile)
+  (setq projectile-globally-ignored-files
+    (append '("*.class" "*.o" "*.so" "*.elc" "*.jar" "*.png" "*.jpg" "*.jpeg" "*.gif")
+            projectile-globally-ignored-files))
+  (setq projectile-globally-ignored-directories
+    (append '("target")
+    projectile-globally-ignored-directories))
 
-    (projectile-global-mode))) ;; any directory can be a project
+  (projectile-global-mode) ;; any directory can be a project
 #+END_SRC
 
 ** Ag
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package ag
-  :defer t
-  :ensure evil-leader
+(use-package ag
+  :ensure t
   :config
-  (progn
-    (evil-leader/set-key "a" 'ag))
+  (evil-leader/set-key "a" 'ag)
   :init
-  (progn
-    (setq ag-highlight-search t)
-    (setq ag-reuse-buffers t)))
+  (setq ag-highlight-search t)
+  (setq ag-reuse-buffers t))
 #+END_SRC

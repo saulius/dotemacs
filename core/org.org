@@ -3,17 +3,20 @@
 * Org mode configuration
 
 #+BEGIN_SRC emacs-lisp
-(req-stable-package org-pomodoro
+(use-package org-pomodoro
+  :ensure t
   :defer t)
 
-(req-package evil-org
+(use-package evil-org
+  :ensure t
   :defer t
-  :init
+  :config
   (require 'evil-org))
 
 (require 'org-agenda)
 
-(req-package org
+(use-package org
+  :ensure t
   :defer t
   :init
   (progn
