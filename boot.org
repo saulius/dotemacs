@@ -104,4 +104,5 @@ Load language modules:
 (org-babel-load-file (expand-file-name "scala.org" config-module-dir))
 (org-babel-load-file (expand-file-name "markup.org" config-module-dir))
 (org-babel-load-file (expand-file-name "ruby.org" config-module-dir))
+(org-babel-load-file (expand-file-name "web.org" config-module-dir))
 #+END_SRC

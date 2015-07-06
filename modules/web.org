@@ -1,0 +1,97 @@
+#+TITLE: web
+
+* Web
+
+Various modes related to frontend web development.
+
+** Web editing mode
+
+For HTML, ERB, JSX and friends.
+
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t
+  :mode  (("\\.html\\'"  . web-mode)
+          ("\\.jsx$"    . web-mode)
+          ("\\.rhtml\\'" . web-mode)
+          ("\\.erb\\'"   . web-mode))
+  :config
+  (add-hook 'web-mode-hook
+    (lambda ()
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq evil-shift-width 2)
+      (setq web-mode-enable-current-element-highlight t))
+      (define-key evil-normal-state-map "za" 'web-mode-fold-or-unfold)))
+#+END_SRC
+
+** Javascript
+
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode
+  :ensure t
+  :mode  (("\\.js\\'"   . js2-mode)
+          ("\\.json\\'" . js2-mode))
+  :init
+  (setq-default js2-basic-offset 2)
+  :config
+  (add-hook 'js2-mode-hook
+    (lambda ()
+      (setq evil-shift-width js-indent-level)
+      (subword-mode +1))))
+#+END_SRC
+
+** Coffeescript
+
+#+BEGIN_SRC emacs-lisp
+(use-package coffee-mode
+  :ensure t
+  :mode (("\\.coffee\\'"  . coffee-mode))
+  :init
+  (setq coffee-tab-width 2)
+  :config
+  (add-hook 'coffee-mode-hook
+            (lambda ()
+              (subword-mode +1)
+              (setq evil-shift-width coffee-tab-width))))
+#+END_SRC
+
+** css, scss
+
+#+BEGIN_SRC emacs-lisp
+(use-package scss-mode
+  :ensure t
+  :mode (("\\.scss\\'"  . scss-mode))
+  :init
+  (setq css-indent-offset 2)
+  :config
+  (add-hook 'scss-mode-hook
+            (lambda ()
+              (setq evil-shift-width css-indent-offset))))
+
+(use-package css-mode
+  :mode (("\\.css\\'"  . css-mode))
+  :ensure t)
+#+END_SRC
+
+** HAML, Slim
+
+#+BEGIN_SRC emacs-lisp
+(use-package haml-mode
+  :ensure t
+  :mode (("\\.haml\\'"  . haml-mode))
+  :init
+  (setq haml-indent-offset 2)
+  :config
+  (add-hook 'haml-mode-hook (lambda ()
+    (setq evil-shift-width haml-indent-offset)
+    (electric-indent-mode -1))))
+
+(use-package slim-mode
+  :ensure t
+  :mode (("\\.slim\\'" . slim-mode))
+  :config
+  (add-hook 'slim-mode-hook (lambda ()
+    (setq evil-shift-width slim-indent-offset))))
+#+END_SRC
