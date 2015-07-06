@@ -7,27 +7,23 @@ Configuration for [[http://scala-lang.org/][Scala]] programming language.
 #+BEGIN_SRC emacs-lisp
 (use-package scala-mode2
   :ensure t
-  :defer t
+  :mode (("\\.scala$" . scala-mode))
   :config
-  (progn
-    (eval-after-load 'scala-mode2
-      '(progn
-        (evil-leader/set-key-for-mode 'scala-mode
-         ", f"   'ensime-format-source
-         ", i"   'ensime-inspect-type-at-point
-         ", d"   'ensime-show-doc-for-symbol-at-point
-         ", e"   'ensime-show-all-errors-and-warnings
-         ", g t" 'ensime-goto-test
-         ", g i" 'ensime-goto-impl
-         ", j"   'ensime-edit-definition
-         ", t"   'ensime-sbt-do-test-only
-         ", T"   'ensime-sbt-do-test-quick
-         ", c"   'ensime-typecheck-current-file)))))
+  (evil-leader/set-key-for-mode 'scala-mode
+     ", f"   'ensime-format-source
+     ", i"   'ensime-inspect-type-at-point
+     ", d"   'ensime-show-doc-for-symbol-at-point
+     ", e"   'ensime-show-all-errors-and-warnings
+     ", g t" 'ensime-goto-test
+     ", g i" 'ensime-goto-impl
+     ", j"   'ensime-edit-definition
+     ", t"   'ensime-sbt-do-test-only
+     ", T"   'ensime-sbt-do-test-quick
+     ", c"   'ensime-typecheck-current-file))
 
 (use-package ensime
   :ensure t
   :defer t
   :config
-  (progn
-   (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)))
+  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook))
 #+END_SRC

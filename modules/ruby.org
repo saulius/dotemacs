@@ -30,12 +30,12 @@ General settings like indent levels, syntax coloring etc provided by
          ("/Vagrantfile$" . enh-ruby-mode)
          ("/Rakefile$"    . enh-ruby-mode))
   :interpreter ("ruby" . enh-ruby-mode)
-  :config
+  :init
   (setq enh-ruby-indent-level 2
         enh-ruby-deep-indent-paren nil
         enh-ruby-bounce-deep-indent t
         enh-ruby-hanging-indent-level 0)
-
+  :config
   (add-hook 'enh-ruby-mode-hook
             (function (lambda ()
                 (setq evil-shift-width enh-ruby-indent-level

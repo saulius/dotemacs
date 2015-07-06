@@ -31,7 +31,7 @@ Be prepared.
 
 #+BEGIN_SRC emacs-lisp
 (use-package json-mode
-  :defer t
+  :mode (("\\.json$" . json-mode))
   :ensure t)
 #+END_SRC
 
@@ -43,7 +43,6 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
   :ensure t
-  :defer t
   :mode (("\\.yml$"  . yaml-mode)
          ("\\.yaml$" . yaml-mode)))
 #+END_SRC
@@ -53,7 +52,6 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t
-  :defer t
   :mode (("\\.mk$"  . markdown-mode)
          ("\\.mkd$" . markdown-mode)))
 #+END_SRC
@@ -63,19 +61,16 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
 #+BEGIN_SRC emacs-lisp
 (use-package sql
   :ensure t
-  :defer t
   :mode (("\\.hql$"  . sql-mode)
          ("\\.psql$" . sql-mode)
          ("\\.q$"    . sql-mode))
   :config
-  (progn
-    (add-hook 'sql-mode-hook
-      (lambda ()
-        (sql-highlight-mysql-keywords)))
-    (use-package sql-indent
-      :ensure t
-      :defer t
-      :config
-      (progn
-        (setq-default sql-indent-offset tab-width)))))
+  (add-hook 'sql-mode-hook
+    (lambda ()
+      (sql-highlight-mysql-keywords))))
+
+(use-package sql-indent
+  :ensure t
+  :init
+  (setq-default sql-indent-offset tab-width))
 #+END_SRC
