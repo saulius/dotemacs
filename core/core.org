@@ -131,21 +131,15 @@ Used to exit insert/visual evil modes.
       evil-regexp-search t
       evil-want-C-i-jump t)
 
-    (add-hook 'text-mode-hook 'turn-on-evil-mode)
-    (add-hook 'prog-mode-hook 'turn-on-evil-mode)
-    (add-hook 'comint-mode-hook 'turn-on-evil-mode)
-    (add-hook 'org-mode-hook 'turn-on-evil-mode)
-    (add-hook 'Info-mode-hook 'turn-off-evil-mode)))
+    (evil-mode)))
 
 (use-package evil-escape
   :ensure t
   :diminish evil-escape-mode
   :config
-  (progn
-    (require 'evil-escape)
-    (add-hook 'evil-local-mode-hook
-      (lambda ()
-        (evil-escape-mode t)))))
+  (add-hook 'evil-local-mode-hook
+    (lambda ()
+      (evil-escape-mode))))
 #+END_SRC
 
 ** ido
@@ -208,19 +202,18 @@ Map `,` key to leader for wonderful set of shortcuts.
 (use-package evil-leader
   :ensure t
   :config
-  (progn
-    (evil-leader/set-leader ",")
-    (setq evil-leader/in-all-states t)
-    (evil-leader/set-key
-      "b"   'projectile-switch-to-buffer
-      "e"   'ido-find-file
-      "n"   'rename-this-buffer-and-file
-      "t"   'open-ansi-term
-      "T"   'eshell
-      "x l" 'linum-mode
-      "x f" 'auto-fill-mode
-      "x g" 'guide-key-mode
-      "w"   'save-buffer
-      "W"   'save-buffer-no-whitespace)
-    (global-evil-leader-mode)))
+  (evil-leader/set-leader ",")
+  (setq evil-leader/in-all-states t)
+  (evil-leader/set-key
+    "b"   'projectile-switch-to-buffer
+    "e"   'ido-find-file
+    "n"   'rename-this-buffer-and-file
+    "t"   'open-ansi-term
+    "T"   'eshell
+    "x l" 'linum-mode
+    "x f" 'auto-fill-mode
+    "x g" 'guide-key-mode
+    "w"   'save-buffer
+    "W"   'save-buffer-no-whitespace)
+  (global-evil-leader-mode 1))
 #+END_SRC
