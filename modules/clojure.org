@@ -21,7 +21,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
   (evil-leader/set-key-for-mode 'clojure-mode
     "m ," 'cider-reset-test-run-tests
     "m e" 'cider-repl-reset
-    "m c" 'check-parens
+    "m p" 'check-parens
     "m J" 'cider-jack-in
     "m n" 'cider-repl-set-ns
     "m k" 'cider-load-buffer
@@ -56,21 +56,12 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
                      cider-macroexpansion-mode
                      cider-stacktrace-mode
                      cider-docview-mode))
-      (evil-set-initial-state mode 'emacs))
-
-     (defun cider-repl-command (cmd)
-       "Execute commands on the cider repl"
-       (cider-switch-to-repl-buffer)
-       (goto-char (point-max))
-       (insert cmd)
-       (cider-repl-return)
-       (cider-switch-to-last-clojure-buffer))
+       (evil-set-initial-state mode 'emacs))
 
      (defun cider-repl-reset ()
-       "Assumes reloaded + tools.namespace is used to reload everything"
        (interactive)
        (save-some-buffers)
-       (cider-repl-command "(user/reset)"))
+       (cider-refresh))
 
      (defun cider-reset-test-run-tests ()
        (interactive)
