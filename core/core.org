@@ -142,11 +142,8 @@ Used to exit insert/visual evil modes.
 ** ido
 
 #+BEGIN_SRC emacs-lisp
-;; configure ido
 (use-package smex
-  :ensure t
-  :config
-  (evil-leader/set-key "x x" 'smex))
+  :ensure t)
 
 (setq
   ;; Speed up ido by using less candidates
