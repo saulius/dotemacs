@@ -2,6 +2,12 @@
 
 * Clojure
 
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-parentheses
+  :diminish highlight-parentheses-mode
+  :ensure t)
+#+END_SRC
+
 Configuration for [[http://clojure.org][Clojure]] programming language.
 
 #+BEGIN_SRC emacs-lisp
@@ -14,10 +20,6 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
          ("\\.edn$"   . clojure-mode)
          ("\\.cljc$"  . clojure-mode))
   :config
-  (defun clojure-mode-defaults ()
-    (smartparens-strict-mode 1)
-    (subword-mode 1))
-
   (defun cider-eval-expression-at-point-in-repl ()
     (interactive)
     (let ((form (cider-defun-at-point)))
@@ -35,7 +37,8 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     "m J" 'cider-jack-in
     "m n" 'cider-repl-set-ns
     "m k" 'cider-load-buffer
-    "m s" 'cider-eval-expression-at-point-in-repl
+    "m e" 'cider-eval-defun-at-point
+    "m l" 'cider-eval-last-sexp
     "m m" 'cider-macroexpand-1
     "m c" 'cider-eval-expression-at-point-in-repl
     "m d" 'cider-doc-map
@@ -47,10 +50,10 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
   (put-clojure-indent 'start 'defun)
   (put-clojure-indent 'stop 'defun)
 
-  (setq my-clojure-mode-hook 'clojure-mode-defaults)
-
-  (add-hook 'my-clojure-mode-hook (lambda ()
-                                    (run-hooks 'my-clojure-mode-hook))))
+  (add-hook 'clojure-mode-hook (lambda ()
+                                (smartparens-strict-mode 1)
+                                (highlight-parentheses-mode 1)
+                                (subword-mode 1))))
 
 (use-package cider
   :ensure t
@@ -58,8 +61,6 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
   (setq cider-repl-pop-to-buffer-on-connect t)
   (setq cider-prompt-save-file-on-load nil)
   :config
-  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
   (dolist (mode '(cider-repl-mode
                   cider-error-buffer
                   cider-test-report-mode
@@ -70,19 +71,21 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
     (evil-set-initial-state mode 'emacs))
 
   (defun cider-repl-mode-defaults ()
-    (add-hook 'after-save-hook
-          (lambda ()
-             (if (and (boundp 'cider-mode) cider-mode)
-               (cider-refresh))))
-    (subword-mode 1)
-    (smartparens-strict-mode 1))
+    )
 
   (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
   ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
   (setq cider-prompt-save-file-on-load nil)
 
   (add-hook 'cider-mode-hook (lambda ()
-                             (run-hooks 'cider-repl-mode-hook))))
+                              (cider-turn-on-eldoc-mode 1)
+                              (add-hook 'after-save-hook
+                               (lambda ()
+                                (if (and (boundp 'cider-mode) cider-mode)
+                                 (cider-refresh))))
+                              (subword-mode 1)
+                              (smartparens-strict-mode 1)
+                              (highlight-parentheses-mode 1))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
