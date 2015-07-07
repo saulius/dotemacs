@@ -113,7 +113,10 @@ Used to exit insert/visual evil modes.
   (define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
 
-  (evil-set-initial-state 'term-mode 'emacs)
+  (dolist (mode '(term-mode
+                  special-mode
+                  message-mode))
+    (evil-set-initial-state mode 'emacs))
 
   (setq
     ;; this stops evil from overwriting the cursor color
