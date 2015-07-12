@@ -115,6 +115,8 @@ Used to exit insert/visual evil modes.
 
   (dolist (mode '(term-mode
                   special-mode
+                  fundamental-mode
+                  messages-mode
                   message-mode))
     (evil-set-initial-state mode 'emacs))
 
