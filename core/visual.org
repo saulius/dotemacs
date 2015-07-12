@@ -165,7 +165,7 @@ that by removing predefined minor modes from it.
                                        "C-h")
               guide-key/recursive-key-sequence-flag t
               guide-key/popup-window-position 'bottom
-              guide-key/idle-delay 1.0
+              guide-key/idle-delay 1.5
               guide-key/text-scale-amount 0)
   (guide-key-mode 1))
 #+END_SRC
