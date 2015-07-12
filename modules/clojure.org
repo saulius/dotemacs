@@ -52,6 +52,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
 
   (add-hook 'clojure-mode-hook (lambda ()
                                 (smartparens-strict-mode 1)
+                                (evil-cleverparens-mode 1)
                                 (highlight-parentheses-mode 1)
                                 (subword-mode 1))))
 
@@ -85,13 +86,6 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
                                  (cider-refresh))))
                               (subword-mode 1)
                               (smartparens-strict-mode 1)
+                              (evil-cleverparens-mode 1)
                               (highlight-parentheses-mode 1))))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package evil-lisp-state
-  :ensure t
-  :config
-  (define-key evil-normal-state-map "L" 'evil-lisp-state)
-  (setq evil-lisp-state-cursor  '("orange" bar)))
 #+END_SRC
