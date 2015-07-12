@@ -206,7 +206,7 @@ Map `,` key to leader for wonderful set of shortcuts.
     "e"   'ido-find-file
     "n"   'rename-this-buffer-and-file
     "x l" 'linum-mode
-    "x f" 'auto-fill-mode
+    "x F" 'auto-fill-mode
     "x g" 'guide-key-mode
     "w"   'save-buffer
     "W"   'save-buffer-no-whitespace)
