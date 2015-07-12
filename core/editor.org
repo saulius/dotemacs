@@ -383,15 +383,17 @@ in ansi-term or term buffers.
 
 ** terminal
 
-sane-term is more sane than multiterm!
+Quickly access terminal buffer with shell-pop.
 
 #+BEGIN_SRC emacs-lisp
-(use-package sane-term
+(use-package shell-pop
   :ensure t
   :init
-  (setq sane-term-shell-command (getenv "SHELL"))
+  (setq shell-pop-term-shell (getenv "SHELL")
+        shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))
+        shell-pop-universal-key "C-t"
+        shell-pop-full-span t)
   :config
   (evil-leader/set-key
-    "t" 'sane-term
-    "T" 'sane-term-create))
+   "t"  'shell-pop))
 #+END_SRC
