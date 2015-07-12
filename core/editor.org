@@ -244,7 +244,7 @@ control system Git, implemented as an Emacs extension.
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
-  :init
+  :config
   (dolist (mode '(magit-mode
                   magit-status-mode
                   magit-log-mode
@@ -403,4 +403,16 @@ Quickly access terminal buffer with shell-pop.
 #+BEGIN_SRC emacs-lisp
 (use-package evil-cleverparens
   :ensure t)
+#+END_SRC
+
+** transpose-frame
+
+#+BEGIN_SRC emacs-lisp
+(use-package transpose-frame
+  :ensure t
+  :config
+  (evil-leader/set-key
+   "x f r"  'rotate-frame
+   "x f t"  'transpose-frame
+   "x f f"  'flop-frame))
 #+END_SRC
