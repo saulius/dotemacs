@@ -71,10 +71,6 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
                   cider-docview-mode))
     (evil-set-initial-state mode 'emacs))
 
-  (defun cider-repl-mode-defaults ()
-    )
-
-  (setq cider-repl-mode-hook 'cider-repl-mode-defaults)
   ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
   (setq cider-prompt-save-file-on-load nil)
 
