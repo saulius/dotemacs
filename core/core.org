@@ -86,8 +86,6 @@ Used to exit insert/visual evil modes.
   (key-chord-define-global "EE" 'evil-mode)
   (key-chord-define-global "XX" 'smex)
   (key-chord-define-global "OA" 'org-agenda)
-  (key-chord-define-global ",." 'evil-buffer)
-  (key-chord-define-global ",k" 'bury-buffer-delete-window)
   (key-chord-define-global "OF" 'visit-org-agenda-files)
   (key-chord-define-global "OO" 'open-org-global-todo))
 #+END_SRC
@@ -205,6 +203,8 @@ Map `,` key to leader for wonderful set of shortcuts.
     "b"   'projectile-switch-to-buffer
     "e"   'ido-find-file
     "n"   'rename-this-buffer-and-file
+    "."   'evil-buffer
+    "k"   'bury-buffer-delete-window
     "x l" 'linum-mode
     "x F" 'auto-fill-mode
     "x g" 'guide-key-mode
