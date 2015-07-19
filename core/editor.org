@@ -269,11 +269,13 @@ Step through historic versions of git controlled file using everyone's favourite
   :ensure t
   :init
   (progn
-   (eval-after-load 'git-timemachine
-    '(progn
-      (evil-make-overriding-map git-timemachine-mode-map 'normal)
-      ;; force update evil keymaps after git-timemachine-mode loaded
-      (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))))
+    (evil-leader/set-key "x t" 'git-timemachine)
+
+    (defadvice git-timemachine-mode (after toggle-evil activate)
+     "Turn off `evil-local-mode' when enabling
+     `git-timemachine-mode', and turn it back on when disabling
+     `git-timemachine-mode'."
+     (evil-local-mode (if git-timemachine-mode -1 1)))))
 #+END_SRC
 
 *** git gutter
