@@ -33,12 +33,13 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
 
   (evil-leader/set-key-for-mode 'clojure-mode
     "m ," 'cider-test-run-tests
-    "m p" 'check-parens
     "m J" 'cider-jack-in
     "m n" 'cider-repl-set-ns
+    "m f" 'cider-format-defun
     "m k" 'cider-load-buffer
     "m e" 'cider-eval-defun-at-point
     "m l" 'cider-eval-last-sexp
+    "m b" 'cider-eval-buffer
     "m m" 'cider-macroexpand-1
     "m c" 'cider-eval-expression-at-point-in-repl
     "m d" 'cider-doc-map
