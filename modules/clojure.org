@@ -72,6 +72,15 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
                   cider-docview-mode))
     (evil-set-initial-state mode 'emacs))
 
+  (defadvice cider--debug-mode (after toggle-evil activate)
+   "Turn off `evil-local-mode' when enabling
+   `cider--debug-mode', and turn it back on when disabling
+   `cider--debug-mode'."
+   (evil-local-mode (if cider--debug-mode -1 1)))
+
+  (defadvice cider-popup-buffer-mode (after toggle-evil activate)
+   (evil-local-mode (if cider-popup-buffer-mode -1 1)))
+
   ;; Prevent C-c C-k from prompting to save the file corresponding to the buffer being loaded, if it's modified:
   (setq cider-prompt-save-file-on-load nil)
 
