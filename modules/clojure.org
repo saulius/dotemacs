@@ -94,4 +94,7 @@ Configuration for [[http://clojure.org][Clojure]] programming language.
                               (smartparens-strict-mode 1)
                               (evil-cleverparens-mode 1)
                               (highlight-parentheses-mode 1))))
+
+(use-package cider-eval-sexp-fu
+  :ensure t)
 #+END_SRC
