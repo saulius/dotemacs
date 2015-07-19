@@ -55,6 +55,8 @@ Core contains general editor settings. Check further comments below.
 (setq vc-handled-backends nil)
 
 (global-set-key "\C-w" 'backward-kill-word)
+
+(blink-cursor-mode -1)
 #+END_SRC
 
 * Evil
