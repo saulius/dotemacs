@@ -254,10 +254,14 @@ control system Git, implemented as an Emacs extension.
                   magit-log-select-mode
                   git-rebase-mode
                   magit-revision-mode))
+
+  (defadvice magit-blame-mode (after toggle-evil activate)
+   (evil-local-mode (if magit-blame-mode -1 1)))
+
   (evil-set-initial-state mode 'emacs))
   (evil-leader/set-key
          "g"  'magit-status
-         "G"  'magit-blame-mode))
+         "G"  'magit-blame))
 #+END_SRC
 
 *** git timemachine
