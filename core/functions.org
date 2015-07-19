@@ -64,3 +64,24 @@ Saves current buffer killing whitespace
   (setq font-zoom-index default-font-zoom-index)
   (set-frame-font (nth font-zoom-index font-zoom-list))))
 #+END_SRC
+
+** kill line in terminal
+
+#+BEGIN_SRC emacs-lisp
+(defun term-send-kill-line ()
+  (interactive)
+  (term-send-raw)
+  (kill-line)
+  (term-kill-input))
+#+END_SRC
+
+** toggle evil
+
+#+BEGIN_SRC emacs-lisp
+(defun toggle-evil-mode ()
+  "Toggle evil mode local to current buffer"
+  (interactive)
+  (if (symbol-value evil-local-mode)
+    (progn (evil-local-mode -1))
+    (progn (evil-local-mode))))
+#+END_SRC

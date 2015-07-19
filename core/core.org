@@ -85,11 +85,8 @@ Used to exit insert/visual evil modes.
   :ensure t
   :config
   (key-chord-mode 1)
-  (key-chord-define-global "EE" 'evil-mode)
-  (key-chord-define-global "XX" 'smex)
-  (key-chord-define-global "OA" 'org-agenda)
-  (key-chord-define-global "OF" 'visit-org-agenda-files)
-  (key-chord-define-global "OO" 'open-org-global-todo))
+  (key-chord-define-global "EE" 'toggle-evil-mode)
+  (key-chord-define-global "XX" 'smex))
 #+END_SRC
 
 ** evil-mode
