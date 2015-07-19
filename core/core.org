@@ -86,6 +86,7 @@ Used to exit insert/visual evil modes.
   :config
   (key-chord-mode 1)
   (key-chord-define-global "EE" 'toggle-evil-mode)
+  (key-chord-define-global "||" 'evil-normal-state)
   (key-chord-define-global "XX" 'smex))
 #+END_SRC
 
