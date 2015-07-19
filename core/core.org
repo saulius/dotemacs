@@ -218,11 +218,11 @@ Map `,` key to leader for wonderful set of shortcuts.
 Ace jump.
 
 #+BEGIN_SRC emacs-lisp
-(use-package ace-jump-mode
+(use-package avy
   :ensure t
   :config
-  (define-key evil-normal-state-map (kbd "<SPC> l") 'ace-jump-line-mode)
-  (define-key evil-normal-state-map (kbd "<SPC> l") 'ace-jump-line-mode)
-  (define-key evil-visual-state-map (kbd "<SPC> j") 'ace-jump-char-mode)
-  (define-key evil-normal-state-map (kbd "<SPC> j") 'ace-jump-char-mode))
+  (define-key evil-normal-state-map (kbd "<SPC> l") 'avy-goto-line)
+  (define-key evil-normal-state-map (kbd "<SPC> l") 'avy-goto-line)
+  (define-key evil-visual-state-map (kbd "<SPC> j") 'avy-goto-char)
+  (define-key evil-normal-state-map (kbd "<SPC> j") 'avy-goto-char))
 #+END_SRC
