@@ -398,7 +398,7 @@ Quickly access terminal buffer with shell-pop.
    "t"  'shell-pop))
 #+END_SRC
 
-** evil-lispy
+** evil-cleverparens
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil-cleverparens
@@ -415,4 +415,18 @@ Quickly access terminal buffer with shell-pop.
    "x f r"  'rotate-frame
    "x f t"  'transpose-frame
    "x f f"  'flop-frame))
+#+END_SRC
+
+** ace-window
+
+#+BEGIN_SRC emacs-lisp
+(use-package ace-window
+  :ensure t
+  :init
+  (setq aw-dispatch-always t
+        aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :config
+  (global-set-key (kbd "M-p") 'ace-window)
+  (key-chord-define-global "WW" 'ace-window)
+  (ace-window-display-mode))
 #+END_SRC
