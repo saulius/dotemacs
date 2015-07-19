@@ -34,10 +34,13 @@ files etc. Some of Projectile's features:
   :ensure t
   :config
   (evil-leader/set-key
-    "f"   'projectile-find-file
-    "F"   'projectile-find-file-in-known-projects
-    "o"   'projectile-multi-occur
-    "p"   'projectile-switch-project)
+    "p f"   'projectile-find-file
+    "p F"   'projectile-find-file-in-known-projects
+    "p o"   'projectile-multi-occur
+    "x r"   'projectile-replace
+    "x R"   'projectile-regenerate-tags
+    "p t"   'projectile-find-tag
+    "p p"   'projectile-switch-project)
 
   (require 'projectile)
   (setq projectile-globally-ignored-files
