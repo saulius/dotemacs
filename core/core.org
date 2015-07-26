@@ -55,8 +55,6 @@ Core contains general editor settings. Check further comments below.
 (setq vc-handled-backends nil)
 
 (global-set-key "\C-w" 'backward-kill-word)
-
-(blink-cursor-mode -1)
 #+END_SRC
 
 * Evil
@@ -129,14 +127,15 @@ Used to exit insert/visual evil modes.
     evil-want-C-i-jump t)
 
   (evil-mode))
+#+END_SRC
 
-(use-package evil-escape
-  :ensure t
-  :diminish evil-escape-mode
-  :config
-  (add-hook 'evil-local-mode-hook
-    (lambda ()
-      (evil-escape-mode))))
+** term mode
+
+#+BEGIN_SRC emacs-lisp
+;; does not work
+(add-hook 'term-mode-hook (lambda ()
+                             (local-set-key (kbd "C-y") 'term-paste)
+                             (local-set-key (kbd "C-k") 'term-send-kill-line)))
 #+END_SRC
 
 ** ido

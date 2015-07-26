@@ -17,7 +17,7 @@ Editor settings related to visual style or visual aids.
 ;; always highlight active line
 (add-hook 'prog-mode-hook 'hl-line-mode)
 ;; the cursor shouldn't blink
-(blink-cursor-mode nil)
+(blink-cursor-mode 0)
 #+END_SRC
 
 ** Fonts
