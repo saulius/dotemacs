@@ -64,3 +64,37 @@ files etc. Some of Projectile's features:
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t))
 #+END_SRC
+
+** Desktop & Eyebrowse for workflow management
+
+Saving Emacs sessions with destkop.
+
+#+BEGIN_SRC emacs-lisp
+(use-package desktop
+  :init
+  (setq desktop-path '("~/.emacs.d/"))
+  (setq desktop-dirname "~/.emacs.d/")
+  (setq desktop-auto-save-timeout 10)
+  :config
+  (desktop-save-mode))
+#+END_SRC
+
+#+BEGIN_QUOTE
+  eyebrowse is a global minor mode for Emacs that allows you to manage your
+  window configurations in a simple manner, just like tiling window managers
+  like i3wm with their workspaces do. It displays their current state in the
+  modeline by default. The behaviour is modeled after ranger, a file manager
+  written in Python.
+
+  -- https://github.com/bbatsov/projectile
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse
+  :diminish eyebrowse-mode
+  :ensure t
+  :config
+  (define-key evil-motion-state-map (kbd "gR") 'eyebrowse-rename-window-config)
+  (eyebrowse-mode)
+  (eyebrowse-setup-opinionated-keys))
+#+END_SRC

@@ -25,3 +25,4 @@ undo/*
 ensime/
 snippets/
 .last-package-update-day
+.*desktop*
