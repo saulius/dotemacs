@@ -244,6 +244,8 @@ control system Git, implemented as an Emacs extension.
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
+  :init
+  (setq magit-set-upstream-on-push 'askifnotset)
   :config
   (dolist (mode '(magit-mode
                   magit-status-mode
