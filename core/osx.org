@@ -12,7 +12,9 @@ Lets fix that.
   :ensure t
   :if (and window-system (not noninteractive))
   :config
-  (exec-path-from-shell-initialize)) ;; makes important shell variables like $PATH work
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GOPATH")
+  (exec-path-from-shell-copy-env "GOROOT")) ;; makes important shell variables like $PATH work
 #+END_SRC
 
 ** General settings for GUI Emacs
