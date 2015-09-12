@@ -76,3 +76,21 @@ it's useful to have [[https://github.com/yoshiki/yaml-mode/][yaml-mode]] at hand
   :init
   (setq-default sql-indent-offset tab-width))
 #+END_SRC
+
+** Cucumber
+
+#+BEGIN_SRC emacs-lisp
+(use-package feature-mode
+  :ensure t
+  :init
+  (autoload 'feature-mode "feature-mode.el" "Cucumber mode" t)
+  (setq org-table-number-regexp "no-align")
+  :mode (("\\.feature\\'" . feature-mode)))
+#+END_SRC
+
+** Toml
+
+#+BEGIN_SRC emacs-lisp
+(use-package toml-mode
+  :ensure t)
+#+END_SRC
