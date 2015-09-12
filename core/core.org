@@ -127,6 +127,9 @@ Used to exit insert/visual evil modes.
     evil-want-C-i-jump t)
 
   (evil-mode))
+
+(use-package hydra
+  :ensure t)
 #+END_SRC
 
 ** term mode
